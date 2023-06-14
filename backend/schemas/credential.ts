@@ -1,12 +1,15 @@
 import mongoose,{Schema,Document} from 'mongoose'
-const passportLocalMongoose = require('passport-local-mongoose')
+import passportLocalMongoose from 'passport-local-mongoose';
 
-interface credentials extends Document{
-    email:String,
-    phoneNumber:number
-}
 
-const credentialSchema = new Schema<credentials>({
+interface User extends  Document {
+    email: string;
+    phoneNumber: number;
+  }
+
+
+
+const credentialSchema:Schema<User> = new Schema({
     email: String,
     phoneNumber : Number,
     
@@ -15,5 +18,5 @@ const credentialSchema = new Schema<credentials>({
 
 
 credentialSchema.plugin(passportLocalMongoose)
-const credentialModel = mongoose.model<credentials>('User',credentialSchema)
- export{credentialModel ,credentials}
+const credentialModel = mongoose.model('User',credentialSchema)
+ export default credentialModel 
