@@ -1,7 +1,15 @@
-import mongoose,{Schema,InferSchemaType,Document} from 'mongoose'
-const passportLocalMongoose = require('passport-local-mongoose')
+import mongoose,{Schema,Document} from 'mongoose'
 
-const workshopSchema = new Schema({  
+
+interface works extends Document{
+    title:String,
+    topic:String,
+    content:String,
+    author:String
+
+}
+
+const workshopSchema = new Schema<works>({  
     title:{
         type:String,
         required:true
@@ -21,8 +29,6 @@ const workshopSchema = new Schema({
     //where is it published
 
 })
-type workshop = InferSchemaType<typeof workshopSchema>;
 
 
-const workshop =  mongoose.model('article',workshopSchema)
- export default workshop
+ export default mongoose.model<works>('article',workshopSchema)

@@ -1,7 +1,14 @@
-import mongoose,{Schema,InferSchemaType,Document} from 'mongoose'
-const passportLocalMongoose = require('passport-local-mongoose')
+import mongoose,{Schema,Document} from 'mongoose'
 
-const articleSchema = new Schema({  
+interface article extends Document{
+    title:String,
+    topic:String,
+    content:String,
+    author:String
+}
+
+
+const articleSchema = new Schema<article>({  
     title:{
         type:String,
         required:true
@@ -21,8 +28,5 @@ const articleSchema = new Schema({
     //where is it published
 
 })
-type article = InferSchemaType<typeof articleSchema>;
 
-
-const article =  mongoose.model('article',articleSchema)
- export default article
+export default  mongoose.model<article>('article',articleSchema)

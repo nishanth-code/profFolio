@@ -1,14 +1,19 @@
-import mongoose,{Schema,InferSchemaType,Document} from 'mongoose'
+import mongoose,{Schema,Document} from 'mongoose'
 const passportLocalMongoose = require('passport-local-mongoose')
 
-const credentialSchema = new Schema({
+interface credentials extends Document{
+    email:String,
+    phoneNumber:number
+}
+
+const credentialSchema = new Schema<credentials>({
     email: String,
     phoneNumber : Number,
     
 
 })
-type User = InferSchemaType<typeof credentialSchema>;
+
 
 credentialSchema.plugin(passportLocalMongoose)
-const credential =  mongoose.model('User',credentialSchema)
- export default credential
+const credentialModel = mongoose.model<credentials>('User',credentialSchema)
+ export{credentialModel ,credentials}
