@@ -44,7 +44,7 @@ app.use(async(req,res,next)=>{
    next();
 })
 
-  app.post(
+app.post(
    '/authenticate',
    passport.authenticate('local', { failureRedirect: '/' }),
    (req: Request, res: Response) => {
@@ -52,6 +52,13 @@ app.use(async(req,res,next)=>{
      res.redirect('/index');
    }
  );
+
+// app.post('/register',async(req,res)=>{
+//    const newUser = new credential(req.body.user)
+//    const registeredUser = await credential.register(newUser,req.body.password)
+//    res.redirect('/');
+// })
+
 app.get("/",(req:Request,res:Response)=>{
    
 })
