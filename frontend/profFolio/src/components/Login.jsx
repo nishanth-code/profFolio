@@ -7,10 +7,13 @@ function Login() {
     <>
        <div className="login-container">
         <div className="title">
-              <h2>LOGIN</h2>
-              <div className="underline"></div>
+              <h2>LOG IN</h2>
+              <p>Login with one of the following options</p>
         </div>
         <form  action="" method="post">
+        <button><img width="48" height="48" src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo"/> Continue with Google</button>
+        <button> Continue with LinkedIn</button>
+
           <label htmlFor="userName">User Name:</label>
           <input type="text" name="userName" />
           <label htmlFor="password">Password:</label>
