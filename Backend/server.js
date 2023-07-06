@@ -21,9 +21,9 @@ app.get('/',(req,res)=>{
     res.status(200).json({msg:"hello welcome to rest api"})
 })
 app.post('/newuser',async(req,res)=>{
-  const newuser = new profile({username:'nishanth',email:'nishanthnavneeth200@gmail.com',phoneNumber:8151976405})
-  const register = await profile.register(newuser,'nish@9741')
-  console.log(register)
+  const newuser = new profile({username:'mahendar',email:'mahendarptl9@gmail.com',phoneNumber:8151976405})
+  const register = await profile.register(newuser,'mahee@7022')
+  res.status(200).json(register)
 })
 app.get('/authenticate',passport.authenticate('local',{failureRedirect:'/'}),(req,res)=>{
     
