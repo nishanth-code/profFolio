@@ -1,15 +1,15 @@
-import { useState } from "react";
 import Header from "./Header";
-function Home() {
+import Body from "./Body";
+
+const Home = () => {
   return (
     <>
       <div className="home">
         <Header />
-        <h2>Home</h2>
-        <a href="/login">Login</a>
+        <Body />
       </div>
     </>
   );
-}
+};
 
 export default Home;
