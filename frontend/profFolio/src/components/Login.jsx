@@ -6,7 +6,7 @@ function Login() {
   return (
     <>
       <div className="login-container">
-        <div className="login-details">
+        <div className="login-details ">
           <h2>LOG IN</h2>
           <p>Login with one of the following options</p>
           <form action="" method="post">

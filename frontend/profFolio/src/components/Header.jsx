@@ -2,8 +2,8 @@ import Logo from "../assets/logo.png";
 
 const Header = () => {
   return (
-    <nav className="px-4 bg-red-500 ">
-      <div className="navbar">
+    <nav className="px-4 bg-gradient-to-b from-[#1432CF] to-[#DF71FA]">
+      <div className="navbar flex justify-between ">
         <div className="logo">
           <img src={Logo} alt="logo" />
         </div>
@@ -26,12 +26,16 @@ const Header = () => {
           </svg>
         </div>
         <div>
-          <button className="bg-[#1D3792] rounded-md text-2xl my-2">
+          <button className="bg-[#1D3792] rounded-md text-2xl my-2 z-40">
             See More
           </button>
           <a
-            className="bg-[#1D3792] rounded-md text-2xl mx-6 my-2"
+            className="bg-[#1D3792] rounded-md text-2xl mx-6 my-2 z-40"
             href="/login"
+            bg-gradient-to-r
+            from-pink-500
+            via-red-500
+            to-yellow-500
           >
             Login
           </a>
