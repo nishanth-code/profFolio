@@ -28,6 +28,15 @@ app.post('/newuser',async(req,res)=>{
 app.get('/authenticate',passport.authenticate('local',{failureRedirect:'/'}),(req,res)=>{
     
 })
+app.get('/profile',(req,res)=>{
+  const user = profile.findOne({username:req.body.username})
+  if (user){
+    res.json(user).status(200)
+  }
+  else{
+    res.json({msg:"invalid username"})
+  }
+})
 app.listen(5000,()=>{
     console.log("port running on 5000")
 })
