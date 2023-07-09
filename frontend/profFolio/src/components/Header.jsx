@@ -26,11 +26,11 @@ const Header = () => {
           </svg>
         </div>
         <div>
-          <button className="bg-[#1D3792] rounded-md text-2xl my-2 z-40">
+          <button className="bg-[#1D3792] absolute rounded-md text-2xl my-2 z-999">
             See More
           </button>
           <a
-            className="bg-[#1D3792] rounded-md text-2xl mx-6 my-2 z-40"
+            className="bg-[#1D3792] absolute rounded-md text-2xl mx-6 my-2 z-40"
             href="/login"
             bg-gradient-to-r
             from-pink-500

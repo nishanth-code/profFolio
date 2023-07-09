@@ -1,11 +1,14 @@
 import { useState } from "react";
-
+import LoginBackground from "../assets/LoginBackground.png";
 function Login() {
   const [count, setCount] = useState(0);
 
   return (
     <>
       <div className="login-container">
+        <div>
+          <img src={LoginBackground} />
+        </div>
         <div className="login-details ">
           <h2>LOG IN</h2>
           <p>Login with one of the following options</p>
