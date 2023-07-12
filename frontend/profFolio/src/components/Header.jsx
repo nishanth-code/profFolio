@@ -4,12 +4,12 @@ const Header = () => {
   return (
     <nav className="px-4 bg-gradient-to-b from-[#1432CF] to-[#DF71FA]">
       <div className="navbar flex justify-between ">
-        <div className="logo">
-          <img src={Logo} alt="logo" />
-        </div>
-        <p className="text-white text-3xl">ScholarConnect</p>
-        <div>
-          <input type="text" name="search-text" placeholder="search" />
+        {/* <div className="logo">
+          <img className="my-4" src={Logo} alt="logo" />
+        </div> */}
+        {/* <div class="bg-gray-700 w-0.5 h-15 "></div> */}
+        <p className="text-white  my-4 text-3xl">ScholarConnect</p>
+        <div className="flex items-center  my-4 ml-auto border-b-2 border-white-600 mx-6 ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -24,18 +24,20 @@ const Header = () => {
               d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
             />
           </svg>
+          <input
+            className="bg-transparent color-white mx-2"
+            type="text"
+            name="search-text"
+            placeholder="search"
+          />
         </div>
         <div>
-          <button className="bg-[#1D3792] absolute rounded-md text-2xl my-2 z-999">
+          <button className="bg-[#1D3792] text-white px-2 py-2 my-4 rounded-md text-xl">
             See More
           </button>
           <a
-            className="bg-[#1D3792] absolute rounded-md text-2xl mx-6 my-2 z-40"
+            className="bg-[#1D3792] text-white px-2 py-2 my-4 rounded-md text-xl mx-6"
             href="/login"
-            bg-gradient-to-r
-            from-pink-500
-            via-red-500
-            to-yellow-500
           >
             Login
           </a>
