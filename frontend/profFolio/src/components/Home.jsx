@@ -1,7 +1,7 @@
 import Header from "./Header";
 import Body from "./Body";
 import Footer from "./Footer";
-import PublicationCard from "./PublicationCard";
+import HomeCard from "./HomeCard";
 
 const Home = () => {
   return (
@@ -9,7 +9,7 @@ const Home = () => {
       <div className="min-h-screen bg-black">
         <Header />
         <Body />
-        <PublicationCard />
+        <HomeCard />
         <Footer />
       </div>
     </>

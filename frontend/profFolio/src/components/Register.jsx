@@ -1,6 +1,7 @@
 import { useState } from "react";
+import LoginBackground from "../assets/LoginBackground.png";
 
-function Register() {
+const Register = () => {
   const [count, setCount] = useState(0);
 
   return (
@@ -8,6 +9,9 @@ function Register() {
       <div className="login-container">
         <div className="title">
           <h2>Register</h2>
+        </div>
+        <div>
+          <img className="" src={LoginBackground} />
         </div>
         <form action="" method="post">
           <div className="form-inouts">
@@ -28,6 +32,6 @@ function Register() {
       </div>
     </>
   );
-}
+};
 
 export default Register;
