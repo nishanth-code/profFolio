@@ -30,22 +30,20 @@ const Login = () => {
         <div className="">
           <img className="h-screen w-screen" src={LoginBackground} />
         </div>
-        <div className=" justify-center rounded-xl absolute w-2/5 h-auto backdrop-blur-sm bg-white/30 pt-8 text-[calc(10px + 2vmin)]">
-          <p className="text-5xl relative">LOG IN</p>
+        <div className="justify-center rounded-xl absolute w-2/5 h-auto backdrop-blur-sm bg-white/20 pt-8 text-[calc(10px + 2vmin)]">
+          <p className="text-5xl relative my-1">LOG IN</p>
           <p>Login with one of the following options</p>
           <form onSubmit={formik.handleSubmit} method="post">
-            <div className="flex justify-center">
+            <div className="flex w-2/4 mx-40 my-2 rounded-2xl justify-center items-center border-solid border ">
               <img
-                width="40"
-                height="40"
+                className="h-8 w-8 mx-2"
                 src="https://img.icons8.com/color/48/google-logo.png"
                 alt="google-logo"
               />
-              <button className="">Continue with Google</button>
+              <button className="my-2  bg-transparent border-solid border-white ">
+                Continue with Google
+              </button>
             </div>
-            <button className="bg-transparent border-solid border-white ">
-              Continue with LinkedIn
-            </button>
             <div className="form-inputs">
               <input
                 id="email"
@@ -66,20 +64,23 @@ const Login = () => {
                 onChange={formik.handleChange}
                 value={formik.values.password}
               />
-              {formik.errors.email ? <p>{formik.errors.email}</p> : null}
+              {formik.errors.email ? <p>{formik.errors.password}</p> : null}
             </div>
             <a className="" href="/register">
               Register?
             </a>
-            <div className="flex justify-center align rounded-md ">
-              <button className="w-24  my-2 bg-[#0C2785]" type="submit">
+            <div className="flex justify-center ">
+              <button
+                className="w-24 flex justify-center my-2 mx-1 px-1 py-1  rounded-md  bg-[#0C2785]"
+                type="submit"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-6 h-6 flex"
                 >
                   <path
                     strokeLinecap="round"
@@ -90,7 +91,14 @@ const Login = () => {
                 Login
               </button>
             </div>
-            <button type="submit">back</button>
+            <div>
+              <button
+                className="w-24 rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785] justify-center"
+                type="submit"
+              >
+                back
+              </button>
+            </div>
           </form>
         </div>
       </div>
