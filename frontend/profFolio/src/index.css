@@ -31,7 +31,6 @@
     height: 600px;
     padding-top: 30px;
     background: linear-gradient(103.32deg, rgba(201, 189, 189, 0.296) -36.32%, rgba(119, 110, 110, 0) 138.46%);
-    border-radius: 76px;
     font-size: calc(10px + 2vmin);
     border-radius: 20px;
     /* background: linear-gradient(117deg, rgba(230, 227, 227, 0.4) 0%, rgba(119, 110, 110, 0.00) 100%); */
@@ -59,7 +58,7 @@ form {
     color: #FFFDFD;
 }
 
-form>button {
+form> {
     display: flex;
     justify-content: center;
     align-items: center;
