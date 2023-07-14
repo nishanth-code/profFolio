@@ -8,7 +8,7 @@ const Header = () => {
           <img className="my-4" src={Logo} alt="logo" />
         </div> */}
         {/* <div class="bg-gray-700 w-0.5 h-15 "></div> */}
-        <p className="text-black  my-4 text-3xl">ScholarConnect</p>
+        <p className="text-white font-Inria  my-4 text-3xl">ScholarConnect</p>
         <div className="flex items-center  my-4 ml-auto border-b-2 border-white-600 mx-6 ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
