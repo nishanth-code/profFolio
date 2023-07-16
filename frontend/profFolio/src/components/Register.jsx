@@ -33,8 +33,9 @@ const Register = () => {
           <p className="text-5xl relative">REGISTER</p>
 
           <form onSubmit={formik.handleSubmit} method="post">
-            <div className="form-inputs">
+            <div className="">
               <input
+                className="h-10 bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
                 id="userName"
                 type="text"
                 name="userName"
@@ -43,18 +44,21 @@ const Register = () => {
                 value={formik.values.userName}
               />
             </div>
-            <div className="form-inputs">
+            <div className="">
               <input
+                className="h-10 bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
                 id="phoneNum"
                 type="number"
+                max={9999999999}
                 name="phoneNum"
                 placeholder="Phone Number"
                 onChange={formik.handleChange}
                 value={formik.values.phoneNum}
               />
             </div>
-            <div className="form-inputs">
+            <div className="">
               <input
+                className="h-10 bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
                 id="email"
                 type="email"
                 name="email"
@@ -64,8 +68,9 @@ const Register = () => {
               />
               {formik.errors.email ? <p>{formik.errors.email}</p> : null}
             </div>
-            <div className="form-inputs">
+            <div className="">
               <input
+                className="h-10 bg-[rgb(217,217,217)]/30 text-center text-white w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
                 id="password"
                 type="password"
                 name="password"
@@ -75,7 +80,20 @@ const Register = () => {
               />
               {formik.errors.email ? <p>{formik.errors.password}</p> : null}
             </div>
-            <button type="submit">back</button>
+            <div className="flex justify-center ">
+              <button
+                className="w-24 rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785] justify-center"
+                type="submit"
+              >
+                register
+              </button>
+              <button
+                className="w-24 rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785] justify-center"
+                type=""
+              >
+                back
+              </button>
+            </div>
           </form>
         </div>
       </div>

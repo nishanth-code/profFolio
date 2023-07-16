@@ -1,8 +1,8 @@
-import Logo from "../assets/logo.png";
+// import Logo from "../assets/logo.png";
 
 const Header = () => {
   return (
-    <nav className="px-4 bg-gradient-to-b from-[#1432CF] to-[#DF71FA]">
+    <nav className="sticky top-0 z-20 px-4 bg-gradient-to-b from-[#1432CF] to-[#DF71FA]">
       <div className="navbar flex justify-between ">
         {/* <div className="logo">
           <img className="my-4" src={Logo} alt="logo" />

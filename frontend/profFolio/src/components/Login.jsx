@@ -1,39 +1,17 @@
 import { useState } from "react";
 import LoginBackground from "../assets/LoginBackground.png";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 
 const Login = () => {
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validationSchema: Yup.object({
-      email: Yup.string().matches(
-        /^[A-Za-z0-9._%+-]+@drait\.edu\.in$/,
-        "Invalid Email (accepts only @drait.edu.in)"
-      ),
-    }),
-
-    onSubmit: (values) => {
-      console.log(values);
-    },
-  });
-
-  // console.log(formik.errors);
-  // console.log(formik.values);
   return (
     <>
-      {/* bg-gradient-to-r from-[#c9bdbd]  to-[#776e6e] */}
-      <div className="flex max-h-fit items-center relative justify-center text-center text-white bg-auto bg-no-repeat">
+      <div className="flex max-h-fit items-center font-Roboto relative justify-center text-center text-white bg-auto bg-no-repeat">
         <div className="">
           <img className="h-screen w-screen" src={LoginBackground} />
         </div>
         <div className="justify-center rounded-xl absolute w-2/5 h-auto backdrop-blur-sm bg-white/20 pt-8 text-[calc(10px + 2vmin)]">
-          <p className="text-5xl relative my-1">LOG IN</p>
+          <p className="text-4xl relative  my-1">LOG IN</p>
           <p>Login with one of the following options</p>
-          <form onSubmit={formik.handleSubmit} method="post">
+          <form onSubmit="" method="post">
             <div className="flex w-2/4 mx-40 my-2 rounded-2xl justify-center items-center border-solid border ">
               <img
                 className="h-8 w-8 mx-2"
@@ -44,31 +22,34 @@ const Login = () => {
                 Continue with Google
               </button>
             </div>
-            <div className="form-inputs">
+            <div className="">
               <input
+                className="h-10 bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
                 id="email"
                 type="email"
                 name="email"
                 placeholder="Email"
-                onChange={formik.handleChange}
-                value={formik.values.email}
               />
-              {formik.errors.email ? <p>{formik.errors.email}</p> : null}
             </div>
-            <div className="form-inputs">
+            <div className="">
               <input
+                className="h-10 bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
                 id="password"
                 type="password"
                 name="password"
                 placeholder="Password"
-                onChange={formik.handleChange}
-                value={formik.values.password}
               />
-              {formik.errors.email ? <p>{formik.errors.password}</p> : null}
             </div>
-            <a className="" href="/register">
-              Register?
-            </a>
+            <div>
+              <a className="" href="/forgotpassword">
+                Forgot password
+              </a>
+            </div>
+            <div>
+              <a className="" href="/register">
+                Register?
+              </a>
+            </div>
             <div className="flex justify-center ">
               <button
                 className="w-24 flex justify-center my-2 mx-1 px-1 py-1  rounded-md  bg-[#0C2785]"

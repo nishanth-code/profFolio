@@ -5,11 +5,11 @@ const Body = () => {
   return (
     <div className="">
       <div className="image-container relative">
-        <h2>Home</h2>
-        This is body
+        {/* <h2>Home</h2>
+        This is body */}
         <img className="absolute" src={BodyImg} alt="Body image" />
       </div>
-      <div className="h-96 my-16 relative mx-16 rounded-3xl bg-gradient-to-b from-[#341649] to-[#550C6B]  flex justify-between">
+      <div className="h-96 my-24 relative mx-16 rounded-3xl bg-gradient-to-b from-[#341649] to-[#550C6B]  flex justify-between">
         <div className="h-96">
           <img
             className="absolute rounded-tl-3xl rounded-bl-3xl w-2/4 h-96"
