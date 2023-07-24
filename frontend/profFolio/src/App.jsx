@@ -1,60 +1,50 @@
 import { useState } from "react";
 import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import Register from "./components/Register";
-// import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ForgotPassword from "./components/ForgotPassword";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Error from "./components/Error";
+
 function App() {
   return (
     <>
-      <Outlet />
-
-      {/* <Router>
+      <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/forgotpassword" element={<ForgotPassword />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+          <Route path="forgotpassword" element={<ForgotPassword />} />
+          <Route path="register" element={<Register />} />
+          <Route path="*" element={<Error />} />
         </Routes>
-      </Router> */}
+      </Router>
     </>
   );
 }
 
-const appRouter = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    errorElement: <Error />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-        errorElement: <Error />,
-        // children: [
-        //   {
-        //     path: "login",
-        //     element: <Login />,
-        //     errorElement: <Error />,
-        //     children: [
-        //       {
-        //         path: "register",
-        //         element: <Register />,
-        //         errorElement: <Error />,
-        //       },
-        //       {
-        //         path: "/forgotpassword",
-        //       },
-        //     ],
-        //   },
-        // ],
-      },
-    ],
-  },
-]);
-
 export default App;
-export { appRouter };
+
+// New Router handling techq use the latest
+
+// import {
+//   createBrowserRouter,
+//   createRoutesFromElements,
+//   Route,
+//   RouterProvider,
+// } from "react-router-dom";
+
+// const router = createBrowserRouter(
+//   createRoutesFromElements(
+//     <Route path="/" element={<Root />}>
+//       <Route path="dashboard" element={<Dashboard />} />
+//       {/* ... etc. */}
+//     </Route>
+//   )
+// );
+
+// ReactDOM.createRoot(document.getElementById("root")).render(
+//   <React.StrictMode>
+//     <RouterProvider router={router} />
+//   </React.StrictMode>
+// );

@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <>
       {/* #DF71FA  #cecece*/}
-      <div className="min-h-screen bg-[#f9e1ff]">
+      <div className="min-h-screen bg-[#fbf0ff]">
         <Header />
         <Body />
         <HomeCard />

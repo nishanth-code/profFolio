@@ -1,6 +1,9 @@
 // import Logo from "../assets/logo.png";
-
+import { useState } from "react";
+import { ScholarLogo as Logo } from "../assets/Logo.svg";
 const Header = () => {
+  const [userLogin, setUserLogin] = useState(false);
+
   return (
     <nav className="sticky top-0 z-20 px-4 bg-gradient-to-b from-[#1432CF] to-[#DF71FA]">
       <div className="navbar flex justify-between ">
@@ -8,7 +11,9 @@ const Header = () => {
           <img className="my-4" src={Logo} alt="logo" />
         </div> */}
         {/* <div class="bg-gray-700 w-0.5 h-15 "></div> */}
-        <p className="text-white font-Inria  my-4 text-3xl">ScholarConnect</p>
+        <p className="text-[white] font-Inria  my-4 text-3xl">
+          <Logo /> ScholarConnect
+        </p>
         <div className="flex items-center  my-4 ml-auto border-b-2 border-white-600 mx-6 ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -35,12 +40,30 @@ const Header = () => {
           <button className="bg-[#1D3792] text-white px-2 py-2 my-4 rounded-md text-xl">
             See More
           </button>
-          <a
-            className="bg-[#1D3792] text-white px-2 py-2 my-4 rounded-md text-xl mx-6"
-            href="/login"
-          >
-            Login
-          </a>
+          {userLogin ? (
+            <button
+              className="bg-[#1D3792] text-white px-2 py-2 my-4 rounded-md text-xl mx-6"
+              onClick={() => {
+                setUserLogin(false);
+              }}
+            >
+              Login
+            </button>
+          ) : (
+            <button
+              className="bg-[#1D3792] text-white px-2 py-2 my-4 rounded-md text-xl mx-6"
+              onClick={() => {
+                setUserLogin(true);
+              }}
+            >
+              Logout
+            </button>
+          )}
+          {/* {isLoggedIn ? (
+            <button onClick={() => setLoggedIn(false)}>Logout</button>
+          ) : (
+            <button onClick={() => setLoggedIn(true)}>Login</button>
+          )} */}
         </div>
       </div>
     </nav>

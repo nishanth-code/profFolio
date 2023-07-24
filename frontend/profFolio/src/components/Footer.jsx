@@ -2,7 +2,7 @@ import Logo from "../assets/MAKERS_BRAND_LOGO.png";
 
 const Footer = () => {
   const year = new Date().getFullYear();
-  console.log(year);
+
   return (
     <div className="bg-[#350346] text-white">
       <div className="grid grid-cols-4 divide-y-2 my-10">
@@ -42,11 +42,22 @@ const Footer = () => {
               <path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z" />
             </svg>
           </div>
+          <div className="">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15552.511259234821!2d77.5060307!3d12.9636721!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3e9c40000001%3A0x2d368cebf691c5fb!2sDr.%20Ambedkar%20Institute%20Of%20Technology!5e0!3m2!1sen!2sin!4v1690196167837!5m2!1sen!2sin"
+              width="400"
+              height="300"
+              style={{ border: "0" }}
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
         </div>
-        <div className="my-10 mx-10">
-          <p> Contact Information</p>
-          <p>80232 18534</p>
-          <p>99860 03865</p>
+        <div className="my-10 mx-10 ">
+          <p className="py-2"> Contact Information</p>
+          <p className="py-2">80232 18534</p>
+          <p className="py-2">99860 03865</p>
         </div>
         <div className="my-10 mx-10 grid">
           <p>Dr.AIT</p>
