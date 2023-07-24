@@ -22,29 +22,23 @@ app.use(passport.initialize());
 passport.serializeUser(profile.serializeUser());
 passport.deserializeUser(profile.deserializeUser());
 
-app.get("/", (req, res) => {
-  res.status(200).json({ msg: "hello welcome to rest api" });
-});
-app.post("/newuser", async (req, res) => {
-  const newuser = new profile({
-    username: "mahendar",
-    email: "mahendarptl9@gmail.com",
-    phoneNumber: 8151976405,
-  });
-  const register = await profile.register(newuser, "mahee@7022");
-  res.status(200).json(register);
-});
-app.get(
-  "/authenticate",
-  passport.authenticate("local", { failureRedirect: "/" }),
-  (req, res) => {}
-);
-app.get("/profile", (req, res) => {
-  const user = profile.findOne({ username: req.body.username });
-  if (user) {
-    res.json(user).status(200);
-  } else {
-    res.json({ msg: "invalid username" });
+app.get('/',(req,res)=>{
+    res.status(200).json({msg:"hello welcome to rest api"})
+})
+app.get('/newuser',async(req,res)=>{
+  // const newuser = new profile({username:'mahendar',email:'mahendarptl9@gmail.com',phoneNumber:8151976405})
+  // const register = await profile.register(newuser,'mahee@7022')
+  const user = await profile.findOne({username:"nishanth"})
+  // console.log(user)
+  res.status(200).json(user)
+})
+app.get('/authenticate',passport.authenticate('local',{failureRedirect:'/'}),(req,res)=>{
+    
+})
+app.get('/profile',async(req,res)=>{
+  const user = await profile.findOne({username:req.body.username})
+  if (user){
+    res.json(user).status(200)
   }
 });
 app.listen(5000, () => {
