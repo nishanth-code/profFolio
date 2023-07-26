@@ -1,6 +1,7 @@
 // import Logo from "../assets/logo.png";
 import { useState } from "react";
-import { ScholarLogo as Logo } from "../assets/Logo.svg";
+import Logo from "../assets/ScholarLogo.png";
+import SeeMore from "./SeeMore";
 const Header = () => {
   const [userLogin, setUserLogin] = useState(false);
 
@@ -11,9 +12,10 @@ const Header = () => {
           <img className="my-4" src={Logo} alt="logo" />
         </div> */}
         {/* <div class="bg-gray-700 w-0.5 h-15 "></div> */}
-        <p className="text-[white] font-Inria  my-4 text-3xl">
-          <Logo /> ScholarConnect
-        </p>
+        <div className="text-[white] font-Inria flex  my-4 text-3xl">
+          <img className="h-10 w-10 rounded-full mx-5" src={Logo} />{" "}
+          ScholarConnect
+        </div>
         <div className="flex items-center  my-4 ml-auto border-b-2 border-white-600 mx-6 ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -39,6 +41,9 @@ const Header = () => {
         <div>
           <button className="bg-[#1D3792] text-white px-2 py-2 my-4 rounded-md text-xl">
             See More
+            <div className="flex flex-col items-center justify-center">
+              <SeeMore />
+            </div>
           </button>
           {userLogin ? (
             <button
@@ -59,11 +64,6 @@ const Header = () => {
               Logout
             </button>
           )}
-          {/* {isLoggedIn ? (
-            <button onClick={() => setLoggedIn(false)}>Logout</button>
-          ) : (
-            <button onClick={() => setLoggedIn(true)}>Login</button>
-          )} */}
         </div>
       </div>
     </nav>
