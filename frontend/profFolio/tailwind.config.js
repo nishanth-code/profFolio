@@ -12,4 +12,10 @@ module.exports = {
     },
   },
   plugins: [],
+  variants: {
+    extend: {
+      // ...
+      borderStyle: ["hover"],
+    },
+  },
 };

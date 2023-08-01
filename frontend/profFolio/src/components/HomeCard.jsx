@@ -1,18 +1,18 @@
 const HomeCard = () => {
   return (
     <>
-      <div className="flex justify-between">
+      <div className="flex justify-between -ml-3">
         <div className="bg-gradient-to-b from-[#341649] to-[#550C6B]  h-96 w-2/5 z-10 ml-20  my-96 rounded-3xl">
-          <p className="text-white text-center my-28 text-xl">
+          <div className="text-white text-center my-28 text-xl">
             Total Number of Publication:
             <p className="text-9xl text-center"> 10 </p>
-          </p>
+          </div>
         </div>
-        <div className="bg-gradient-to-b from-[#341649] to-[#550C6B]  h-96 w-2/5 z-10 mr-20 my-96 rounded-3xl">
-          <p className="text-white text-center my-28 text-xl">
+        <div className="bg-gradient-to-b from-[#341649] to-[#550C6B]  h-96 w-2/5 z-10  mr-16 my-96 rounded-3xl">
+          <div className="text-white text-center my-28 text-xl">
             Total Number of Articles:
             <p className="text-9xl text-center"> 12 </p>
-          </p>
+          </div>
         </div>
       </div>
       <div>
