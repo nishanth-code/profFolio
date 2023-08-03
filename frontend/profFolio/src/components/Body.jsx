@@ -29,3 +29,45 @@ const Body = () => {
 };
 
 export default Body;
+
+
+// Shimmer
+// import React, { useState, useEffect } from "react";
+// import BodyImg from "../assets/Looper-BG.png";
+// import Rectangle from "../assets/Rectangle-4.png";
+
+// const Body = () => {
+//   const [isLoading, setIsLoading] = useState(true);
+
+//   useEffect(() => {
+//     // Simulate an asynchronous image loading process
+//     const image = new Image();
+//     image.src = BodyImg;
+//     image.onload = () => {
+//       setIsLoading(false);
+//     };
+//   }, []);
+
+//   return (
+//     <div className="">
+//       <div className="image-container relative">
+//         {isLoading ? (
+//           <div className="absolute h-full w-full bg-gradient-to-r from-transparent to-transparent via-white animate-shimmer"></div>
+//         ) : null}
+//         <img className={`absolute ${isLoading ? "hidden" : ""}`} src={BodyImg} alt="Body image" />
+//       </div>
+//       {/* Rest of your component */}
+//     </div>
+//   );
+// };
+
+// export default Body;
+
+// @keyframes shimmer {
+//   0% {
+//     background-position: -1000px 0;
+//   }
+//   100% {
+//     background-position: 1000px 0;
+//   }
+// }

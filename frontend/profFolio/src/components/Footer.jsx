@@ -35,9 +35,7 @@ const Footer = () => {
         </div>
         <div className="my-10 mx-10 grid">
           <p className="py-2"> Contact Information</p>
-          <h3>
-            Lets go for a <FaBeer />?
-          </h3>
+
           <p className="py-2">80232 18534</p>
           <p className="py-2">99860 03865</p>
           {/* <div className="">
@@ -58,8 +56,6 @@ const Footer = () => {
           <p>Dr.AIT</p>
           <a href="">About Us</a>
           <a href="">FAQ</a>
-          <a href="">Privacy Policy</a>
-          <a href="">Terms of Use</a>
           <a href="">Testimonials</a>
           <a href="">Support</a>
         </div>

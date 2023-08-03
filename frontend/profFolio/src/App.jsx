@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import Register from "./components/Register";
+import ProfileDetails from "./components/ProfileDetails";
 import ForgotPassword from "./components/ForgotPassword";
 import Error from "./components/Error";
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="forgotpassword" element={<ForgotPassword />} />
           <Route path="register" element={<Register />} />
+          <Route path="profile" element={<ProfileDetails />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </Router>

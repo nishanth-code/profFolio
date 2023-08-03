@@ -2,6 +2,12 @@
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    extend: {
+      colors: {
+        "purple": "#8A307F",
+        "light-white": "rgba(255, 255, 255, 0.18)",
+      },
+    },
     fontFamily: {
       sans: ["ui-sans-serif", "system-ui"],
       serif: ["ui-serif", "Georgia"],
