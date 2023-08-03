@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const session = require('express-session')
 const passport = require("passport");
 const passportLocal = require("passport-local").Strategy;
 const profile = require("./schemas/profile");
@@ -14,11 +15,24 @@ db.once("open", () => {
   console.log("db connected");
 });
 
+//session data 
+
+const sessionDetails = {
+  secret: 'userCredentials',
+  resave: false,
+  saveUninitialized: true,
+  cookie:{
+      httpOnly: true,
+      expires: Date.now() + (1000*60*60*24),
+      maxAge: 1000*60*60*24
+  }
+}
+
 passport.use(new passportLocal(profile.authenticate()));
 
 app.use(passport.initialize());
 // app.use(passport.session());
-
+app.use(session(sessionDetails))
 passport.serializeUser(profile.serializeUser());
 passport.deserializeUser(profile.deserializeUser());
 
@@ -26,10 +40,8 @@ app.get('/',(req,res)=>{
     res.status(200).json({msg:"hello welcome to rest api"})
 })
 app.get('/newuser',async(req,res)=>{
-  // const newuser = new profile({username:'mahendar',email:'mahendarptl9@gmail.com',phoneNumber:8151976405})
-  // const register = await profile.register(newuser,'mahee@7022')
-  const user = await profile.findOne({username:"nishanth"})
-  // console.log(user)
+  
+  
   res.status(200).json(user)
 })
 app.get('/authenticate',passport.authenticate('local',{failureRedirect:'/'}),(req,res)=>{
