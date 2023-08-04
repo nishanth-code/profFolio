@@ -29,15 +29,16 @@ app.use(session(sessionDetails))
 passport.serializeUser(profile.serializeUser());
 passport.deserializeUser(profile.deserializeUser());
 app.use((req,res,next)=>{
-  const currentUser = 'hello'
+  res.locals.currentUser = 'hello'
   next()
+})
+app.get('/',(req,res)=>{
+  res.status(200).json({msg:"hello welcome to rest api"})
 })
 app.use('/profile',require('./routes/profileroutes'))
 
 
-app.get('/',(req,res)=>{
-    res.status(200).json({msg:"hello welcome to rest api"})
-})
+
 app.get('/newuser',async(req,res)=>{
   
   
@@ -46,12 +47,7 @@ app.get('/newuser',async(req,res)=>{
 app.get('/authenticate',passport.authenticate('local',{failureRedirect:'/'}),(req,res)=>{
     
 })
-app.get('/profile',async(req,res)=>{
-  const user = await profile.findOne({username:req.body.username})
-  if (user){
-    res.json(user).status(200)
-  }
-});
+
 app.listen(5000, () => {
   console.log("port running on 5000");
 });

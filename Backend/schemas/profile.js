@@ -9,9 +9,9 @@ const profileSchema = new schema({
     email:{type:String,required:true},
     phoneNumber:{type:Number,required:true},
     profilePicture:{type:String},
-    publications:[{type:schema.Types.ObjectId,ref:'publication'}],
-    articles:[{type:schema.Types.ObjectId,ref:'article'}],
-    workshops:[{type:schema.Types.ObjectId,ref:'workshop'}]
+    publications:[{type:schema.Types.ObjectId,ref:'publications'}],
+    articles:[{type:schema.Types.ObjectId,ref:'articles'}],
+    workshops:[{type:schema.Types.ObjectId,ref:'workshops'}]
 })
 
 
