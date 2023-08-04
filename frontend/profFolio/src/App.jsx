@@ -10,18 +10,16 @@ import Error from "./components/Error";
 
 function App() {
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="login" element={<Login />} />
-          <Route path="forgotpassword" element={<ForgotPassword />} />
-          <Route path="register" element={<Register />} />
-          <Route path="profile" element={<ProfileDetails />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </Router>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="login" element={<Login />} />
+        <Route path="forgotpassword" element={<ForgotPassword />} />
+        <Route path="register" element={<Register />} />
+        <Route path="profile" element={<ProfileDetails />} />
+        <Route path="/*" element={<Error />} />
+      </Routes>
+    </Router>
   );
 }
 

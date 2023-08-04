@@ -10,19 +10,19 @@ const MenuItems = () => {
         <div></div>
       </div>
       <div className="my-6  text-xl">
-        <Link to={"/profile"}>Publications</Link>
+        <Link to={"/publications"}>Publications</Link>
         <div></div>
       </div>
       <div className="my-6  text-xl">
-        <Link to={"/profile"}>Articles</Link>
+        <Link to={"/articles"}>Articles</Link>
         <div></div>
       </div>
       <div className="my-6  text-xl">
-        <Link to={"/profile"}>Workshops</Link>
+        <Link to={"/workshops"}>Workshops</Link>
         <div></div>
       </div>
       <div className="my-6 text-xl">
-        <Link to={"/profile"}>Patent</Link>
+        <Link to={"/patent"}>Patent</Link>
         <div></div>
       </div>
     </div>

@@ -1,38 +1,99 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { AiOutlineDashboard } from "react-icons/ai";
+import {
+  MdDashboardCustomize,
+  MdDescription,
+  MdEvent,
+  MdEditDocument,
+  MdHome,
+  MdLogout,
+} from "react-icons/md";
+import { LuFileBadge } from "react-icons/lu";
+
 import { useState } from "react";
+import Logo from "../assets/ScholarLogo.png";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
   const [open, setOpen] = useState(true);
+  const menus = [
+    { id: 1, title: "Profile", route: "profile", spacing: true },
+    {
+      id: 2,
+      title: "Publications",
+      route: "publications",
+      icon: <MdDescription />,
+    },
+    { id: 3, title: "Articles", route: "articles", icon: <MdEditDocument /> },
+    { id: 4, title: "Workshops", route: "workshops", icon: <MdEvent /> },
+    { id: 5, title: "Patent", route: "patent", icon: <LuFileBadge /> },
+    { id: 6, title: "Home", route: "", spacing: true, icon: <MdHome /> },
+    { id: 7, title: "Logout", route: "", icon: <MdLogout /> },
+  ];
 
   return (
     <div
-      className={`bg-purple h-screen p-5 pt-8 relative 
+      className={`bg-[#550C6B] h-screen p-5 pt-8 relative 
       ${open ? "w-72" : "w-24"} duration-300 `}
     >
       <FaArrowLeft
-        className={`bg-white text-purple text-3xl rounded-full absolute -right-3 top-9 border border-purple cursor-pointer ${
-          !open && "rotate-180"
-        }`}
+        className="bg-white text-[#550C6B] text-3xl rounded-full absolute -right-3 top-9 border border-purple cursor-pointer"
         onClick={() => {
           setOpen(!open);
         }}
       />
-      <div className="inline-flex">
-        <AiOutlineDashboard
-          className={`text-5xl  text-white rounded cursor-pointer block float-left duration-500 ${
-            open && "rotate-[360deg]"
-          }`}
-        />
+      <div className="inline-flex px-4">
+        <div className="text-[white] flex  my-11 text-xl ">
+          <img className={`h-10 rounded-full  w-10 }`} src={Logo} />
+        </div>
         <h1
-          className={`text-white oringin-left font-medium text-2xl px-4 py-2 duration-300 
+          className={`text-white origin-left font-Inria font-medium text-2xl px-2 my-8 py-4 duration-300 
           ${!open && "scale-0"}`}
         >
-          Sidebar
+          ScholarConnect
         </h1>
       </div>
+      <div className="text-white mx-4 my-4">
+        {menus.map((menu, index) => (
+          <Link key={menu.id || index} to={"/" + menu.route}>
+            <div
+              className={`my-4 text-xl flex items-center p-2 hover:bg-light-white rounded-md ${
+                menu.spacing ? "mt-9" : "mt-2"
+              }`}
+            >
+              <span className="text-2xl block float-right pr-2">
+                {menu.icon ? menu.icon : <MdDashboardCustomize />}
+              </span>
+              <span
+                className={`text-base font-medium flex-1 ${!open && "hidden"}`}
+              >
+                {menu.title}
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
 
-      <h1>This is side bar</h1>
+      {/* <div className="my-6  text-xl">
+          <Link to={"/profile/"}>Profile</Link>
+          <div></div>
+        </div>
+        <div className="my-6  text-xl">
+          <Link to={"/Publications/:id"}>Publications</Link>
+          <div></div>
+        </div>
+        <div className="my-6  text-xl">
+          <Link to={"/Articles/:id"}>Articles</Link>
+          <div></div>
+        </div>
+        <div className="my-6  text-xl">
+          <Link to={"/Workshops/:id"}>Workshops</Link>
+          <div></div>
+        </div>
+        <div className="my-6 text-xl">
+          <Link to={"/Patent/:id"}>Patent</Link>
+          <div></div>
+        </div> */}
     </div>
   );
 };
