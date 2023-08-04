@@ -4,6 +4,8 @@ const controller = require('../controllers/profileController')
 
 
 profileRoutes.get('/viewprofile',controller.profilerender)
-profileRoutes.get('/signup',controller.createUser)
+profileRoutes.post('/signup',controller.createUser)
+profileRoutes.get('/sendotp',controller.sendOTP)
+profileRoutes.put('/updatePassword',)
 
 module.exports = profileRoutes
