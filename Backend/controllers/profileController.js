@@ -3,6 +3,10 @@ const profile = require("../schemas/profile");
 const sendMail = require('../utilities/mailer')
 const bcrypt = require('bcrypt')
 const cloudinary = require('../utilities/cloudinary')
+
+
+
+
 const profilerender =async(req,res)=>{
     const user = await profile.findOne({username:'nishanth'}).populate(['publications','articles','workshops'])
     if (user){
@@ -14,11 +18,25 @@ const profilerender =async(req,res)=>{
 }
 const createUser = async(req,res) =>{
     const {username,email,PhoneNumber,password}=req.body.user
-    const upload = await cloudinary.uploader.upload()
+    if (!req.file) {
+        return res.status(400).json({msg:'No image file uploaded.'});
+      }
+    
+      try {
+        // Upload the image to Cloudinary
+        const result = await cloudinary.uploader.upload(req.file.path);
+    
+        // Image uploaded successfully, return the Cloudinary image URL to the client
+        const imageUrl = result.secure_url
+        const newUser = new profile({username:username,phoneNumber:PhoneNumber,email:email,profilePicture:imageUrl})
+        const regUser = await profile.register(newUser,password)
+        res.json(regUser)
+      } catch (error) {
+        console.error('Error uploading image to Cloudinary:', error);
+        res.status(500).json({ error: 'Error uploading image to Cloudinary.' });
+      }
 
-    const newUser = new profile({username:username,phoneNumber:PhoneNumber,email:email,profilePicture:profilePicture})
-    const regUser = await profile.register(newUser,password)
-    res.json(regUser)
+    
 
 } 
 
@@ -40,9 +58,9 @@ const sendOTP = async(req,res)=>{
 
 
 const updatePassword = async(req,res)=>{
-    // const {username,newPassword}= req.body
-    const user = await profile.findOne({username:'nishanth'})
-    const test = await user.setPassword('nish@9741', (err) => {
+    const {username,newPassword}= req.body
+    const user = await profile.findOne({username:username})
+    const test = await user.setPassword(newPassword, (err) => {
         if (err) {
           return res.status(500).json({msg:'Error setting new password.'});
         }
@@ -58,10 +76,8 @@ const updatePassword = async(req,res)=>{
 }
 
 const changePassword = async(req,res)=>{
-    // const {username,oldPassword,newPassword}= req.body
-    username = 'nishanth'
-    oldPassword = 'nish@9741'
-    newPassword = 'NIsh@9741'
+    const {username,oldPassword,newPassword}= req.body
+   
    
     const user = await profile.findOne({username:username})
      
@@ -81,24 +97,28 @@ const changePassword = async(req,res)=>{
     
      
     }
-    // const user = await profile.findOne({username:username})
-    // console.log(user)
-    // const match  = await user.comparePassword(oldPassword)
-    // if(match){
-    //     const ack=await user.updatePassword(newPassword)
-    //     if(ack){
-    //         res.status(200).json({msg:'password sucessfully updated'})
-    //     }else{
+    const changeProfilePic = async(req,res) =>{
+        const user = await profile.findOne({username:currentUser})
+        if (!req.file) {
+            return res.status(400).json({msg:'No image file uploaded.'});
+          }
+        
+          try {
+            // Upload the image to Cloudinary
+            const result = await cloudinary.uploader.upload(req.file.path);
+        
+            // Image uploaded successfully, return the Cloudinary image URL to the client
+            const imageUrl = result.secure_url
+            const regUser = await profile.findByIdAndUpdate(user._id,{profilePicture:imageUrl},{new:true})
+            res.json({msg:'updated sucessfully'}).status(200)
+          } catch (error) {
+            console.error('Error uploading image to Cloudinary:', error);
+            res.status(500).json({ error: 'Error uploading image to Cloudinary.' });
+          }
+
+    }
     
-    //         res.status(400).json({msg:'internal error occured retry'})
-    //     }
-
-    // }
-    // else{
-    //     res.json({msg:'old password incorrect'}).status(400)
-    // }
 
 
 
-
-module.exports = {profilerender,changePassword,createUser,updatePassword,sendOTP}
+module.exports = {profilerender,changeProfilePic,changePassword,createUser,updatePassword,sendOTP}
