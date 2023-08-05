@@ -39,11 +39,7 @@ app.use('/profile',require('./routes/profileroutes'))
 
 
 
-app.get('/newuser',async(req,res)=>{
-  
-  
-  res.status(200).json(user)
-})
+
 app.get('/authenticate',passport.authenticate('local',{failureRedirect:'/'}),(req,res)=>{
     
 })
