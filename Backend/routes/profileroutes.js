@@ -6,7 +6,7 @@ const controller = require('../controllers/profileController')
 profileRoutes.get('/viewprofile',controller.profilerender)
 profileRoutes.post('/signup',controller.createUser)
 profileRoutes.post('/sendotp',controller.sendOTP)
-profileRoutes.put('/changePassword',controller.updatePassword)
+profileRoutes.get('/changePassword',controller.updatePassword)
 profileRoutes.get('/updatePassword',controller.changePassword)
 // profileRoutes.delete()
 
