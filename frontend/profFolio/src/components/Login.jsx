@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import LoginBackground from "../assets/LoginBackground.png";
+// import { redirect } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -41,14 +42,14 @@ const Login = () => {
               />
             </div>
             <div>
-              <a className="" href="/forgotpassword">
+              <Link className="" to={"/forgotpassword"}>
                 Forgot password
-              </a>
+              </Link>
             </div>
             <div>
-              <a className="" href="/register">
+              <Link className="" to={"/register"}>
                 Register?
-              </a>
+              </Link>
             </div>
             <div className="flex justify-center ">
               <button
@@ -75,7 +76,8 @@ const Login = () => {
             <div>
               <button
                 className="w-24 rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785] justify-center"
-                type="submit"
+                type="button"
+                // onClick={() => redirect("/")}
               >
                 back
               </button>

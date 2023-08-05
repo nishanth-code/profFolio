@@ -17,7 +17,7 @@ function App() {
         <Route path="forgotpassword" element={<ForgotPassword />} />
         <Route path="register" element={<Register />} />
         <Route path="profile" element={<ProfileDetails />} />
-        <Route path="/*" element={<Error />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </Router>
   );

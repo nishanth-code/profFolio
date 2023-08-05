@@ -44,24 +44,37 @@ const SideBar = () => {
       />
       <div className="inline-flex px-4">
         <div className="text-[white] flex  my-11 text-xl ">
-          <img className={`h-10 rounded-full  w-10 }`} src={Logo} />
+          <img
+            className={`h-10 rounded-full ${!open && "scale-1"} `}
+            src={Logo}
+          />
         </div>
         <h1
           className={`text-white origin-left font-Inria font-medium text-2xl px-2 my-8 py-4 duration-300 
-          ${!open && "scale-0"}`}
+          ${!open ? "scale-0" : ""}`}
         >
           ScholarConnect
         </h1>
       </div>
       <div className="text-white mx-4 my-4">
+        {/* <img
+            className={`h-10 rounded-full ${!open && "scale-1"} `}
+            src={Logo}
+          /> */}
         {menus.map((menu, index) => (
           <Link key={menu.id || index} to={"/" + menu.route}>
             <div
-              className={`my-4 text-xl flex items-center p-2 hover:bg-light-white rounded-md ${
-                menu.spacing ? "mt-9" : "mt-2"
-              }`}
+              className={`my-4 text-xl flex items-center p-2 ${
+                open ? " hover:bg-light-white rounded-md" : ""
+              } ${menu.spacing ? "mt-9" : "mt-2"}`}
             >
-              <span className="text-2xl block float-right pr-2">
+              <span
+                className={`text-2xl block float-right pr-2 ${
+                  open
+                    ? ""
+                    : "hover:bg-light-white rounded-md mr-4 pt-1 pl-1 pr-1 pb-1"
+                }`}
+              >
                 {menu.icon ? menu.icon : <MdDashboardCustomize />}
               </span>
               <span

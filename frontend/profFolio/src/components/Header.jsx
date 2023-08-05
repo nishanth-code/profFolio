@@ -10,7 +10,7 @@ const Header = () => {
 
   const handleUserLogin = () => {
     if (userLogin) {
-      navigate("/profile");
+      navigate("/login");
     } else {
     }
     setUserLogin(!userLogin);
