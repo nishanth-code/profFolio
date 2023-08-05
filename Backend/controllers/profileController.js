@@ -2,6 +2,7 @@ const SendmailTransport = require("nodemailer/lib/sendmail-transport");
 const profile = require("../schemas/profile");
 const sendMail = require('../utilities/mailer')
 const bcrypt = require('bcrypt')
+const cloudinary = require('../utilities/cloudinary')
 const profilerender =async(req,res)=>{
     const user = await profile.findOne({username:'nishanth'}).populate(['publications','articles','workshops'])
     if (user){
@@ -12,7 +13,9 @@ const profilerender =async(req,res)=>{
 
 }
 const createUser = async(req,res) =>{
-    const {username,email,profilePicture,PhoneNumber,password}=req.body.user
+    const {username,email,PhoneNumber,password}=req.body.user
+    const upload = await cloudinary.uploader.upload()
+
     const newUser = new profile({username:username,phoneNumber:PhoneNumber,email:email,profilePicture:profilePicture})
     const regUser = await profile.register(newUser,password)
     res.json(regUser)
