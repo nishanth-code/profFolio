@@ -3,6 +3,10 @@ const profile = require("../schemas/profile");
 const sendMail = require('../utilities/mailer')
 const bcrypt = require('bcrypt')
 const cloudinary = require('../utilities/cloudinary')
+const article =  require('../schemas/articles')
+const publication = require('../schemas/publications')
+const patent = require('../schemas/patents')
+const workshop =  require('../schemas/workshop')
 
 
 
@@ -117,8 +121,26 @@ const changePassword = async(req,res)=>{
           }
 
     }
+const deleteAccount = async(req,res)=>{
+  const user = await profile.findOne({username:'mahendar'})
+  const {articles,publications,patents,workshops}= user
+  try{
+    await article.deleteMany({_id:{$in:articles}})
+  await publication.deleteMany({_id:{$in:publications}})
+  await patent.deleteMany({_id:{$in:patents}})
+  await workshop.deleteMany({_id:{$in:workshops}})
+  await profile.findByIdAndDelete(user._id)
+  res.status(200).json({msg:'sucessfully deleted'})
+
+  }
+  catch(err){
+    res.status(500).json({msg:`couldnot complete action due to ${err}`})
+  }
+
+
+}
     
 
 
 
-module.exports = {profilerender,changeProfilePic,changePassword,createUser,updatePassword,sendOTP}
+module.exports = {profilerender,deleteAccount,changeProfilePic,changePassword,createUser,updatePassword,sendOTP}

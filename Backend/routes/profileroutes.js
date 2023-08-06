@@ -18,6 +18,6 @@ profileRoutes.post('/sendotp',controller.sendOTP)
 profileRoutes.put('/changePassword',controller.updatePassword)
 profileRoutes.put('/updatePassword',controller.changePassword)
 profileRoutes.put('/updateProfilePic',upload.single('profilePicture'),controller.changeProfilePic)
-// profileRoutes.delete()
+profileRoutes.delete('/deleteProfile',controller.deleteAccount)
 
 module.exports = profileRoutes
