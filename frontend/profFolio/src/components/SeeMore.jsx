@@ -17,8 +17,8 @@ const SeeMore = () => {
       ) : (
         <svg
           onClick={() => setShowSeeMore(!showSeeMore)}
-          className="fixed z-30 flex items-center cursor-pointer right-10 top-6"
-          fill="white"
+          className="fixed z-30 flex items-center cursor-pointer right-12 top-5"
+          fill="#1D3792"
           viewBox="0 0 100 80"
           width="40"
           height="40"

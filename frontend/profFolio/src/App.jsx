@@ -7,19 +7,36 @@ import Register from "./components/Register";
 import ProfileDetails from "./components/ProfileDetails";
 import ForgotPassword from "./components/ForgotPassword";
 import Error from "./components/Error";
+import Publication from "./components/Publication";
+import Article from "./components/Article";
+import Workshop from "./components/Workshop";
+import Patent from "./components/Patent";
+// import { ErrorBoundary } from "react-error-boundary";
+import Dashboard from "./components/Dashboard";
 
 function App() {
+  function NotFound() {
+    return <Error message="Page not found." />;
+  }
   return (
+    // <ErrorBoundary fallback={<div>Something went wrong</div>}>
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="forgotpassword" element={<ForgotPassword />} />
         <Route path="register" element={<Register />} />
-        <Route path="profile" element={<ProfileDetails />} />
-        <Route path="*" element={<Error />} />
+        <Route path="dashboard" element={<Dashboard />}>
+          <Route path="profile" element={<ProfileDetails />} />
+          <Route path="publication" element={<Publication />} />
+          <Route path="articles" element={<Article />} />
+          <Route path="workshop" element={<Workshop />} />
+          <Route path="patent" element={<Patent />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
+    // </ErrorBoundary>
   );
 }
 

@@ -3,6 +3,7 @@ import { useState } from "react";
 import Logo from "../assets/ScholarLogo.png";
 import SeeMore from "./SeeMore";
 import { useNavigate } from "react-router-dom";
+import ScrollComponent from "./ScrollComponent";
 
 const Header = () => {
   const [userLogin, setUserLogin] = useState(false);
@@ -25,7 +26,7 @@ const Header = () => {
         </div>
         <div>
           <button
-            className="bg-[#1D3792] text-white px-2 py-2 my-4 mr-20 rounded-md text-xl "
+            className="bg-[#1D3792] text-white px-2 py-2 my-4 mr-24 rounded-md text-xl "
             onClick={handleUserLogin}
           >
             {userLogin ? "Login" : "Logout"}
@@ -35,6 +36,7 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <ScrollComponent />
     </nav>
   );
 };

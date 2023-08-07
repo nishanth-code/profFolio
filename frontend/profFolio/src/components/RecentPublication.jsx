@@ -73,7 +73,13 @@ const RecentPublication = () => {
       <p className="text-5xl text-[#550C6B] mx-16 my-12">Recent Publication</p>
       <div className="flex flex-wrap mx-8">
         {demoPublications.map((publication) => (
-          <PublicationCard key={publication.id} publication={publication} />
+          <PublicationCard
+            key={publication.id}
+            author={publication.author}
+            title={publication.title}
+            content={publication.content}
+            publication={publication}
+          />
         ))}
       </div>
     </div>

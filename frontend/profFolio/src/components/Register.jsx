@@ -35,7 +35,7 @@ const Register = () => {
           <form onSubmit={formik.handleSubmit} method="post">
             <div className="">
               <input
-                className="h-10 bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
+                className="h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
                 id="userName"
                 type="text"
                 name="userName"
@@ -46,7 +46,7 @@ const Register = () => {
             </div>
             <div className="">
               <input
-                className="h-10 bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
+                className="h-10 invalid:border-red-500 appearance-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border leading-tight focus:outline-none focus:shadow-outline"
                 id="phoneNum"
                 type="number"
                 max={9999999999}
@@ -58,7 +58,7 @@ const Register = () => {
             </div>
             <div className="">
               <input
-                className="h-10 bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
+                className="h-10 focus:outline-none invalid:border-red-500 bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
                 id="email"
                 type="email"
                 name="email"
@@ -66,11 +66,15 @@ const Register = () => {
                 onChange={formik.handleChange}
                 value={formik.values.email}
               />
-              {formik.errors.email ? <p>{formik.errors.email}</p> : null}
+              {formik.errors.email ? (
+                <p className="text-red-600  text-md font-semibold -pt-2">
+                  {formik.errors.email}
+                </p>
+              ) : null}
             </div>
             <div className="">
               <input
-                className="h-10 bg-[rgb(217,217,217)]/30 text-center text-white w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
+                className="h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center text-white w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
                 id="password"
                 type="password"
                 name="password"
@@ -89,7 +93,7 @@ const Register = () => {
               </button>
               <button
                 className="w-24 rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785] justify-center"
-                type=""
+                type="button"
               >
                 back
               </button>

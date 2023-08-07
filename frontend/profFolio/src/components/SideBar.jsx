@@ -17,15 +17,15 @@ import { Link } from "react-router-dom";
 const SideBar = () => {
   const [open, setOpen] = useState(true);
   const menus = [
-    { id: 1, title: "Profile", route: "profile", spacing: true },
+    { id: 1, title: "Profile", route: "dashboard", spacing: true },
     {
       id: 2,
       title: "Publications",
-      route: "publications",
+      route: "publication",
       icon: <MdDescription />,
     },
-    { id: 3, title: "Articles", route: "articles", icon: <MdEditDocument /> },
-    { id: 4, title: "Workshops", route: "workshops", icon: <MdEvent /> },
+    { id: 3, title: "Articles", route: "article", icon: <MdEditDocument /> },
+    { id: 4, title: "Workshops", route: "workshop", icon: <MdEvent /> },
     { id: 5, title: "Patent", route: "patent", icon: <LuFileBadge /> },
     { id: 6, title: "Home", route: "", spacing: true, icon: <MdHome /> },
     { id: 7, title: "Logout", route: "", icon: <MdLogout /> },
@@ -45,7 +45,7 @@ const SideBar = () => {
       <div className="inline-flex px-4">
         <div className="text-[white] flex  my-11 text-xl ">
           <img
-            className={`h-10 rounded-full ${!open && "scale-1"} `}
+            className={`h-10 rounded-full text-xl ${!open && "scale-1"} `}
             src={Logo}
           />
         </div>
