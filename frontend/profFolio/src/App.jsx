@@ -1,6 +1,13 @@
-import { useState } from "react";
+import { React, useState } from "react";
+import ReactDOM from "react-dom/client";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// import {
+//   createBrowserRouter,
+//   RouterProvider,
+//   Route,
+//   Routes,
+// } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import Register from "./components/Register";
@@ -13,6 +20,12 @@ import Workshop from "./components/Workshop";
 import Patent from "./components/Patent";
 // import { ErrorBoundary } from "react-error-boundary";
 import Dashboard from "./components/Dashboard";
+import Header from "./components/Header";
+import Body from "./components/Body";
+import HomeCard from "./components/HomeCard";
+import RecentPublication from "./components/RecentPublication";
+import Footer from "./components/Footer";
+import UserPublication from "./components/UserPublication";
 
 function App() {
   function NotFound() {
@@ -23,10 +36,10 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="login" element={<Login />} />
-        <Route path="forgotpassword" element={<ForgotPassword />} />
-        <Route path="register" element={<Register />} />
-        <Route path="dashboard" element={<Dashboard />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />}>
           <Route path="profile" element={<ProfileDetails />} />
           <Route path="publication" element={<Publication />} />
           <Route path="articles" element={<Article />} />
@@ -41,6 +54,94 @@ function App() {
 }
 
 export default App;
+// const App = () => {
+//   {
+//     /* #DF71FA  #cecece*/
+//   }
+//   return (
+//     <div className="min-h-screen bg-[#fbf0ff]">
+//       <Header />
+//       <Body />
+//       <HomeCard />
+//       <RecentPublication />
+//       <Footer />
+//     </div>
+//   );
+// };
+
+// const appRouter = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <App />,
+//     errorElement: <Error />,
+//     // children: [
+//     //   {
+//     //     path: "/",
+//     //     element: <Body />,
+//     //     errorElement: <Error />,
+//     //   },
+//     //   {
+//     //     path: "/about",
+//     //     element: <About />,
+//     //     children: [
+//     //       {
+//     //         //     don't have to add '/' -- parentPath/{path} ==> localhost:1234/about/profile
+//     //         path: "profile",
+//     //         element: <Profile />,
+//     //       },
+//     //     ],
+//   },
+//   {
+//     path: "/login",
+//     element: <Login />,
+//     errorElement: <Error />,
+//   },
+//   {
+//     path: "/register",
+//     element: <Register />,
+//     errorElement: <Error />,
+//   },
+//   {
+//     path: "/dashboard",
+//     element: <Dashboard />,
+//     children: [
+//       {
+//         path: "publication",
+//         element: <UserPublication />,
+//         errorElement: <Error />,
+//       },
+//       {
+//         path: "article",
+//         element: <Article />,
+//         errorElement: <Error />,
+//       },
+//     ],
+//   },
+//   {
+//     path: "/publication",
+//     element: <Publication />,
+//     errorElement: <Error />,
+//   },
+//   {
+//     path: "/article",
+//     element: <Article />,
+//     errorElement: <Error />,
+//   },
+//   {
+//     path: "/workshop",
+//     element: <Workshop />,
+//     errorElement: <Error />,
+//   },
+//   {
+//     path: "/patent",
+//     element: <Patent />,
+//     errorElement: <Error />,
+//   },
+// ]);
+
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// root.render(<RouterProvider router={appRouter} />);
 
 // New Router handling techq use the latest
 

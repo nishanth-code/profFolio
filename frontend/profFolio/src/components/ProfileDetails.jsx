@@ -16,14 +16,7 @@ const ProfileDetails = () => {
       userName: "",
       designation: "",
       phoneNum: "",
-      password: "",
     },
-    validationSchema: Yup.object({
-      email: Yup.string().matches(
-        /^[A-Za-z0-9._%+-]+@drait\.edu\.in$/,
-        "Invalid Email (please use college email ID)"
-      ),
-    }),
 
     onSubmit: (values) => {
       console.log(values);
@@ -45,45 +38,50 @@ const ProfileDetails = () => {
   return (
     <div>
       {userLoggedIn ? (
-        <div className="flex">
-          <div className="flex fle">
-            {/* <SideBar /> */}
-            <div className="p-7">
-              <h1 className="text-2xl font-semibold ml">Profile Page</h1>
-              <div className="flex mt-16">
-                <div className="relative">
-                  <img
-                    className="h-40 w-32 ml-20 rounded-xl cursor-pointer transition duration-300 ease-in-out transform hover:brightness-75"
-                    src={profileImage}
-                    alt="profile"
-                    onClick={() =>
-                      document.getElementById("imageInput").click()
-                    }
-                  />
-                  <div className="absolute bottom-2 right-2 bg-white text-black px-2 py-1 rounded-full cursor-pointer opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <MdEdit className="inline-block mr-1" />
+        <div>
+          <div className="flex">
+            <div className="flex fle">
+              {/* <SideBar /> */}
+              <div className="p-7 bg-slate-600">
+                <h1 className="text-2xl font-semibold ml">Profile Page</h1>
+                <div className="flex mt-16">
+                  <div className="relative">
+                    <img
+                      className="h-40 w-32 ml-20 rounded-xl cursor-pointer transition duration-300 ease-in-out transform hover:brightness-75"
+                      src={profileImage}
+                      alt="profile"
+                      onClick={() =>
+                        document.getElementById("imageInput").click()
+                      }
+                    />
+                    {/* <div className="absolute bottom-2 right-2 bg-white text-black px-2 py-1 rounded-full cursor-pointer opacity-0 transition-opacity duration-300 hover:opacity-100">
                     Edit pic
+                  </div> */}
+                    <label className="pl-20 cursor-pointer font-bold ">
+                      <input
+                        id="imageInput"
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={handleImageChange}
+                      />
+                      <MdEdit className=" inline-block mr-1" />
+                      Select Image
+                    </label>
                   </div>
-                  <input
-                    id="imageInput"
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                    onChange={handleImageChange}
-                  />
-                </div>
-                <div className="mt-12 ml-12 font-In ">
-                  <h1 className="text-3xl">user_name</h1>
-                  <input
+                  <div className="mt-12 ml-12 font-In ">
+                    <h1 className="text-3xl">user_name</h1>
+                    {/* <input
                     type="text"
-                    className="text-xl font-bold outline-none border-b border-transparent focus:border-blue-500"
+                    className="text-3xl font-bold outline-none border-b border-transparent focus:border-blue-500"
                     value={userName}
                     onChange={handleNameChange}
-                  />
-                  <h1 className="text-sm">type_Professor</h1>
+                  /> */}
+                    <h1 className="text-sm">type_Professor</h1>
+                  </div>
                 </div>
+                <hr className="w-[800px] h-1 mx-24 my-4 bg-gray-300 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
               </div>
-              <hr className="w-96 h-1 mx-12 my-4 bg-gray-200 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
             </div>
           </div>
           <Analysis />

@@ -5,7 +5,6 @@ import HomeCard from "./HomeCard";
 import RecentPublication from "./RecentPublication";
 
 const Home = () => {
-  
   return (
     <>
       {/* #DF71FA  #cecece*/}

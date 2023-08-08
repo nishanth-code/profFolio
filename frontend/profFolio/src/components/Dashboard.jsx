@@ -9,7 +9,7 @@ const Dashboard = () => {
     <div className="flex">
       <SideBar />
       {/* <ProfileDetails /> */}
-      <Publication />
+      {/* <Publication />  */}
       {/* <ScrollComponent /> */}
       <Outlet />
     </div>
