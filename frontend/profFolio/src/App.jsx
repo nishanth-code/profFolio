@@ -39,8 +39,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="profile" element={<ProfileDetails />} />
+        <Route path="/profile" element={<Dashboard />}>
+          <Route path="" element={<ProfileDetails />} />
           <Route path="publication" element={<Publication />} />
           <Route path="articles" element={<Article />} />
           <Route path="workshop" element={<Workshop />} />

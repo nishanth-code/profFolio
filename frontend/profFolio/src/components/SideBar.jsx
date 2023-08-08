@@ -17,33 +17,30 @@ import { Link } from "react-router-dom";
 const SideBar = () => {
   const [open, setOpen] = useState(true);
 
-
-
-  
   const menus = [
     { id: 1, title: "Profile", route: "profile", spacing: true },
     {
       id: 2,
       title: "Publications",
-      route: "dashboard/userName/publication/",
+      route: "profile/userName/publication/",
       icon: <MdDescription />,
     },
     {
       id: 3,
       title: "Articles",
-      route: "dashboard/article",
+      route: "profile/article",
       icon: <MdEditDocument />,
     },
     {
       id: 4,
       title: "Workshops",
-      route: "dashboard/workshop",
+      route: "profile/workshop",
       icon: <MdEvent />,
     },
     {
       id: 5,
       title: "Patent",
-      route: "dashboard/patent",
+      route: "profile/patent",
       icon: <LuFileBadge />,
     },
     { id: 6, title: "Home", route: "", spacing: true, icon: <MdHome /> },

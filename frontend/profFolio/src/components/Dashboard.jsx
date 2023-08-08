@@ -8,10 +8,10 @@ const Dashboard = () => {
   return (
     <div className="flex">
       <SideBar />
+      <Outlet />
       {/* <ProfileDetails /> */}
       {/* <Publication />  */}
       {/* <ScrollComponent /> */}
-      <Outlet />
     </div>
   );
 };
