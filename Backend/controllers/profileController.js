@@ -12,7 +12,7 @@ const workshop =  require('../schemas/workshop')
 
 
 const profilerender =async(req,res)=>{
-    const user = await profile.findOne({username:'nishanth'}).populate(['publications','articles','workshops'])
+    const user = await profile.findOne({username:'mahendar'}).populate(['publications','articles','workshops'])
     if (user){
           res.json(user).status(200)
     }else{
