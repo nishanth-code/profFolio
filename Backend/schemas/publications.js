@@ -5,7 +5,7 @@ const schema = mongoose.Schema
 const publicationsSchema = new schema({
     title:{type:String,required:true},
     author:{type:String,required:true},
-    user:{type:string,required:true},
+    user:{type:String,required:true},
     doi:{type:Date,required:true},
     year:{type:Number,required:true},
     subject:{type:String,required:true},
