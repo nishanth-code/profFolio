@@ -41,7 +41,7 @@ const ProfileDetails = () => {
   return (
     <div>
       {userLoggedIn ? (
-        <div className="bg-[#fbf0ff] border border-gray-200 mt-20 ml-20 rounded-2xl h-auto">
+        <div className="bg-[#fbf0ff] border border-gray-200 mt-20 ml-20 rounded-2xl h-auto shadow-lg">
           <div className="flex">
             <div className="flex ">
               {/* <SideBar /> */}
