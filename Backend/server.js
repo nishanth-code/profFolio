@@ -33,9 +33,10 @@ app.use((req,res,next)=>{
   next()
 })
 app.get('/',(req,res)=>{
-  res.status(200).json({msg:"hello welcome to rest api"})
+  res.status(200).json({msg:"hello welcome to  scholarConnect rest api"})
 })
 app.use('/profile',require('./routes/profileroutes'))
+app.use('/publication',require('./routes/publicationroutes'))
 
 
 
