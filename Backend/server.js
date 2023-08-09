@@ -29,7 +29,7 @@ app.use(session(sessionDetails))
 passport.serializeUser(profile.serializeUser());
 passport.deserializeUser(profile.deserializeUser());
 app.use((req,res,next)=>{
-  res.locals.currentUser = 'hello'
+  res.locals.currentUser = 'nishanth'
   next()
 })
 app.get('/',(req,res)=>{
