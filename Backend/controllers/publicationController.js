@@ -16,6 +16,8 @@ const render = async(req,res) =>{
 const newPublication = async(req,res) =>{
     const currentUser = 'nishanth'
     const user = await profile.findOne({username:currentUser})
+    console.log(req.body)
+
     const { title,author,publishedMedia,doi,year,subject,volume,editor,publisher} = req.body.publication
     const publicat = new publication(
         {title:title,
@@ -31,7 +33,7 @@ const newPublication = async(req,res) =>{
 
     })
     user.publications.push(publicat)
-    await publicate.save()
+    await publicat.save()
     await user.save()
     res.json({msg:'sucessfully added to your profile'}).status(200)
 }
@@ -39,7 +41,7 @@ const updatePublication = async(req,res) =>{
     const id = req.params.id
     const publicate = req.body
     await publications.findByIdAndUpdate(id,publicate)
-    console.log(publicate)
+    
     res.json({msg:'sucessfully updated'}).status(200)
 
 
