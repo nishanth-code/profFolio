@@ -16,7 +16,7 @@ const render = async(req,res) =>{
 const newPublication = async(req,res) =>{
     const currentUser = 'nishanth'
     const user = await profile.findOne({username:currentUser})
-    const { title,author,publishedMedia,doi,year,subject,volume,editor,publisher} = req.body
+    const { title,author,publishedMedia,doi,year,subject,volume,editor,publisher} = req.body.publication
     const publicat = new publication(
         {title:title,
         author:author,
