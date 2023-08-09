@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require('cors')
 const session = require('express-session')
 const passport = require("passport");
 const passportLocal = require("passport-local").Strategy;
@@ -28,6 +29,11 @@ app.use(passport.initialize());
 app.use(session(sessionDetails))
 passport.serializeUser(profile.serializeUser());
 passport.deserializeUser(profile.deserializeUser());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+}));
 app.use((req,res,next)=>{
   res.locals.currentUser = 'nishanth'
   next()
