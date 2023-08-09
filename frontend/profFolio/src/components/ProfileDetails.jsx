@@ -10,7 +10,7 @@ import * as Yup from "yup";
 const ProfileDetails = () => {
   const [profileImage, setProfileImage] = useState(professor);
   const [userName, setUserName] = useState("user_name");
-  const [userLoggedIn, setUserLoggedIn] = useState(true);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
 
   //route = /profile/signUp, method=POST
 
@@ -95,7 +95,7 @@ const ProfileDetails = () => {
       ) : (
         <div className="h-auto rounded-xl flex flex-col justify-center">
           <div className="mt-40 pt-10 ml-80">
-            Login with one of the following options
+            Enter your profile Details
           </div>
           <div className="">
             <form onSubmit={formik.handleSubmit} method="post">
