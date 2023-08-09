@@ -4,12 +4,15 @@ import { useEffect, useState } from "react";
 import { MdEdit } from "react-icons/md";
 import Analysis from "./Analysis";
 import { useFormik } from "formik";
+import { Link } from "react-router-dom";
 import * as Yup from "yup";
 
 const ProfileDetails = () => {
   const [profileImage, setProfileImage] = useState(professor);
   const [userName, setUserName] = useState("user_name");
   const [userLoggedIn, setUserLoggedIn] = useState(true);
+
+  //route = /profile/signUp, method=POST
 
   const formik = useFormik({
     initialValues: {
@@ -38,12 +41,15 @@ const ProfileDetails = () => {
   return (
     <div>
       {userLoggedIn ? (
-        <div>
+        <div className="bg-[#fbf0ff] border border-gray-200 mt-20 ml-20 rounded-2xl h-auto">
           <div className="flex">
-            <div className="flex fle">
+            <div className="flex ">
               {/* <SideBar /> */}
-              <div className="p-7 bg-slate-600">
-                <h1 className="text-2xl font-semibold ml">Profile Page</h1>
+              <div className="p-7 ">
+                <Link>Edit Profile</Link>
+                <h1 className="text-2xl font-semibold ml text-center">
+                  Profile Page
+                </h1>
                 <div className="flex mt-16">
                   <div className="relative">
                     <img
@@ -87,14 +93,14 @@ const ProfileDetails = () => {
           <Analysis />
         </div>
       ) : (
-        <div className="bg-gray-100 mx-40 w-full h-auto rounded-xl">
-          <div className="ml-36 mt-40 pt-10 text-center">
-            <p>Login with one of the following options</p>
+        <div className="h-auto rounded-xl flex flex-col justify-center">
+          <div className="mt-40 pt-10 ml-80">
+            Login with one of the following options
           </div>
-          <form onSubmit={formik.handleSubmit} method="post">
-            <div>
+          <div className="">
+            <form onSubmit={formik.handleSubmit} method="post">
               <input
-                className="h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
+                className="h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40  my-4 rounded-2xl   border-solid border"
                 id="userName"
                 type="text"
                 name="userName"
@@ -102,8 +108,8 @@ const ProfileDetails = () => {
                 onChange={formik.handleChange}
                 value={formik.values.userName}
               />
-            </div>
-            <div>
+              {/* </div> */}
+              {/* <div> */}
               <input
                 className="h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
                 id="designation"
@@ -113,8 +119,8 @@ const ProfileDetails = () => {
                 onChange={formik.handleChange}
                 value={formik.values.designation}
               />
-            </div>
-            <div className="">
+              {/* </div> */}
+              {/* <div className=""> */}
               <input
                 className="h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
                 id="phoneNum"
@@ -125,9 +131,9 @@ const ProfileDetails = () => {
                 onChange={formik.handleChange}
                 value={formik.values.phoneNum}
               />
-            </div>
+              {/* </div> */}
 
-            {/* <div>
+              {/* <div>
               <input
                 className="h-10 bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
                 id="department"
@@ -136,16 +142,17 @@ const ProfileDetails = () => {
                 placeholder="Department"
               />
             </div> */}
-            <div className="text-white text-center ">
-              <button
-                className="w-24 rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785] justify-center"
-                type="button"
-                // onClick={() => redirect("/")}
-              >
-                SUBMIT
-              </button>
-            </div>
-          </form>
+              <div className=" text-center mr-72">
+                <button
+                  className="w-24 text-white rounded-md my-2  px-1 py-1 bg-[#0C2785] justify-center"
+                  type="submit"
+                  // onClick={onSubmit()}
+                >
+                  SUBMIT
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </div>

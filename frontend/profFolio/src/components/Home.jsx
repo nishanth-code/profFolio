@@ -7,7 +7,7 @@ import RecentPublication from "./RecentPublication";
 const Home = () => {
   return (
     <>
-      {/* #DF71FA  #cecece*/}
+      {/* #DF71FA #fbf0ff  #cecece*/}
       <div className="min-h-screen bg-[#fbf0ff]">
         <Header />
         <Body />

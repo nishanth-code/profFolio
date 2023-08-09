@@ -2,7 +2,7 @@ import { MdEdit, MdEditDocument, MdEvent, MdDescription } from "react-icons/md";
 
 const Analysis = () => {
   return (
-    <div className="flex flex-row bg-red-200 pl-10 ml-20">
+    <div className="flex flex-row  pl-10 ml-20">
       <div className=" pr-10">
         <div className="flex ">
           <MdDescription className="text-3xl" size={70} />

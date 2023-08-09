@@ -22,7 +22,7 @@ const SideBar = () => {
     {
       id: 2,
       title: "Publications",
-      route: "profile/userName/publication/",
+      route: "profile/publication",
       icon: <MdDescription />,
     },
     {
@@ -61,7 +61,7 @@ const SideBar = () => {
       <div className="inline-flex px-4">
         <div className="text-[white] flex  my-11 text-xl ">
           <img
-            className={`h-10 rounded-full text-xl ${!open && "scale-1"} `}
+            className={`h-10  rounded-full text-xl ${!open && "scale-1"} `}
             src={Logo}
           />
         </div>

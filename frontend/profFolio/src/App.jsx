@@ -39,9 +39,13 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/publications" element={<Publication />} />
+        <Route path="/articles" element={<Article />} />
+        <Route path="/workshops" element={<Workshop />} />
+        {/* <Route path="/patents" element={<Register />} /> */}
         <Route path="/profile" element={<Dashboard />}>
           <Route path="" element={<ProfileDetails />} />
-          <Route path="publication" element={<Publication />} />
+          <Route path="publication" element={<UserPublication />} />
           <Route path="articles" element={<Article />} />
           <Route path="workshop" element={<Workshop />} />
           <Route path="patent" element={<Patent />} />
