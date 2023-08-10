@@ -22,14 +22,16 @@ const profilerender =async(req,res)=>{
 }
 const createUser = async(req,res) =>{
     const {username,email,PhoneNumber,password}=req.body.user
-    if (!req.file) {
-        return res.status(400).json({msg:'No image file uploaded.'});
-      }
+    // if (!req.file) {
+    //     // return res.status(400).json({msg:'No image file uploaded.'});
+    //   }
     
       try {
         // Upload the image to Cloudinary
+        if(req.file){
         const result = await cloudinary.uploader.upload(req.file.path);
-    
+
+        }    
         // Image uploaded successfully, return the Cloudinary image URL to the client
         const imageUrl = result.secure_url
         const newUser = new profile({username:username,phoneNumber:PhoneNumber,email:email,profilePicture:imageUrl})
