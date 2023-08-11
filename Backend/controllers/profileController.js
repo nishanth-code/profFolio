@@ -7,6 +7,7 @@ const article =  require('../schemas/articles')
 const publication = require('../schemas/publications')
 const patent = require('../schemas/patents')
 const workshop =  require('../schemas/workshop')
+var otp =0
 
 
 
@@ -52,15 +53,29 @@ const sendOTP = async(req,res)=>{
     
     const user = await profile.findOne({email:Email})
     if(user){
-        const otp = Math.floor(Math.random()*10000)
+        otp = Math.floor(Math.random()*10000)
         sendMail(otp,Email)
-        res.json({otp:otp,username:user.username}).status(200)
+        res.json({msg:"otp sent sucessfully"}).status(200)
         
         
     }else{
-        res.json({msg:'email not found in records'}).status(500)
+        res.json({msg:'email not found in records'}).status(400)
     }
+    
+    
+  
 
+}
+const verifyotp = async(req,res)=>{
+  const userotp = req.body.otp
+  if(otp===userotp){
+    res.json({msg:'authentication sucessfull'}).status(200)
+    otp=0
+  }else{
+    res.json({msg:'incorrect otp'}).status(400)
+  }
+
+  
 }
 
 
@@ -142,8 +157,9 @@ const deleteAccount = async(req,res)=>{
 
 
 }
+
     
 
 
 
-module.exports = {profilerender,deleteAccount,changeProfilePic,changePassword,createUser,updatePassword,sendOTP}
+module.exports = {profilerender,verifyotp,deleteAccount,changeProfilePic,changePassword,createUser,updatePassword,sendOTP}

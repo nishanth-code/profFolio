@@ -50,12 +50,34 @@ app.use('/patent',require('./routes/patentroutes'))
 
 
 
-app.get('/authenticate',passport.authenticate('local'),(req,res)=>{
+app.post('/authenticate',passport.authenticate('local'),(req,res)=>{
+  console.log(req.body)
 res.json({msg:'authentication sucessful'}).status(200)    
 })
-app.get('/error',(req,res)=>{
-  res.json({msg:'incorrect credential'}).status(400)
-})
+
+
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error(err); // Log the error for debugging purposes
+  
+  // Set an appropriate status code for the error
+  res.status(err.status || 500);
+  
+  // Send an error response
+  res.json({
+    error: {
+      message: err.message || 'Internal Server Error'
+    }
+  });
+});
+
+
+
+
+
+
+
+
 
 app.listen(5000, () => {
   console.log("port running on 5000");
