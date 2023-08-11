@@ -1,6 +1,13 @@
 import LoginBackground from "../assets/LoginBackground.png";
 
 const ForgotPassword = () => {
+
+
+  
+
+
+
+
   return (
     <>
       <div className="flex max-h-fit items-center font-Roboto relative justify-center text-center text-white bg-auto bg-no-repeat">

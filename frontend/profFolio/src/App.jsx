@@ -1,13 +1,6 @@
 import { React, useState } from "react";
-import ReactDOM from "react-dom/client";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// import {
-//   createBrowserRouter,
-//   RouterProvider,
-//   Route,
-//   Routes,
-// } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./Pages/Home/Home";
 import Register from "./components/Register";
@@ -26,6 +19,8 @@ import PublicationPage from "./components/PublicationPage";
 import UserArticles from "./Profile/UserArticle/UserArticles";
 import UserWorkshop from "./Profile/UserWorkshop/UserWorkshop";
 import MenuLayout from "./components/PageLayout";
+import AddPublication from "./Profile/UserPublication/AddPublication";
+import PublicationLayout from "./Profile/UserPublication/PublicationLayout";
 
 function App() {
   function NotFound() {
@@ -43,23 +38,32 @@ function App() {
           {/* <Route path="/patents" element={<Register />} /> */}
         </Route>
         <Route path="/login" element={<Login />} />
-        <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />}>
+          {/* create route for otp */}
+          <Route path="otp" element={<Login />} />
+        </Route>
+        {/* Create route for change password */}
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Dashboard />}>
           <Route path="" element={<ProfileDetails />} />
-          <Route path="publication" element={<UserPublication />} />
+          <Route path="publication" element={<PublicationLayout />}>
+            <Route path="" element={<UserPublication />} />
+            <Route path="add" element={<AddPublication />} />
+            <Route path="edit/:id" element={<EditPublication />} />
+          </Route>
           <Route path="article" element={<UserArticles />} />
           <Route path="workshop" element={<UserWorkshop />} />
           <Route path="patent" element={<Patent />} />
         </Route>
-        <Route
-          path="/profile/publication/edit/:data"
+        {/* <Route
+          path="/profile/publication/edit/:id"
           element={<EditPublication />}
-        />
+        /> */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
     // </ErrorBoundary>
+    // <Route path="edit/:id" element={<EditPublication />} />
   );
 }
 

@@ -1,5 +1,6 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { AiOutlineDashboard } from "react-icons/ai";
+import { BsChevronDown } from "react-icons/bs";
 import {
   MdDashboardCustomize,
   MdDescription,
@@ -16,40 +17,86 @@ import { Link } from "react-router-dom";
 
 const SideBar = () => {
   const [open, setOpen] = useState(true);
+  const [submenuOpen, setSubmenuOpen] = useState([]);
+  const toggleSubmenu = (index) => {
+    const newStates = [...submenuOpen];
+    newStates[index] = !newStates[index];
+    setSubmenuOpen(newStates);
+  };
 
   const menus = [
-    { id: 1, title: "Profile", route: "profile", spacing: true },
     {
-      id: 2,
-      title: "Publications",
-      route: "profile/publication",
-      icon: <MdDescription />,
+      id: 1,
+      title: "Profile",
+      route: "profile",
+      spacing: true,
+      submenu: true,
+      submenuItems: [{ id: 2, title: "AddProfile", route: "profile/add" }],
     },
     {
       id: 3,
+      title: "Publications",
+      route: "profile/publication",
+      icon: <MdDescription />,
+      submenu: true,
+      submenuItems: [
+        {
+          id: 4,
+          title: "AddPublication",
+          route: "profile/publication/add",
+          icon: <MdDescription />,
+        },
+      ],
+    },
+
+    {
+      id: 5,
       title: "Articles",
       route: "profile/article",
       icon: <MdEditDocument />,
+      submenu: true,
+      submenuItems: [
+        {
+          id: 6,
+          title: "AddArticles",
+          route: "profile/article/add",
+          icon: <MdDescription />,
+        },
+      ],
     },
     {
-      id: 4,
+      id: 7,
       title: "Workshops",
       route: "profile/workshop",
       icon: <MdEvent />,
+      submenu: true,
+      submenuItems: [
+        {
+          id: 8,
+          title: "AddWorkshops",
+          route: "profile/workshop/add",
+          icon: <MdDescription />,
+        },
+      ],
     },
     {
-      id: 5,
+      id: 9,
       title: "Patent",
       route: "profile/patent",
       icon: <LuFileBadge />,
     },
-    { id: 6, title: "Home", route: "", spacing: true, icon: <MdHome /> },
-    { id: 7, title: "Logout", route: "login", icon: <MdLogout /> },
+    { id: 10, title: "Home", route: "", spacing: true, icon: <MdHome /> },
+    { id: 11, title: "Logout", route: "login", icon: <MdLogout /> },
   ];
+
+  if (submenuOpen.length !== menus.length) {
+    // Initialize submenu states with false values for each submenu item
+    setSubmenuOpen(new Array(menus.length).fill(false));
+  }
 
   return (
     <div
-      className={`bg-[#550C6B] h-screen p-5 pt-8  sticky top-0   
+      className={`bg-[#550C6B] h-screen p-5 pt-2  sticky top-0
       ${open ? "w-72" : "w-24"} duration-300 `}
     >
       <FaArrowLeft
@@ -72,11 +119,7 @@ const SideBar = () => {
           ScholarConnect
         </h1>
       </div>
-      <div className="text-white mx-4 my-4">
-        {/* <img
-            className={`h-10 rounded-full ${!open && "scale-1"} `}
-            src={Logo}
-          /> */}
+      <div className="text-white mx-4 -my-10">
         {menus.map((menu, index) => (
           <Link key={menu.id || index} to={"/" + menu.route}>
             <div
@@ -98,31 +141,35 @@ const SideBar = () => {
               >
                 {menu.title}
               </span>
+
+              {menu.submenu && (
+                <BsChevronDown
+                  className=""
+                  onClick={() => toggleSubmenu(index)}
+                />
+              )}
             </div>
+            {menu.submenu && submenuOpen[index] && (
+              <div className="text-white mx-4 ">
+                {menu.submenuItems.map((submenuItem, index) => (
+                  <Link
+                    key={submenuItem.id || index}
+                    to={"/" + submenuItem.route}
+                  >
+                    <div
+                      className={`my text-xl flex items-center p-2 ${
+                        open ? " hover:bg-light-white rounded-md" : ""
+                      } ${menu.spacing ? "mt-4" : "mt-2"}`}
+                    >
+                      {submenuItem.title}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </Link>
         ))}
       </div>
-
-      {/* <div className="my-6  text-xl">
-          <Link to={"/profile/"}>Profile</Link>
-          <div></div>
-        </div>
-        <div className="my-6  text-xl">
-          <Link to={"/Publications/:id"}>Publications</Link>
-          <div></div>
-        </div>
-        <div className="my-6  text-xl">
-          <Link to={"/Articles/:id"}>Articles</Link>
-          <div></div>
-        </div>
-        <div className="my-6  text-xl">
-          <Link to={"/Workshops/:id"}>Workshops</Link>
-          <div></div>
-        </div>
-        <div className="my-6 text-xl">
-          <Link to={"/Patent/:id"}>Patent</Link>
-          <div></div>
-        </div> */}
     </div>
   );
 };
@@ -134,3 +181,26 @@ export default SideBar;
 // AiFillFund
 
 // colors -- blues #79A7D3 #6883BC
+
+{
+  /* <div className="my-6  text-xl">
+    <Link to={"/profile/"}>Profile</Link>
+    <div></div>
+  </div>
+  <div className="my-6  text-xl">
+    <Link to={"/Publications/:id"}>Publications</Link>
+    <div></div>
+  </div>
+  <div className="my-6  text-xl">
+    <Link to={"/Articles/:id"}>Articles</Link>
+    <div></div>
+  </div>
+  <div className="my-6  text-xl">
+    <Link to={"/Workshops/:id"}>Workshops</Link>
+    <div></div>
+  </div>
+  <div className="my-6 text-xl">
+    <Link to={"/Patent/:id"}>Patent</Link>
+    <div></div>
+  </div> */
+}

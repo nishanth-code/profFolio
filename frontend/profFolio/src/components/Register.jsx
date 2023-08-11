@@ -2,12 +2,19 @@ import { useState } from "react";
 import LoginBackground from "../assets/LoginBackground.png";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
+import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const url =
+    "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/signup";
+
   const formik = useFormik({
     initialValues: {
-      userName: "",
-      phoneNum: "",
+      username: "",
+      phoneNumber: "",
       email: "",
       password: "",
     },
@@ -19,9 +26,17 @@ const Register = () => {
     }),
 
     onSubmit: (values) => {
+      axios.post(url, { values }, { withCredentials: true }).then((res) => {
+        console.log(res);
+        if (res.status == 200) {
+          navigate("/login");
+        }
+      });
       console.log(values);
     },
   });
+
+  // const goToLogin = () => {};
 
   return (
     <>
@@ -36,24 +51,24 @@ const Register = () => {
             <div className="">
               <input
                 className="h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
-                id="userName"
+                id="username"
                 type="text"
-                name="userName"
+                name="username"
                 placeholder="User Name"
                 onChange={formik.handleChange}
-                value={formik.values.userName}
+                value={formik.values.username}
               />
             </div>
             <div className="">
               <input
                 className="h-10 invalid:border-red-500 appearance-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border leading-tight focus:outline-none focus:shadow-outline"
-                id="phoneNum"
+                id="phoneNumber"
                 type="number"
                 max={9999999999}
-                name="phoneNum"
+                name="phoneNumber"
                 placeholder="Phone Number"
                 onChange={formik.handleChange}
-                value={formik.values.phoneNum}
+                value={formik.values.phoneNumber}
               />
             </div>
             <div className="">
@@ -78,7 +93,7 @@ const Register = () => {
                 id="password"
                 type="password"
                 name="password"
-                placeholder="Password"
+                placeholder="assword"
                 onChange={formik.handleChange}
                 value={formik.values.password}
               />
@@ -94,6 +109,9 @@ const Register = () => {
               <button
                 className="w-24 rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785] justify-center"
                 type="button"
+                onClick={() => {
+                  // history.push("/login");
+                }}
               >
                 back
               </button>

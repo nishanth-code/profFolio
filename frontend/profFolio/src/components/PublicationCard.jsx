@@ -1,6 +1,9 @@
+import { useState } from "react";
 import Professor from "../assets/professor.jpg";
 import { Link } from "react-router-dom";
 const PublicationCard = (props) => {
+  const [data, setData] = useState(props.publication);
+
   return (
     <div className="text-white h-auto w-auto">
       <div className="bg-gradient-to-b pb-2 bg-[#550C6B]  h-auto w-72 z-10 rounded-xl my-10 mx-8">
@@ -12,9 +15,9 @@ const PublicationCard = (props) => {
           />
           <p className="my-3">{props.author}</p>
         </div>
-        <Link to={"/publications"}>
+        {/* <Link to={"/publications"}> */}
           <p className="mx-4 my-2">{props.title}</p>
-        </Link>
+        {/* </Link> */}
         <p className="mx-4 my-2">{props.publishedMedia}</p>
         <p className="mx-4 my-2 ">{props.doi}</p>
         <p className="mx-4 my-2 ">{props.year}</p>

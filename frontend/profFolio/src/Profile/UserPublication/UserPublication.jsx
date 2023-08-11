@@ -117,8 +117,8 @@ const UserPublications = () => {
     },
   ];
 
-  const data = encodeURIComponent(JSON.stringify(userPublication));
-  const id = data[0].id;
+  // const data = encodeURIComponent(JSON.stringify(userPublication));
+  const id = userPublication[0].id;
   console.log(id);
 
   return (
@@ -129,21 +129,19 @@ const UserPublications = () => {
             <div>
               <h1>Publicaitons</h1>
             </div>
-            <div>
-              <Link to={`/profile/publication/edit/${data}`}>
-                Edit Publication
-              </Link>
-            </div>
+            <div>Edit Publication</div>
           </div>
           <div className="flex flex-wrap">
             {userPublication.map((publication) => (
-              <PublicationCard
-                key={publication.id}
-                author={publication.author}
-                title={publication.title}
-                content={publication.content}
-                publication={publication}
-              />
+              <Link to={`/profile/publication/edit/${id}`}>
+                <PublicationCard
+                  key={publication.id}
+                  author={publication.author}
+                  title={publication.title}
+                  content={publication.content}
+                  publication={publication}
+                />
+              </Link>
             ))}
           </div>
         </div>
@@ -171,15 +169,6 @@ const UserPublications = () => {
                 ))}
               </div>
 
-              {/* <textarea
-              className="h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
-              id="content"
-              name="content"
-              type="text"
-              placeholder="Publication content"
-              onChange={formik.handleChange}
-              value={formik.values.publisher}
-            /> */}
               <div className="text-white ml-[365px]">
                 <button
                   className="w-24 rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785] "
@@ -198,6 +187,17 @@ const UserPublications = () => {
 
 export default UserPublications;
 
+{
+  /* <textarea
+className="h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
+id="content"
+name="content"
+type="text"
+placeholder="Publication content"
+onChange={formik.handleChange}
+value={formik.values.publisher}
+/> */
+}
 {
   /* <div className="flex flex-col justify-center items-center  w-fit h-full">
           <h1 className="text-3xl ml-96 font-semibold text-[#550C6B] ">
