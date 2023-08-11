@@ -21,20 +21,21 @@ const profilerender =async(req,res)=>{
 
 }
 const createUser = async(req,res) =>{
-    const {username,email,PhoneNumber,password}=req.body.user
-    // if (!req.file) {
-    //     // return res.status(400).json({msg:'No image file uploaded.'});
-    //   }
+  console.log(req.body)
+    const {username,email,phoneNumber,password}=req.body.values
+   
     
       try {
-        // Upload the image to Cloudinary
+        const imageUrl="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vectorstock.com%2Froyalty-free-vector%2Fdefault-avatar-placeholder-profile-icon-male-vector-23889994&psig=AOvVaw0HYdIPW21ajwMmkqUlwC7d&ust=1691320655623000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLC4yZm2xYADFQAAAAAdAAAAABAE"
+       
         if(req.file){
         const result = await cloudinary.uploader.upload(req.file.path);
+        imageUrl = result.secure_url
 
         }    
-        // Image uploaded successfully, return the Cloudinary image URL to the client
-        const imageUrl = result.secure_url
-        const newUser = new profile({username:username,phoneNumber:PhoneNumber,email:email,profilePicture:imageUrl})
+             
+        
+        const newUser = new profile({username:username,phoneNumber:phoneNumber,email:email,profilePicture:imageUrl})
         const regUser = await profile.register(newUser,password)
         res.json(regUser)
       } catch (error) {

@@ -50,8 +50,11 @@ app.use('/patent',require('./routes/patentroutes'))
 
 
 
-app.get('/authenticate',passport.authenticate('local',{failureRedirect:'/'}),(req,res)=>{
-    
+app.get('/authenticate',passport.authenticate('local'),(req,res)=>{
+res.json({msg:'authentication sucessful'}).status(200)    
+})
+app.get('/error',(req,res)=>{
+  res.json({msg:'incorrect credential'}).status(400)
 })
 
 app.listen(5000, () => {
