@@ -9,23 +9,23 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 //   Routes,
 // } from "react-router-dom";
 import Login from "./components/Login";
-import Home from "./components/Home";
+import Home from "./Pages/Home/Home";
 import Register from "./components/Register";
 import ProfileDetails from "./components/ProfileDetails";
 import ForgotPassword from "./components/ForgotPassword";
 import Error from "./components/Error";
-import Publication from "./components/Publication";
-import Article from "./components/Article";
-import Workshop from "./components/Workshop";
-import Patent from "./components/Patent";
+import Publication from "./Pages/Publication/Publication";
+import Article from "./Pages/Article/Article";
+import Workshop from "./Pages/Workshop/Workshop";
+import Patent from "./Profile/Patent/Patent";
 // import { ErrorBoundary } from "react-error-boundary";
 import Dashboard from "./components/Dashboard";
-import Header from "./components/Header";
-import Body from "./components/Body";
-import HomeCard from "./components/HomeCard";
-import RecentPublication from "./components/RecentPublication";
-import Footer from "./components/Footer";
-import UserPublication from "./components/UserPublication";
+import UserPublication from "./Profile/UserPublication/UserPublication";
+import EditPublication from "./Profile/UserPublication/EditPublication";
+import PublicationPage from "./components/PublicationPage";
+import UserArticles from "./Profile/UserArticle/UserArticles";
+import UserWorkshop from "./Profile/UserWorkshop/UserWorkshop";
+import MenuLayout from "./components/PageLayout";
 
 function App() {
   function NotFound() {
@@ -35,21 +35,27 @@ function App() {
     // <ErrorBoundary fallback={<div>Something went wrong</div>}>
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<MenuLayout />}>
+          <Route path="" element={<Home />} />
+          <Route path="/publications" element={<Publication />} />
+          <Route path="/articles" element={<Article />} />
+          <Route path="/workshops" element={<Workshop />} />
+          {/* <Route path="/patents" element={<Register />} /> */}
+        </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/publications" element={<Publication />} />
-        <Route path="/articles" element={<Article />} />
-        <Route path="/workshops" element={<Workshop />} />
-        {/* <Route path="/patents" element={<Register />} /> */}
         <Route path="/profile" element={<Dashboard />}>
           <Route path="" element={<ProfileDetails />} />
           <Route path="publication" element={<UserPublication />} />
-          <Route path="articles" element={<Article />} />
-          <Route path="workshop" element={<Workshop />} />
+          <Route path="article" element={<UserArticles />} />
+          <Route path="workshop" element={<UserWorkshop />} />
           <Route path="patent" element={<Patent />} />
         </Route>
+        <Route
+          path="/profile/publication/edit/:data"
+          element={<EditPublication />}
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

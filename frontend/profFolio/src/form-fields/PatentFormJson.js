@@ -1,0 +1,81 @@
+const PatentFormDetails = [
+  {
+    id: "title",
+    type: "text",
+    name: "publication[title]",
+    placeholder: "Title of Publication",
+    required: true,
+  },
+  {
+    id: "author",
+    type: "text",
+    name: "publication[author]",
+    placeholder: "Enter Author",
+    required: true,
+  },
+  {
+    id: "publishedMedia",
+    type: "text",
+    name: "publication[publishedMedia]",
+    placeholder: "Enter Journal/Book Title ",
+    required: false,
+  },
+  {
+    id: "doi",
+    type: "date",
+    name: "publication[doi]",
+    placeholder: "Enter DOI",
+    required: true,
+  },
+  {
+    id: "year",
+    type: "number",
+    name: "publication[year]",
+    placeholder: "Year of Publication",
+    required: true,
+  },
+  {
+    id: "subject",
+    type: "text",
+    name: "publication[subject]",
+    placeholder: "Subject Type",
+    required: true,
+  },
+  {
+    id: "volume",
+    type: "text",
+    name: "publication[volume]",
+    placeholder: "Enter Volume",
+    required: false,
+  },
+  {
+    id: "editor",
+    type: "text",
+    name: "publication[editor]",
+    placeholder: "Enter Editor Name",
+    required: false,
+  },
+  {
+    id: "publisher",
+    type: "text",
+    name: "publication[publisher]",
+    placeholder: "Enter Publisher Name",
+    required: false,
+  },
+  {
+    id: "pageNo",
+    type: "text",
+    name: "publication[pageNo]",
+    placeholder: "Enter page No",
+    required: false,
+  },
+  {
+    id: "url",
+    type: "text",
+    name: "publication[url]",
+    placeholder: "Enter URL",
+    required: false,
+  },
+];
+
+export default PatentFormDetails;

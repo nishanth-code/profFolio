@@ -3,8 +3,8 @@ import Rectangle from "../assets/Rectangle-4.png";
 
 const Body = () => {
   return (
-    <div className="">
-      <div className="image-container relative">
+    <>
+      <div className="image-container relative -top-28">
         {/* <h2>Home</h2>
         This is body */}
         <img className="absolute" src={BodyImg} alt="Body image" />
@@ -24,12 +24,11 @@ const Body = () => {
         </div>
       </div>
       <div></div>
-    </div>
+    </>
   );
 };
 
 export default Body;
-
 
 // Shimmer
 // import React, { useState, useEffect } from "react";

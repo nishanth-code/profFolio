@@ -1,5 +1,5 @@
 import Professor from "../assets/professor.jpg";
-
+import { Link } from "react-router-dom";
 const PublicationCard = (props) => {
   return (
     <div className="text-white h-auto w-auto">
@@ -12,8 +12,22 @@ const PublicationCard = (props) => {
           />
           <p className="my-3">{props.author}</p>
         </div>
-        <p className="mx-4 my-2">{props.title}</p>
+        <Link to={"/publications"}>
+          <p className="mx-4 my-2">{props.title}</p>
+        </Link>
+        <p className="mx-4 my-2">{props.publishedMedia}</p>
+        <p className="mx-4 my-2 ">{props.doi}</p>
+        <p className="mx-4 my-2 ">{props.year}</p>
         <p className="mx-4 my-2 ">{props.content}</p>
+        <a
+          href={props.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mx-4 my-2 text-blue-500 hover:underline"
+        >
+          <span className="font-semibold text-white">URL: </span>
+          {props.title}
+        </a>
       </div>
     </div>
   );

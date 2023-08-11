@@ -49,7 +49,7 @@ const SideBar = () => {
 
   return (
     <div
-      className={`bg-[#550C6B] h-auto p-5 pt-8  relative 
+      className={`bg-[#550C6B] h-screen p-5 pt-8  sticky top-0   
       ${open ? "w-72" : "w-24"} duration-300 `}
     >
       <FaArrowLeft
