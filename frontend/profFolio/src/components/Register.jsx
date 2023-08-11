@@ -104,16 +104,16 @@ const Register = () => {
                 className="w-24 rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785] justify-center"
                 type="submit"
               >
-                register
+                REGISTER
               </button>
               <button
                 className="w-24 rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785] justify-center"
                 type="button"
                 onClick={() => {
-                  // history.push("/login");
+                  navigate("/login");
                 }}
               >
-                back
+                LOGIN
               </button>
             </div>
           </form>

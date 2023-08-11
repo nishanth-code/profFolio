@@ -133,7 +133,7 @@ const UserPublications = () => {
           </div>
           <div className="flex flex-wrap">
             {userPublication.map((publication) => (
-              <Link to={`/profile/publication/edit/${id}`}>
+              <Link key={publication.id} to={`/profile/publication/edit/${id}`}>
                 <PublicationCard
                   key={publication.id}
                   author={publication.author}

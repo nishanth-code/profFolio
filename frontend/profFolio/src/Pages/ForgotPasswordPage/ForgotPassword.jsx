@@ -1,12 +1,8 @@
-import LoginBackground from "../assets/LoginBackground.png";
+import LoginBackground from "../../assets/LoginBackground.png";
+import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
-
-
-  
-
-
-
+  const navigate = useNavigate();
 
   return (
     <>
@@ -20,7 +16,7 @@ const ForgotPassword = () => {
           <form onSubmit="" method="post">
             <div className="">
               <input
-                className="h-10 bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
+                className="h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
                 id="email"
                 type="email"
                 name="email"
@@ -37,6 +33,7 @@ const ForgotPassword = () => {
               <button
                 className="w-24 rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785] justify-center"
                 type="submit"
+                onClick={() => navigate("/login")}
               >
                 back
               </button>

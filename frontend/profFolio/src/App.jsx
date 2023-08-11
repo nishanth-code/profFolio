@@ -5,7 +5,7 @@ import Login from "./components/Login";
 import Home from "./Pages/Home/Home";
 import Register from "./components/Register";
 import ProfileDetails from "./components/ProfileDetails";
-import ForgotPassword from "./components/ForgotPassword";
+import ForgotPassword from "./Pages/ForgotPasswordPage/ForgotPassword";
 import Error from "./components/Error";
 import Publication from "./Pages/Publication/Publication";
 import Article from "./Pages/Article/Article";
@@ -21,6 +21,18 @@ import UserWorkshop from "./Profile/UserWorkshop/UserWorkshop";
 import MenuLayout from "./components/PageLayout";
 import AddPublication from "./Profile/UserPublication/AddPublication";
 import PublicationLayout from "./Profile/UserPublication/PublicationLayout";
+import ArticleLayout from "./Profile/UserArticle/ArticleLayout";
+import AddArticle from "./Profile/UserArticle/AddArticle";
+import EditArticle from "./Profile/UserArticle/EditArticle";
+import WorkshopLayout from "./Profile/UserWorkshop/WorkshopLayout";
+import AddWorkshop from "./Profile/UserWorkshop/AddWorkshop";
+import EditWorkshop from "./Profile/UserWorkshop/EditWorkshop";
+import OTP from "./Pages/ForgotPasswordPage/OTP";
+import ChangePassword from "./Pages/ForgotPasswordPage/ChangePassword";
+import ForgotPasswordLayout from "./Pages/ForgotPasswordPage/ForgotPasswordLayout";
+import AddProfile from "./Profile/AddProfile";
+import EditProfile from "./Profile/EditProfile";
+import ProfileLayout from "./Profile/ProfileLayout";
 
 function App() {
   function NotFound() {
@@ -38,21 +50,37 @@ function App() {
           {/* <Route path="/patents" element={<Register />} /> */}
         </Route>
         <Route path="/login" element={<Login />} />
-        <Route path="/forgotpassword" element={<ForgotPassword />}>
+        <Route path="/forgotpassword" element={<ForgotPasswordLayout />}>
           {/* create route for otp */}
-          <Route path="otp" element={<Login />} />
+          <Route path="" element={<ForgotPassword />} />
+          <Route path="otp" element={<OTP />} />
+          <Route path="changepassword" element={<ChangePassword />} />
         </Route>
         {/* Create route for change password */}
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Dashboard />}>
-          <Route path="" element={<ProfileDetails />} />
+          <Route path="" element={<ProfileLayout />}>
+            <Route path="" element={<ProfileDetails />} />
+            <Route path="add" element={<AddProfile />} />
+            <Route path="edit" element={<EditProfile />} />
+          </Route>
+
           <Route path="publication" element={<PublicationLayout />}>
             <Route path="" element={<UserPublication />} />
             <Route path="add" element={<AddPublication />} />
             <Route path="edit/:id" element={<EditPublication />} />
           </Route>
-          <Route path="article" element={<UserArticles />} />
-          <Route path="workshop" element={<UserWorkshop />} />
+          <Route path="article" element={<ArticleLayout />}>
+            <Route path="" element={<UserArticles />} />
+            <Route path="add" element={<AddArticle />} />
+            <Route path="edit/:id" element={<EditArticle />} />
+          </Route>
+          <Route path="workshop" element={<WorkshopLayout />}>
+            <Route path="" element={<UserWorkshop />} />
+            <Route path="add" element={<AddWorkshop />} />
+            <Route path="edit/:id" element={<EditWorkshop />} />
+          </Route>
+
           <Route path="patent" element={<Patent />} />
         </Route>
         {/* <Route
@@ -68,115 +96,3 @@ function App() {
 }
 
 export default App;
-// const App = () => {
-//   {
-//     /* #DF71FA  #cecece*/
-//   }
-//   return (
-//     <div className="min-h-screen bg-[#fbf0ff]">
-//       <Header />
-//       <Body />
-//       <HomeCard />
-//       <RecentPublication />
-//       <Footer />
-//     </div>
-//   );
-// };
-
-// const appRouter = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <App />,
-//     errorElement: <Error />,
-//     // children: [
-//     //   {
-//     //     path: "/",
-//     //     element: <Body />,
-//     //     errorElement: <Error />,
-//     //   },
-//     //   {
-//     //     path: "/about",
-//     //     element: <About />,
-//     //     children: [
-//     //       {
-//     //         //     don't have to add '/' -- parentPath/{path} ==> localhost:1234/about/profile
-//     //         path: "profile",
-//     //         element: <Profile />,
-//     //       },
-//     //     ],
-//   },
-//   {
-//     path: "/login",
-//     element: <Login />,
-//     errorElement: <Error />,
-//   },
-//   {
-//     path: "/register",
-//     element: <Register />,
-//     errorElement: <Error />,
-//   },
-//   {
-//     path: "/dashboard",
-//     element: <Dashboard />,
-//     children: [
-//       {
-//         path: "publication",
-//         element: <UserPublication />,
-//         errorElement: <Error />,
-//       },
-//       {
-//         path: "article",
-//         element: <Article />,
-//         errorElement: <Error />,
-//       },
-//     ],
-//   },
-//   {
-//     path: "/publication",
-//     element: <Publication />,
-//     errorElement: <Error />,
-//   },
-//   {
-//     path: "/article",
-//     element: <Article />,
-//     errorElement: <Error />,
-//   },
-//   {
-//     path: "/workshop",
-//     element: <Workshop />,
-//     errorElement: <Error />,
-//   },
-//   {
-//     path: "/patent",
-//     element: <Patent />,
-//     errorElement: <Error />,
-//   },
-// ]);
-
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-
-// root.render(<RouterProvider router={appRouter} />);
-
-// New Router handling techq use the latest
-
-// import {
-//   createBrowserRouter,
-//   createRoutesFromElements,
-//   Route,
-//   RouterProvider,
-// } from "react-router-dom";
-
-// const router = createBrowserRouter(
-//   createRoutesFromElements(
-//     <Route path="/" element={<Root />}>
-//       <Route path="dashboard" element={<Dashboard />} />
-//       {/* ... etc. */}
-//     </Route>
-//   )
-// );
-
-// ReactDOM.createRoot(document.getElementById("root")).render(
-//   <React.StrictMode>
-//     <RouterProvider router={router} />
-//   </React.StrictMode>
-// );

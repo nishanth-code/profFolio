@@ -50,7 +50,7 @@ const ProfileDetails = () => {
             <div className="flex ">
               {/* <SideBar /> */}
               <div className="p-7 ">
-                <Link to={"/"}>
+                <Link to={"/profile/edit"}>
                   <div className="rounded-full w-32 p-2 bg-white">
                     <MdEdit className="inline-block mr-1" />
                     Edit Profile
@@ -69,9 +69,7 @@ const ProfileDetails = () => {
                         document.getElementById("imageInput").click()
                       }
                     />
-                    {/* <div className="absolute bottom-2 right-2 bg-white text-black px-2 py-1 rounded-full cursor-pointer opacity-0 transition-opacity duration-300 hover:opacity-100">
-                    Edit pic
-                  </div> */}
+                   
                     <label className="pl-20 cursor-pointer font-bold ">
                       <input
                         id="imageInput"

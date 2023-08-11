@@ -157,9 +157,9 @@ const SideBar = () => {
                     to={"/" + submenuItem.route}
                   >
                     <div
-                      className={`my text-xl flex items-center p-2 ${
+                      className={`my text-md flex items-center p-2 ${
                         open ? " hover:bg-light-white rounded-md" : ""
-                      } ${menu.spacing ? "mt-4" : "mt-2"}`}
+                      } ${menu.spacing ? "mt-2" : "mt"}`}
                     >
                       {submenuItem.title}
                     </div>

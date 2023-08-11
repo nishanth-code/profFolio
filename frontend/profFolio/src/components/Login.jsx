@@ -56,7 +56,7 @@ const Login = () => {
             </div>
             <div className="">
               <input
-                className="h-10 bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
+                className="h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
                 id="username"
                 type="text"
                 name="username"
@@ -67,7 +67,7 @@ const Login = () => {
             </div>
             <div className="">
               <input
-                className="h-10 bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
+                className="h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
                 id="password"
                 type="password"
                 name="password"
