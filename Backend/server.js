@@ -32,6 +32,7 @@ passport.deserializeUser(profile.deserializeUser());
 app.use(cors({
   origin: 'http://localhost:5173',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials:true,
   
 }));
 app.use(express.json())
@@ -44,6 +45,7 @@ app.get('/',(req,res)=>{
 })
 app.use('/profile',require('./routes/profileroutes'))
 app.use('/publication',require('./routes/publicationroutes'))
+app.use('/patent',require('./routes/patentroutes'))
 
 
 

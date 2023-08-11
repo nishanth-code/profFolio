@@ -16,9 +16,10 @@ const render = async(req,res) =>{
 const newPublication = async(req,res) =>{
     const currentUser = 'nishanth'
     const user = await profile.findOne({username:currentUser})
-    console.log(req.body)
+    // console.log(req.body)
 
-    const { title,author,publishedMedia,doi,year,subject,volume,editor,publisher} = req.body.publication
+    const { title,author,publishedMedia,doi,year,subject,volume,editor,publisher} = req.body.values.publication
+    // console.log(title,author,publishedMedia,doi,year,subject,volume,editor,publisher)
     const publicat = new publication(
         {title:title,
         author:author,
@@ -35,6 +36,7 @@ const newPublication = async(req,res) =>{
     user.publications.push(publicat)
     await publicat.save()
     await user.save()
+    // console.log('sucessful')
     res.json({msg:'sucessfully added to your profile'}).status(200)
 }
 const updatePublication = async(req,res) =>{
@@ -47,8 +49,13 @@ const updatePublication = async(req,res) =>{
 
 }
 const deletepublication = async(req,res) =>{
+    const username = res.locals.currentUser
+    const user = await profile.find({username:username})
     const id = req.params.id
     await publications.findByIdAndDelete(id)
+    user.publication.splice(user.publication.indexOf(id),1)
+    await user.save()
+
     res.json({msg:'deleted sucessfully'}).status(200)
     
     
