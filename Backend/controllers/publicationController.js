@@ -41,6 +41,7 @@ const newPublication = async(req,res) =>{
 }
 const updatePublication = async(req,res) =>{
     const id = req.params.id
+    console.log(req.body)
     const publicate = req.body
     await publications.findByIdAndUpdate(id,publicate)
     
