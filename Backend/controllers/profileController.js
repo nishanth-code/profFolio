@@ -13,7 +13,10 @@ var otp =0
 
 
 const profilerender =async(req,res)=>{
-    const user = await profile.findOne({username: currentUser}).populate(['publications','articles','workshops'])
+    const currentUser = req.user.username
+    
+    const user = await profile.findOne({username:currentUser}).populate(['publications','articles','workshops','patents'])
+    
     if (user){
           res.json(user).status(200)
     }else{
@@ -140,7 +143,8 @@ const changePassword = async(req,res)=>{
 
     }
 const deleteAccount = async(req,res)=>{
-  const user = await profile.findOne({username:'mahendar'})
+   const username = res.locals.username
+  const user = await profile.findOne({username:username})
   const {articles,publications,patents,workshops}= user
   try{
     await article.deleteMany({_id:{$in:articles}})

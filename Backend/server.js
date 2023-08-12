@@ -36,8 +36,15 @@ app.use(cors({
   
 }));
 app.use(express.json())
+app.use(passport.initialize());
+app.use(passport.session());
 app.use((req,res,next)=>{
-  res.locals.currentUser = 'nishanth'
+  if(req.user){
+    res.locals.currentUser = req.user.username
+  }
+
+console.log(req.user)
+  
   next()
 })
 app.get('/',(req,res)=>{
@@ -53,6 +60,7 @@ app.use('/article',require('./routes/articleroutes'))
 
 app.post('/authenticate',passport.authenticate('local'),(req,res)=>{
   console.log(req.body)
+  res.locals.currentUser = req.body.username
 res.json({msg:'authentication sucessful'}).status(200)    
 })
 

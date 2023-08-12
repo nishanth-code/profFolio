@@ -14,7 +14,7 @@ const render = async(req,res) =>{
 }
 
 const newPublication = async(req,res) =>{
-    const currentUser = 'nishanth'
+    const currentUser = res.locals.currentUser
     const user = await profile.findOne({username:currentUser})
     // console.log(req.body)
 
@@ -51,10 +51,10 @@ const updatePublication = async(req,res) =>{
 }
 const deletepublication = async(req,res) =>{
     const username = res.locals.currentUser
-    const user = await profile.find({username:username})
+    const user = await profile.findOne({username:username})
     const id = req.params.id
     await publications.findByIdAndDelete(id)
-    user.publication.splice(user.publication.indexOf(id),1)
+    user.publications.splice(user.publications.indexOf(id),1)
     await user.save()
 
     res.json({msg:'deleted sucessfully'}).status(200)
