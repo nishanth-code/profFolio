@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
+import professor from "../assets/professor.jpg";
+import { MdEdit } from "react-icons/md";
 
 const EditProfile = () => {
   const [profileData, setProfileData] = useState("");
-
+  const [profileImage, setProfileImage] = useState(professor);
   const style =
-    "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl border-solid border";
+    "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl border-solid border pointer-events-auto";
 
   const formik = useFormik({
     initialValues: {
@@ -25,14 +27,40 @@ const EditProfile = () => {
       console.log(values);
     },
   });
+
+  const handleImageChange = (event) => {
+    const newImage = URL.createObjectURL(event.target.files[0]);
+    setProfileImage(newImage);
+  };
+
   return (
     <div>
       <div className="h-full rounded-xl flex flex-col justify-center ml-40">
-        <div className="text-3xl font-semibold mt-10 pt-10 ml-72">
+        <div className="text-3xl font-semibold my-10 pt-10 ml-72">
           Edit profile Details
         </div>
         <div className="">
           <form onSubmit={formik.handleSubmit} method="post">
+            <div className="relative ml-[250px]">
+              <img
+                className="h-40 w-32 ml-20 rounded-xl cursor-pointer transition duration-300 ease-in-out transform hover:brightness-75"
+                src={profileImage}
+                alt="profile"
+                onClick={() => document.getElementById("imageInput").click()}
+              />
+
+              <label className="pl-20 cursor-pointer font-bold ">
+                <input
+                  id="imageInput"
+                  type="file"
+                  accept="image/*"
+                  className="hidden "
+                  onChange={handleImageChange}
+                />
+                <MdEdit className=" inline-block mr-1" />
+                Select Image
+              </label>
+            </div>
             <input
               className={style}
               id="userName"

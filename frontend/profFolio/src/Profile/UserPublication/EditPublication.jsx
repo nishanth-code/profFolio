@@ -11,10 +11,13 @@ const EditPublication = (props) => {
   const [userData, setUserData] = useState("");
 
   const style =
-    "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-20 my-4 rounded-2xl  border-solid border";
+    "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-20 my-4 rounded-2xl  border-solid border pointer-events-auto";
 
-  // const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/render/${id}`;
-  const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/render/64d4f7254b9470d6ccd3ca76`;
+  const id = props.id;
+  console.log(id);
+
+  const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/render/${id}`;
+  // const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/render/64d4f7254b9470d6ccd3ca76`;
 
   const editUrl = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/edit/64d4f7254b9470d6ccd3ca76`;
 
@@ -26,7 +29,7 @@ const EditPublication = (props) => {
   }, []);
   //Put ID here in dep Array
   const date = moment(userData.doi).format("YYYY-MM-DD");
-  console.log(date);
+  // console.log(date);
 
   const formik = useFormik({
     initialValues: {

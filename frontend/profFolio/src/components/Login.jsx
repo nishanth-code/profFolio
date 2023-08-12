@@ -24,12 +24,11 @@ const Login = () => {
 
     onSubmit: (values) => {
       axios.post(url, values, { withCredentials: true }).then((res) => {
-        console.log(res.data.msg);
+        // console.log(res.data.msg);
         if (res.status == 200) {
           navigate("/");
         }
       });
-      console.log(values);
     },
   });
 
@@ -44,7 +43,7 @@ const Login = () => {
           <p>Login with one of the following options</p>
           {}
           <form onSubmit={formik.handleSubmit} method="post">
-            <div className="flex w-2/4 mx-40 my-2 rounded-2xl justify-center items-center border-solid border ">
+            {/* <div className="flex w-2/4 mx-40 my-2 rounded-2xl justify-center items-center border-solid border ">
               <img
                 className="h-8 w-8 mx-2"
                 src="https://img.icons8.com/color/48/google-logo.png"
@@ -53,7 +52,7 @@ const Login = () => {
               <button className="my-2  bg-transparent border-solid border-white ">
                 Continue with Google
               </button>
-            </div>
+            </div> */}
             <div className="">
               <input
                 className="h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"

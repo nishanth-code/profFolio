@@ -7,3 +7,4 @@ const EditArticle = () => {
 };
 
 export default EditArticle;
+// pointer-events-auto

@@ -1,16 +1,15 @@
 import { React, useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// Login Register ForgotPassword OTP
 import Login from "./components/Login";
 import Home from "./Pages/Home/Home";
 import Register from "./components/Register";
-import ProfileDetails from "./Profile/ProfileDetails";
 import ForgotPassword from "./Pages/ForgotPasswordPage/ForgotPassword";
 import Error from "./components/Error";
 import Publication from "./Pages/Publication/Publication";
 import Article from "./Pages/Article/Article";
 import Workshop from "./Pages/Workshop/Workshop";
-import Patent from "./Profile/Patent/Patent";
 // import { ErrorBoundary } from "react-error-boundary";
 import Dashboard from "./components/Dashboard";
 import UserPublication from "./Profile/UserPublication/UserPublication";
@@ -30,9 +29,14 @@ import EditWorkshop from "./Profile/UserWorkshop/EditWorkshop";
 import OTP from "./Pages/ForgotPasswordPage/OTP";
 import ChangePassword from "./Pages/ForgotPasswordPage/ChangePassword";
 import ForgotPasswordLayout from "./Pages/ForgotPasswordPage/ForgotPasswordLayout";
+// Profile imports
+import ProfileDetails from "./Profile/ProfileDetails";
 import AddProfile from "./Profile/AddProfile";
 import EditProfile from "./Profile/EditProfile";
 import ProfileLayout from "./Profile/ProfileLayout";
+import PatentLayout from "./Profile/Patent/PatentLayout";
+import AddPatent from "./Profile/Patent/AddPatent";
+import Patent from "./Profile/Patent/Patent";
 
 function App() {
   function NotFound() {
@@ -61,7 +65,7 @@ function App() {
         <Route path="/profile" element={<Dashboard />}>
           <Route path="" element={<ProfileLayout />}>
             <Route path="" element={<ProfileDetails />} />
-            <Route path="add" element={<AddProfile />} />
+            {/* <Route path="add" element={<AddProfile />} /> */}
             <Route path="edit/:id" element={<EditProfile />} />
           </Route>
 
@@ -81,7 +85,10 @@ function App() {
             <Route path="edit/:id" element={<EditWorkshop />} />
           </Route>
 
-          <Route path="patent" element={<Patent />} />
+          <Route path="patent" element={<PatentLayout />}>
+            <Route path="" element={<Patent />} />
+            <Route path="add" element={<AddPatent />} />
+          </Route>
         </Route>
         {/* <Route
           path="/profile/publication/edit/:id"

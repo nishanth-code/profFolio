@@ -81,7 +81,7 @@ const PublicationCard = (props) => {
   ];
 
   const id = props.id;
-  console.log(id);
+  // console.log(id);
 
   return (
     <div className="text-white h-auto w-auto">
@@ -99,16 +99,14 @@ const PublicationCard = (props) => {
             </div>
           </Link> */}
         </div>
-        {/* <Link to={"/publications"}> */}
+
         <p className="mx-4 my-2">Title: {props.title}</p>
         <p className="mx-4 my-2 text-gray-400">DOI: {props.doi}</p>
-        {/* </Link> */}
         <p className="mx-4 my-2 ">Subject: {props.subject}</p>
         <p className="mx-4 my-2">Media: {props.publishedMedia}</p>
         {/* Check if its book or journal and render accordingly */}
         <p className="mx-4 my-2 ">Volume: {props.volume}</p>
         <p className="mx-4 my-2 ">Year: {props.year}</p>
-        {/* <p className="mx-4 my-2 ">{props.content}</p> */}
         <p className="mx-4 my-2 ">Publisher: {props.publisher}</p>
         <p className="mx-4 my-2 ">Editor: {props.editor}</p>
         <a

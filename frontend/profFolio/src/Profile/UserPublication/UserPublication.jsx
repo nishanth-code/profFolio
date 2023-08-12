@@ -1,45 +1,21 @@
 import { useEffect, useState } from "react";
 import UserPublicationCard from "./UserPublicationCard";
-import { useFormik } from "formik";
 import PublicationFormDetails from "../../form-fields/PublicationFormJson";
 import axios from "axios";
 
 const UserPublications = () => {
+  const [publicationData, setPublicationData] = useState({});
   const [visibleUserPublications, setVisibleUserPublications] = useState(3);
   const url =
-    "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/addpublication";
+    "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/publication";
 
-  const formik = useFormik({
-    initialValues: {
-      title: "",
-      author: "",
-      publishedMedia: "",
-      doi: "",
-      year: "",
-      subject: "",
-      volume: "",
-      editor: "",
-      publisher: "",
-      pageNo: "",
-      url: "",
-    },
-
-    onSubmit: (values) => {
-      axios.post(url, { values }, { withCredentials: true }).then((res) => {
-        console.log(res.data.msg);
-      });
-      console.log(values);
-    },
-  });
-
-  // useEffect(() => {
-  //   axios.get(url).then((res) => {
-  //     console.log(res);
-  //   });
-  // }, []);
-
-  const style =
-    "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-40 my-4 rounded-2xl  border-solid border";
+  useEffect(() => {
+    axios.get(url).then((res) => {
+      console.log(res);
+      setPublicationData(res.data);
+    });
+  }, []);
+  console.log(publicationData);
 
   const userPublication = [
     {
@@ -183,7 +159,7 @@ const UserPublications = () => {
   };
   // const data = encodeURIComponent(JSON.stringify(userPublication));
   const id = userPublication[0].id;
-  console.log(id);
+  // console.log(id);
 
   return (
     <div>

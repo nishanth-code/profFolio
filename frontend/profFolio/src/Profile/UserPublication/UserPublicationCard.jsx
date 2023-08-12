@@ -2,6 +2,7 @@ import { useState } from "react";
 import Professor from "../../assets/professor.jpg";
 import { Link } from "react-router-dom";
 import { MdEdit, MdDelete } from "react-icons/md";
+import axios from "axios";
 
 const UserPublicationCard = (props) => {
   const [data, setData] = useState(props.publication);
@@ -79,9 +80,17 @@ const UserPublicationCard = (props) => {
         "Sed ut perspiciatis unde omnis iste natus error sit voluptatem.",
     },
   ];
-
   const id = props.id;
-  console.log(id);
+  // console.log(id);
+
+  // const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/delete/&{id}`;
+  const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/delete/64d4f7254b9470d6ccd3ca76`;
+
+  const handleDelete = () => {
+    axios.delete(url).then((res) => {
+      console.log(res);
+    });
+  };
 
   return (
     <div className="text-white h-auto w-auto">
@@ -98,7 +107,10 @@ const UserPublicationCard = (props) => {
               <MdEdit />
             </div>
           </Link>
-          <div className="bg-white text-black rounded p-2 h-7 w-7  text-center ml-1">
+          <div
+            className="bg-white text-black rounded p-2 h-7 w-7  text-center ml-1"
+            onClick={handleDelete}
+          >
             <MdDelete />
           </div>
         </div>

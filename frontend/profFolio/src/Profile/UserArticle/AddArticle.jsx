@@ -7,3 +7,4 @@ const AddArticle = () => {
 };
 
 export default AddArticle;
+// pointer-events-auto

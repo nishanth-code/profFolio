@@ -1,11 +1,12 @@
 import { useFormik } from "formik";
 import PublicationFormDetails from "../../form-fields/PublicationFormJson";
 import { useState } from "react";
+import axios from "axios";
 
 const AddPublication = () => {
   const [userDetails, setUserDetails] = useState(false);
   const style =
-    "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-40 my-4 rounded-2xl  border-solid border";
+    "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-40 my-4 rounded-2xl  border-solid border pointer-events-auto";
 
   const url =
     "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/addpublication";
@@ -56,14 +57,23 @@ const AddPublication = () => {
               </div>
             ))}
           </div>
-
-          <div className="text-white ml-[365px]">
-            <button
-              className="w-24 rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785] "
-              type="submit"
-            >
-              SUBMIT
-            </button>
+          <div className="flex">
+            <div className="text-white ml-[365px]">
+              <button
+                className="w-24 rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785] "
+                type="submit"
+              >
+                SUBMIT
+              </button>
+            </div>
+            <div className="text-white ">
+              <button
+                className="w-24 rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785] "
+                type="reset"
+              >
+                RESET
+              </button>
+            </div>
           </div>
         </form>
       </div>

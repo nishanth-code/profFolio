@@ -16,7 +16,7 @@ const ChangePassword = () => {
           <form onSubmit="" method="post">
             <div className="">
               <input
-                className="h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
+                className="h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border pointer-events-auto"
                 id="newPassword"
                 type="password"
                 name="password"

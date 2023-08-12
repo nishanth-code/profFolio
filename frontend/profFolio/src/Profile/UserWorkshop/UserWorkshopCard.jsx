@@ -1,21 +1,11 @@
-import UserWorkshopCard from "./UserWorkshopCard";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Professor from "../../assets/professor.jpg";
+import { Link } from "react-router-dom";
+import { MdEdit, MdDelete } from "react-icons/md";
+import axios from "axios";
 
-const UserWorkshop = () => {
-  const [workshopData, setWorkshopData] = useState({});
-  const [visibleUserPublications, setVisibleUserPublications] = useState(3);
-
-  const url =
-    "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/renderAll";
-
-  // useEffect(() => {
-  //   axios.get(url).then((res) => {
-  //     console.log(res);
-  //     setPublicationData(res.data);
-  //   });
-  // }, []);
-  // console.log(publicationData);
-
+const UserWorkshopCard = (props) => {
+  const [data, setData] = useState(props.workshop);
   const UserWorkshop = [
     {
       id: 1,
@@ -100,15 +90,52 @@ const UserWorkshop = () => {
     },
   ];
 
-  const loadMorePublications = () => {
-    setVisibleUserPublications(visibleUserPublications + 3); // You can adjust the number as needed
+  const id = props.id;
+
+  console.log();
+
+  const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/delete/64d4f7254b9470d6ccd3ca76`;
+
+  const handleDelete = () => {
+    axios.delete(url).then((res) => {
+      console.log(res);
+    });
   };
 
   return (
-    <div>
-      <h1>User Workshop </h1>
-      <UserWorkshopCard />
+    <div className="text-white h-auto w-auto">
+      <div className="bg-gradient-to-b pb-2 bg-[#550C6B]  h-auto w-72 z-10 rounded-xl my-10 mx-8">
+        <div className="ml-4 mt-4 flex pt-2 ">
+          <img
+            className="rounded-full mr-4 h-12 w-auto opacity-75"
+            src={Professor}
+            alt="Prof"
+          />
+          <p className="mx-4 my-2">Title</p>
+          <Link to={`/profile/workshop/edit/${id}`}>
+            <div className="bg-white text-black rounded p-2 h-7 w-7  text-center ml-12 mr-2">
+              <MdEdit />
+            </div>
+          </Link>
+          <div
+            className="bg-white text-black rounded p-2 h-7 w-7  text-center ml-1"
+            onClick={handleDelete}
+          >
+            <MdDelete />
+          </div>
+        </div>
+
+        <p className=" my-2 mx-4 text-slate-400">Attended On</p>
+        <p className=" my-2 mx-4">2 Days</p>
+        <p className="mx-4 my-2 ">OrganisedBy</p>
+        <p className="mx-4 my-2">subject</p>
+        <p className="mx-4 my-2">
+          Summary Lorem ipsum dolor sit amet consectetur adipisicing
+          elit.Nesciunt natus assumenda dignissimos tempora.
+        </p>
+      </div>
     </div>
   );
 };
-export default UserWorkshop;
+
+export default UserWorkshopCard;

@@ -30,18 +30,16 @@ const SideBar = () => {
       title: "Profile",
       route: "profile",
       spacing: true,
-      submenu: true,
-      submenuItems: [{ id: 2, title: "AddProfile", route: "profile/add" }],
     },
     {
-      id: 3,
+      id: 2,
       title: "Publications",
       route: "profile/publication",
       icon: <MdDescription />,
       submenu: true,
       submenuItems: [
         {
-          id: 4,
+          id: 3,
           title: "AddPublication",
           route: "profile/publication/add",
           icon: <MdDescription />,
@@ -50,14 +48,14 @@ const SideBar = () => {
     },
 
     {
-      id: 5,
+      id: 4,
       title: "Articles",
       route: "profile/article",
       icon: <MdEditDocument />,
       submenu: true,
       submenuItems: [
         {
-          id: 6,
+          id: 5,
           title: "AddArticles",
           route: "profile/article/add",
           icon: <MdDescription />,
@@ -65,14 +63,14 @@ const SideBar = () => {
       ],
     },
     {
-      id: 7,
+      id: 6,
       title: "Workshops",
       route: "profile/workshop",
       icon: <MdEvent />,
       submenu: true,
       submenuItems: [
         {
-          id: 8,
+          id: 7,
           title: "AddWorkshops",
           route: "profile/workshop/add",
           icon: <MdDescription />,
@@ -80,10 +78,19 @@ const SideBar = () => {
       ],
     },
     {
-      id: 9,
+      id: 8,
       title: "Patent",
       route: "profile/patent",
       icon: <LuFileBadge />,
+      submenu: true,
+      submenuItems: [
+        {
+          id: 9,
+          title: "AddPatent",
+          route: "profile/patent/add",
+          icon: <MdDescription />,
+        },
+      ],
     },
     { id: 10, title: "Home", route: "", spacing: true, icon: <MdHome /> },
     { id: 11, title: "Logout", route: "login", icon: <MdLogout /> },
