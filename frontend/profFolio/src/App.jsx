@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./Pages/Home/Home";
 import Register from "./components/Register";
-import ProfileDetails from "./components/ProfileDetails";
+import ProfileDetails from "./Profile/ProfileDetails";
 import ForgotPassword from "./Pages/ForgotPasswordPage/ForgotPassword";
 import Error from "./components/Error";
 import Publication from "./Pages/Publication/Publication";
@@ -18,7 +18,7 @@ import EditPublication from "./Profile/UserPublication/EditPublication";
 import PublicationPage from "./components/PublicationPage";
 import UserArticles from "./Profile/UserArticle/UserArticles";
 import UserWorkshop from "./Profile/UserWorkshop/UserWorkshop";
-import MenuLayout from "./components/PageLayout";
+import PageLayout from "./components/PageLayout";
 import AddPublication from "./Profile/UserPublication/AddPublication";
 import PublicationLayout from "./Profile/UserPublication/PublicationLayout";
 import ArticleLayout from "./Profile/UserArticle/ArticleLayout";
@@ -42,7 +42,7 @@ function App() {
     // <ErrorBoundary fallback={<div>Something went wrong</div>}>
     <Router>
       <Routes>
-        <Route path="/" element={<MenuLayout />}>
+        <Route path="/" element={<PageLayout />}>
           <Route path="" element={<Home />} />
           <Route path="/publications" element={<Publication />} />
           <Route path="/articles" element={<Article />} />
@@ -62,7 +62,7 @@ function App() {
           <Route path="" element={<ProfileLayout />}>
             <Route path="" element={<ProfileDetails />} />
             <Route path="add" element={<AddProfile />} />
-            <Route path="edit" element={<EditProfile />} />
+            <Route path="edit/:id" element={<EditProfile />} />
           </Route>
 
           <Route path="publication" element={<PublicationLayout />}>

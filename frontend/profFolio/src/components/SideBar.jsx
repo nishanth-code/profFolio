@@ -99,6 +99,7 @@ const SideBar = () => {
       className={`bg-[#550C6B] h-screen p-5 pt-2  sticky top-0
       ${open ? "w-72" : "w-24"} duration-300 `}
     >
+      {/* Arrow to close and open */}
       <FaArrowLeft
         className="bg-white text-[#550C6B] text-3xl rounded-full absolute -right-3 top-9 border border-purple cursor-pointer"
         onClick={() => {
@@ -119,6 +120,8 @@ const SideBar = () => {
           ScholarConnect
         </h1>
       </div>
+
+      {/* Main Menu */}
       <div className="text-white mx-4 -my-10">
         {menus.map((menu, index) => (
           <Link key={menu.id || index} to={"/" + menu.route}>
@@ -142,6 +145,7 @@ const SideBar = () => {
                 {menu.title}
               </span>
 
+              {/* Sub Menu Down Arrow */}
               {menu.submenu && (
                 <BsChevronDown
                   className=""
@@ -149,6 +153,8 @@ const SideBar = () => {
                 />
               )}
             </div>
+
+            {/* Sub Menu */}
             {menu.submenu && submenuOpen[index] && (
               <div className="text-white mx-4 ">
                 {menu.submenuItems.map((submenuItem, index) => (
@@ -181,26 +187,3 @@ export default SideBar;
 // AiFillFund
 
 // colors -- blues #79A7D3 #6883BC
-
-{
-  /* <div className="my-6  text-xl">
-    <Link to={"/profile/"}>Profile</Link>
-    <div></div>
-  </div>
-  <div className="my-6  text-xl">
-    <Link to={"/Publications/:id"}>Publications</Link>
-    <div></div>
-  </div>
-  <div className="my-6  text-xl">
-    <Link to={"/Articles/:id"}>Articles</Link>
-    <div></div>
-  </div>
-  <div className="my-6  text-xl">
-    <Link to={"/Workshops/:id"}>Workshops</Link>
-    <div></div>
-  </div>
-  <div className="my-6 text-xl">
-    <Link to={"/Patent/:id"}>Patent</Link>
-    <div></div>
-  </div> */
-}

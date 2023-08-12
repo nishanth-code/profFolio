@@ -1,8 +1,8 @@
-import SideBar from "./SideBar";
+import SideBar from "../components/SideBar";
 import professor from "../assets/professor.jpg";
 import { useEffect, useState } from "react";
 import { MdEdit } from "react-icons/md";
-import Analysis from "./Analysis";
+import Analysis from "../components/Analysis";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
@@ -42,6 +42,8 @@ const ProfileDetails = () => {
   // const handleNameChange = (e) => {
   //   setUserName(e.target.value);
   // };
+
+  const id = 1;
   return (
     <div>
       {userDetails ? (
@@ -50,7 +52,7 @@ const ProfileDetails = () => {
             <div className="flex ">
               {/* <SideBar /> */}
               <div className="p-7 ">
-                <Link to={"/profile/edit"}>
+                <Link to={`/profile/edit/${id}`}>
                   <div className="rounded-full w-32 p-2 bg-white">
                     <MdEdit className="inline-block mr-1" />
                     Edit Profile
@@ -69,7 +71,7 @@ const ProfileDetails = () => {
                         document.getElementById("imageInput").click()
                       }
                     />
-                   
+
                     <label className="pl-20 cursor-pointer font-bold ">
                       <input
                         id="imageInput"

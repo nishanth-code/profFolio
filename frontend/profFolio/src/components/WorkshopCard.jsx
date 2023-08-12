@@ -13,8 +13,9 @@ const WorkshopCard = () => {
           />
           <p className="mx-4 my-2">Title</p>
         </div>
-        <p className=" my-2 mx-4">Attended On</p>
-        <p className="mx-4 my-2">OrganisedBy</p>
+        <p className=" my-2 mx-4 text-slate-400">Attended On</p>
+        <p className=" my-2 mx-4 text-slate-400">2 Days</p>
+        <p className="mx-4 my-2 ">OrganisedBy</p>
         <p className="mx-4 my-2">subject</p>
         <p className="mx-4 my-2">
           Summary Lorem ipsum dolor sit amet consectetur adipisicing

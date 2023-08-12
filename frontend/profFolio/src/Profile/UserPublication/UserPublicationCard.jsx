@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Professor from "../assets/professor.jpg";
+import Professor from "../../assets/professor.jpg";
 import { Link } from "react-router-dom";
-import { MdEdit } from "react-icons/md";
+import { MdEdit, MdDelete } from "react-icons/md";
 
-const PublicationCard = (props) => {
+const UserPublicationCard = (props) => {
   const [data, setData] = useState(props.publication);
   const userPublication = [
     {
@@ -86,18 +86,21 @@ const PublicationCard = (props) => {
   return (
     <div className="text-white h-auto w-auto">
       <div className="bg-gradient-to-b pb-2 bg-[#550C6B]  h-auto w-72 z-10 rounded-xl my-10 mx-8">
-        <div className="mx-4 mt-4 flex pt-2 ">
+        <div className="ml-4 mt-4 flex pt-2 ">
           <img
             className="rounded-full mr-4 h-12 w-auto opacity-75"
             src={Professor}
             alt="Prof"
           />
           <p className="my-3">{props.author}</p>
-          {/* <Link to={`/profile/publication/edit/${id}`}>
-            <div className="bg-white text-black rounded p-2 h-7 w-7  text-center ml-20">
+          <Link to={`/profile/publication/edit/${id}`}>
+            <div className="bg-white text-black rounded p-2 h-7 w-7  text-center ml-12 mr-2">
               <MdEdit />
             </div>
-          </Link> */}
+          </Link>
+          <div className="bg-white text-black rounded p-2 h-7 w-7  text-center ml-1">
+            <MdDelete />
+          </div>
         </div>
         {/* <Link to={"/publications"}> */}
         <p className="mx-4 my-2">Title: {props.title}</p>
@@ -108,14 +111,14 @@ const PublicationCard = (props) => {
         {/* Check if its book or journal and render accordingly */}
         <p className="mx-4 my-2 ">Volume: {props.volume}</p>
         <p className="mx-4 my-2 ">Year: {props.year}</p>
-        {/* <p className="mx-4 my-2 ">{props.content}</p> */}
+        <p className="mx-4 my-2 ">{props.content}</p>
         <p className="mx-4 my-2 ">Publisher: {props.publisher}</p>
         <p className="mx-4 my-2 ">Editor: {props.editor}</p>
         <a
           href={props.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mx-4 my-2 text-white hover:underline"
+          className="mx-4 my-2 text-blue-500 hover:underline"
         >
           <span className="font-semibold text-white">URL: </span>
           {props.title}
@@ -125,4 +128,4 @@ const PublicationCard = (props) => {
   );
 };
 
-export default PublicationCard;
+export default UserPublicationCard;

@@ -19,18 +19,34 @@ const Footer = () => {
           <p>Connecting the Researchers</p>
           <p className="text-xl">Socials</p>
           <div className="flex">
-            <Link to="#" className="text-3xl h-6 w-6 my-6 mr-4">
+            <a
+              href="https://twitter.com/DrAITOfficial/"
+              className="text-3xl h-6 w-6 my-6 mr-4"
+              target="_blank"
+            >
               <FaTwitter />
-            </Link>
-            <Link to="#" className="text-3xl h-6 w-6 my-6 mx-4">
+            </a>
+            <a
+              href="https://www.facebook.com/DrAITOfficial/"
+              className="text-3xl h-6 w-6 my-6 mx-4"
+              target="_blank"
+            >
               <FaFacebook />
-            </Link>
-            <Link to="#" className="text-3xl h-6 w-6 my-6 mx-4">
-              <FaInstagram />
-            </Link>
-            <Link to="#" className="text-3xl h-6 w-6 my-6 mx-4">
+            </a>
+            <a
+              href="https://www.linkedin.com/company/drait"
+              className="text-3xl h-6 w-6 my-6 mx-4"
+              target="_blank"
+            >
               <FaLinkedin />
-            </Link>
+            </a>
+            <a
+              href="https://www.instagram.com/draitofficial/"
+              className="text-3xl h-6 w-6 my-6 mx-4"
+              target="_blank"
+            >
+              <FaInstagram />
+            </a>
           </div>
         </div>
         <div className="my-10 mx-10 grid">
