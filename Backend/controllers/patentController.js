@@ -64,6 +64,7 @@ const deletePatent = async(req,res)=>{
     await patent.findByIdAndDelete(id)
     user.patents.splice(user.patents.indexOf(id),1)
     await user.save()
+    res.json({msg:'deleted sucessfully'}).status(200)
 
 
 }
