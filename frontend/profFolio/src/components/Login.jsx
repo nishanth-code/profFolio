@@ -25,13 +25,24 @@ const Login = () => {
     // }),
 
     onSubmit: (values) => {
-      axios.post(url, values, { withCredentials: true }).then((res) => {
-        console.log(res.data.msg);
-        localStorage.setItem("token", res.data.token);
-        if (res.status == 200) {
-          navigate("/");
-        }
-      });
+      axios
+        .post(
+          url,
+          values,
+          // {
+          //   headers: {
+          //     "Access-Control-Allow-Origin": "*",
+          //   },
+          // },
+          { withCredentials: true }
+        )
+        .then((res) => {
+          console.log(res.data.msg);
+          localStorage.setItem("token", res.data.token);
+          if (res.status == 200) {
+            navigate("/");
+          }
+        });
     },
   });
 

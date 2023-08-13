@@ -41,7 +41,7 @@ const ProfileDetails = () => {
         console.log(res.data);
         setUserDetails(res.data);
       });
-  }, []);
+  }, [url]);
   // pass uerId soo that changes reflect on profile page
 
   console.log(userDetails);
