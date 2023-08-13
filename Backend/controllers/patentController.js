@@ -14,7 +14,7 @@ const renderPatent = async(req,res) =>{
 }
 
 const addPatent = async(req,res) =>{
-    const username = res.locals.currentUser
+    const username = 'mahee'//res.locals.currentUser
     const user = await profile.findOne({username:username})
     const {
         title,

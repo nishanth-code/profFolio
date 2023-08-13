@@ -4,18 +4,28 @@ const session = require('express-session')
 const RedisStore = require('connect-redis').default
 const redis = require('redis');
 const cors = require('cors')
+const jwt = require('jsonwebtoken');
 const passport = require("passport");
 const passportLocal = require("passport-local").Strategy;
 const profile = require("./schemas/profile");
 const dbConnect = require("./utilities/dbconnect")
+const crypto = require('crypto');
+const cookieparser = require('cookie-parser')
+
+
 
 
 
 dbConnect();
+const jwtSecret =  crypto.randomBytes(32).toString('hex');
+const jwtOptions = {
+  expiresIn: '24h' 
+};
 
 //session data 
 // const client = redis.createClient();
 // const sessionStore = new RedisStore({ client: client });
+
 
 const sessionDetails = {
   secret: 'userCredentials',
@@ -32,6 +42,7 @@ app.use(session(sessionDetails))
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 passport.use(new passportLocal(profile.authenticate()));
 
 
@@ -44,7 +55,9 @@ app.use(cors({
   credentials:true,
   
 }));
+app.use(cookieparser())
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 
 app.use((req,res,next)=>{
 
@@ -63,9 +76,11 @@ app.use('/article',require('./routes/articleroutes'))
 
 
 app.post('/authenticate',passport.authenticate('local'),(req,res)=>{
-  console.log(req.body)
+  const user = req.user;
+  const token = jwt.sign({ id: user._id }, jwtSecret, jwtOptions);
+ 
   
-res.status(200).json({msg:'authentication sucessful'})    
+res.status(200).json({msg:'authentication sucessful',token})    
 })
 app.get('/logout', (req, res) => {
   // Clear the user's session
