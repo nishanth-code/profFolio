@@ -2,9 +2,9 @@ import { useFormik } from "formik";
 import PublicationFormDetails from "../../form-fields/PublicationFormJson";
 import { useState } from "react";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 const AddPublication = () => {
-  const [userDetails, setUserDetails] = useState(false);
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-40 my-4 rounded-2xl  border-solid border pointer-events-auto";
 

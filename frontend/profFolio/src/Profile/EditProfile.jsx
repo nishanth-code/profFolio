@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import professor from "../assets/professor.jpg";
 import { MdEdit } from "react-icons/md";
-
+import axios from "axios";
+axios.defaults.withCredentials = true;
 const EditProfile = () => {
   const [profileData, setProfileData] = useState("");
   const [profileImage, setProfileImage] = useState(professor);

@@ -10,6 +10,8 @@ const Login = () => {
   const url =
     "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/authenticate";
 
+  // const url = "https://scholarconnect.onrender.com/authenticate";
+
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -24,7 +26,8 @@ const Login = () => {
 
     onSubmit: (values) => {
       axios.post(url, values, { withCredentials: true }).then((res) => {
-        // console.log(res.data.msg);
+        console.log(res.data.msg);
+        localStorage.setItem("token", res.data.token);
         if (res.status == 200) {
           navigate("/");
         }

@@ -3,6 +3,7 @@ import Professor from "../../assets/professor.jpg";
 import { Link } from "react-router-dom";
 import { MdEdit, MdDelete } from "react-icons/md";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 const UserPublicationCard = (props) => {
   const [data, setData] = useState(props.publication);
@@ -94,16 +95,16 @@ const UserPublicationCard = (props) => {
 
   return (
     <div className="text-white h-auto w-auto">
-      <div className="bg-gradient-to-b pb-2 bg-[#550C6B]  h-auto w-72 z-10 rounded-xl my-10 mx-8">
+      <div className="bg-[#fbf0ff] border border-gray-200 text-black font-semibold h-auto w-72 z-10 rounded-xl my-10 mx-8 pb-4 shadow-lg hover:scale-110 ease-in duration-300">
         <div className="ml-4 mt-4 flex pt-2 ">
           <img
-            className="rounded-full mr-4 h-12 w-auto opacity-75"
+            className="rounded-full mr-4 h-12 w-auto"
             src={Professor}
             alt="Prof"
           />
           <p className="my-3">{props.author}</p>
           <Link to={`/profile/publication/edit/${id}`}>
-            <div className="bg-white text-black rounded p-2 h-7 w-7  text-center ml-12 mr-2">
+            <div className="bg-white text-black rounded p-2 h-7 w-7  text-center ml-12 mr-2 ">
               <MdEdit />
             </div>
           </Link>
@@ -132,7 +133,7 @@ const UserPublicationCard = (props) => {
           rel="noopener noreferrer"
           className="mx-4 my-2 text-blue-500 hover:underline"
         >
-          <span className="font-semibold text-white">URL: </span>
+          <span className="font-semibold text-black">URL: </span>
           {props.title}
         </a>
       </div>

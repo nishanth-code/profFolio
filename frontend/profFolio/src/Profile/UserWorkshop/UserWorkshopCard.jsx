@@ -3,7 +3,7 @@ import Professor from "../../assets/professor.jpg";
 import { Link } from "react-router-dom";
 import { MdEdit, MdDelete } from "react-icons/md";
 import axios from "axios";
-
+axios.defaults.withCredentials = true;
 const UserWorkshopCard = (props) => {
   const [data, setData] = useState(props.workshop);
   const UserWorkshop = [
@@ -103,15 +103,15 @@ const UserWorkshopCard = (props) => {
   };
 
   return (
-    <div className="text-white h-auto w-auto">
-      <div className="bg-gradient-to-b pb-2 bg-[#550C6B]  h-auto w-72 z-10 rounded-xl my-10 mx-8">
+    <div className="text-white h-auto w-auto flex">
+      <div className="bg-[#fbf0ff] border border-gray-200 text-black font-semibold  h-auto w-96 z-10 rounded-xl my-10 mx-8 shadow-lg hover:scale-110 ease-in duration-300">
         <div className="ml-4 mt-4 flex pt-2 ">
           <img
-            className="rounded-full mr-4 h-12 w-auto opacity-75"
+            className="rounded-full mr-4 h-12 w-auto "
             src={Professor}
             alt="Prof"
           />
-          <p className="mx-4 my-2">Title</p>
+          <p className="mx-1 my-2">Title: {props.title}</p>
           <Link to={`/profile/workshop/edit/${id}`}>
             <div className="bg-white text-black rounded p-2 h-7 w-7  text-center ml-12 mr-2">
               <MdEdit />
@@ -125,14 +125,13 @@ const UserWorkshopCard = (props) => {
           </div>
         </div>
 
-        <p className=" my-2 mx-4 text-slate-400">Attended On</p>
-        <p className=" my-2 mx-4">2 Days</p>
-        <p className="mx-4 my-2 ">OrganisedBy</p>
-        <p className="mx-4 my-2">subject</p>
-        <p className="mx-4 my-2">
-          Summary Lorem ipsum dolor sit amet consectetur adipisicing
-          elit.Nesciunt natus assumenda dignissimos tempora.
+        <p className=" my-2 mx-4 text-slate-400">
+          Attended On: {props.attendedOn}
         </p>
+        <p className=" my-2 mx-4">Duration: {props.duration}</p>
+        <p className="mx-4 my-2 ">OrganisedBy: {props.organisedBy}</p>
+        <p className="mx-4 my-2">subject: {props.subject}</p>
+        <p className="mx-4 my-2">Summary: {props.summary}</p>
       </div>
     </div>
   );

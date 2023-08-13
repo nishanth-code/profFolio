@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 
 const UserWorkshop = () => {
   const [workshopData, setWorkshopData] = useState({});
-  const [visibleUserPublications, setVisibleUserPublications] = useState(3);
+  const [visibleUserWorkshops, setVisibleUserWorkshops] = useState(3);
 
   const url =
-    "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/renderAll";
+    "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/workshop";
 
   // useEffect(() => {
   //   axios.get(url).then((res) => {
@@ -14,7 +14,7 @@ const UserWorkshop = () => {
   //     setPublicationData(res.data);
   //   });
   // }, []);
-  // console.log(publicationData);
+  // console.log(workshopData);
 
   const UserWorkshop = [
     {
@@ -100,14 +100,41 @@ const UserWorkshop = () => {
     },
   ];
 
-  const loadMorePublications = () => {
-    setVisibleUserPublications(visibleUserPublications + 3); // You can adjust the number as needed
+  const loadMoreWorkshops = () => {
+    setVisibleUserWorkshops(visibleUserWorkshops + 3); // You can adjust the number as needed
   };
 
+  const id = UserWorkshop[0].id;
+
   return (
-    <div>
-      <h1>User Workshop </h1>
-      <UserWorkshopCard />
+    <div className="flex flex-col justify-center items-center">
+      <h1 className="text-3xl font-semibold text-center mt-4">
+        User Workshop{" "}
+      </h1>
+      <div className="flex flex-wrap justify-center">
+        {UserWorkshop.slice(0, visibleUserWorkshops).map((workshop) => (
+          <UserWorkshopCard
+            key={workshop.id}
+            id={workshop.id}
+            title={workshop.title}
+            organisedBy={workshop.organisedBy}
+            attendedOn={workshop.attendedOn}
+            duration={workshop.duration}
+            subject={workshop.subject}
+            summary={workshop.summary}
+          />
+        ))}
+      </div>
+      <div className="flex">
+        {visibleUserWorkshops < UserWorkshop.length && (
+          <button
+            className="mx-auto px-4 py-2 rounded-md bg-[#1D3792] text-white"
+            onClick={loadMoreWorkshops}
+          >
+            Load More
+          </button>
+        )}
+      </div>
     </div>
   );
 };

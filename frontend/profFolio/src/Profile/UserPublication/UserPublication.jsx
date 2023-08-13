@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import UserPublicationCard from "./UserPublicationCard";
 import PublicationFormDetails from "../../form-fields/PublicationFormJson";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 const UserPublications = () => {
   const [publicationData, setPublicationData] = useState({});

@@ -5,10 +5,13 @@ import { MdEdit } from "react-icons/md";
 import Analysis from "../components/Analysis";
 import { Link } from "react-router-dom";
 import axios from "axios";
+// axios.defaults.withCredentials = true;
 
 const ProfileDetails = () => {
   const [profileImage, setProfileImage] = useState(professor);
   const [userDetails, setUserDetails] = useState({});
+  const authToken = localStorage.getItem("token");
+  console.log(authToken);
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl border-solid border";
 
@@ -22,12 +25,24 @@ const ProfileDetails = () => {
   const url =
     "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/viewprofile";
 
+  // const url = "https://scholarconnect.onrender.com/profile/viewprofile";
+
   useEffect(() => {
-    axios.get(url).then((res) => {
-      console.log(res.data);
-      setUserDetails(res.data);
-    });
+    // console.log(authToken);
+
+    axios
+      .get(url, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setUserDetails(res.data);
+      });
   }, []);
+  // pass uerId soo that changes reflect on profile page
 
   console.log(userDetails);
 

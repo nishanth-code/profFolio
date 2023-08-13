@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import professor from "../assets/professor.jpg";
 import { MdEdit } from "react-icons/md";
-
+axios.defaults.withCredentials = true;
 const AddProfile = () => {
   const [profileImage, setProfileImage] = useState(professor);
+  const authToken = localStorage.getItem("token");
 
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl border-solid border pointer-events-auto";
