@@ -14,30 +14,32 @@ const render = async(req,res) =>{
 }
 
 const newPublication = async(req,res) =>{
-    const currentUser = res.locals.currentUser
+    const currentUser = req.user.username
     const user = await profile.findOne({username:currentUser})
+    console.log(user)
+    
     // console.log(req.body)
 
-    const { title,author,publishedMedia,doi,year,subject,volume,editor,publisher} = req.body.values.publication
-    // console.log(title,author,publishedMedia,doi,year,subject,volume,editor,publisher)
-    const publicat = new publication(
-        {title:title,
-        author:author,
-        publishedMedia:publishedMedia,
-        doi:doi,
-        year:year,
-        subject:subject,
-        vloume:volume,
-        editor:editor,
-        publisher:publisher,
-        user:currentUser
+    // const { title,author,publishedMedia,doi,year,subject,volume,editor,publisher} = req.body.values.publication
+    // // console.log(title,author,publishedMedia,doi,year,subject,volume,editor,publisher)
+    // const publicat = new publication(
+    //     {title:title,
+    //     author:author,
+    //     publishedMedia:publishedMedia,
+    //     doi:doi,
+    //     year:year,
+    //     subject:subject,
+    //     vloume:volume,
+    //     editor:editor,
+    //     publisher:publisher,
+    //     user:currentUser
 
-    })
-    user.publications.push(publicat)
-    await publicat.save()
-    await user.save()
-    // console.log('sucessful')
-    res.json({msg:'sucessfully added to your profile'}).status(200)
+    // })
+    // user.publications.push(publicat)
+    // await publicat.save()
+    // await user.save()
+    // // console.log('sucessful')
+    // res.json({msg:'sucessfully added to your profile'}).status(200)
 }
 const updatePublication = async(req,res) =>{
     const id = req.params.id

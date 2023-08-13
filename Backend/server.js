@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
-const cors = require('cors')
 const session = require('express-session')
+const RedisStore = require('connect-redis').default
+const redis = require('redis');
+const cors = require('cors')
 const passport = require("passport");
 const passportLocal = require("passport-local").Strategy;
 const profile = require("./schemas/profile");
@@ -12,21 +14,28 @@ const dbConnect = require("./utilities/dbconnect")
 dbConnect();
 
 //session data 
+// const client = redis.createClient();
+// const sessionStore = new RedisStore({ client: client });
 
 const sessionDetails = {
   secret: 'userCredentials',
   resave: false,
   saveUninitialized: true,
+  // store:sessionStore,
   cookie:{
       httpOnly: true,
-      expires: Date.now() + (1000*60*60*24),
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
       maxAge: 1000*60*60*24
   }
 }
+app.use(session(sessionDetails))
+app.use(passport.initialize());
+app.use(passport.session());
 
 passport.use(new passportLocal(profile.authenticate()));
-app.use(passport.initialize());
-app.use(session(sessionDetails))
+
+
+
 passport.serializeUser(profile.serializeUser());
 passport.deserializeUser(profile.deserializeUser());
 app.use(cors({
@@ -36,14 +45,9 @@ app.use(cors({
   
 }));
 app.use(express.json())
-app.use(passport.initialize());
-app.use(passport.session());
-app.use((req,res,next)=>{
-  if(req.user){
-    res.locals.currentUser = req.user.username
-  }
 
-console.log(req.user)
+app.use((req,res,next)=>{
+
   
   next()
 })
@@ -60,10 +64,16 @@ app.use('/article',require('./routes/articleroutes'))
 
 app.post('/authenticate',passport.authenticate('local'),(req,res)=>{
   console.log(req.body)
-  res.locals.currentUser = req.body.username
-res.json({msg:'authentication sucessful'}).status(200)    
+  
+res.status(200).json({msg:'authentication sucessful'})    
 })
-
+app.get('/logout', (req, res) => {
+  // Clear the user's session
+  req.logout(()=>{
+    res.status(300).json('logged out sucessfully')
+  });
+  
+});
 
 // Global error handler
 app.use((err, req, res, next) => {

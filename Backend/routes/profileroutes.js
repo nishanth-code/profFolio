@@ -2,6 +2,7 @@ const express = require("express")
 const profileRoutes = express.Router()
 const controller = require('../controllers/profileController')
 const multer = require('multer')
+const islogedin = require('../middlewares/isloggedin')
 const asynchandler = require('../errorHandlers/asyncHandler')
 
 
@@ -13,7 +14,8 @@ const storage = multer.diskStorage({
   })
 const upload = multer({ storage: storage });
 
-profileRoutes.get('/viewprofile',asynchandler(controller.profilerender))
+profileRoutes.get('/viewprofile',islogedin,asynchandler(controller.profilerender))
+profileRoutes.get('/publication',islogedin,asynchandler(controller.renderPublication))
 profileRoutes.post('/signup',upload.single('profilePicture'),asynchandler(controller.createUser))
 profileRoutes.post('/sendotp',asynchandler(controller.sendOTP))
 profileRoutes.post('/verifyotp',asynchandler(controller.verifyotp))

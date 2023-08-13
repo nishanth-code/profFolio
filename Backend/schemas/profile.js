@@ -13,7 +13,8 @@ const profileSchema = new schema({
     publications:[{type:schema.Types.ObjectId,ref:'publications'}],
     articles:[{type:schema.Types.ObjectId,ref:'articles'}],
     workshops:[{type:schema.Types.ObjectId,ref:'workshops'}],
-    patents:[{type:schema.Types.ObjectId,ref:'patent'}]
+    patents:[{type:schema.Types.ObjectId,ref:'patent'}],
+    active:{type:Boolean,default:true}
 })
 profileSchema.methods.comparePassword = async function (candidatePassword) {
     return await bcrypt.compare(candidatePassword, this.password);

@@ -24,6 +24,11 @@ const profilerender =async(req,res)=>{
     }
 
 }
+const renderPublication = async(req,res) =>{
+  const currentUser = req.user.username
+  const user = await profile.findOne({username:currentUser}).populate(['publications','articles','workshops','patents'])
+  res.json(user.publications).status(200)
+}
 const createUser = async(req,res) =>{
   console.log(req.body)
     const {username,email,phoneNumber,password}=req.body.values
@@ -166,4 +171,4 @@ const deleteAccount = async(req,res)=>{
 
 
 
-module.exports = {profilerender,verifyotp,deleteAccount,changeProfilePic,changePassword,createUser,updatePassword,sendOTP}
+module.exports = {renderPublication,profilerender,verifyotp,deleteAccount,changeProfilePic,changePassword,createUser,updatePassword,sendOTP}
