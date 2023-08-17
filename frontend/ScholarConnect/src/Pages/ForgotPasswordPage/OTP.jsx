@@ -1,8 +1,26 @@
 import LoginBackground from "../../assets/LoginBackground.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useFormik } from "formik";
+import axios from "../../api/authApi";
 
 const OTP = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  const formik = useFormik({
+    initialValues: {
+      otp: "",
+    },
+    
+    onSubmit: (values) => {
+      axios.post("/profile/verifyotp", values).then((res) => {
+        console.log(res.data.msg);
+        if (res.status == 200) {
+          navigate(`/forgotpassword/changepassword/${id}`);
+        }
+      });
+    },
+  });
 
   return (
     <>
@@ -13,14 +31,16 @@ const OTP = () => {
         <div className="justify-center rounded-xl absolute w-2/5 h-auto backdrop-blur-sm bg-white/20 pt-8 text-[calc(10px + 2vmin)]">
           <p className="text-4xl relative  my-1">ENTER OTP</p>
           <p className="text-gray-400">Password recovery</p>
-          <form onSubmit="" method="post">
+          <form onSubmit={formik.handleSubmit} method="post">
             <div className="">
               <input
                 className="h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
-                id="email"
-                type="email"
-                name="email"
-                placeholder="Email"
+                id="otp"
+                type="number"
+                name="otp"
+                placeholder="Enter OTP"
+                onChange={formik.handleChange}
+                value={formik.values.otp}
               />
             </div>
             <div>

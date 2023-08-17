@@ -10,7 +10,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <div className="bg-[#350346] text-white">
+    <footer className="bg-[#350346] text-white">
       <div className="grid grid-cols-3  my-10">
         <div className="my-10 mx-16  ">
           <div className="h-10 w-10">
@@ -21,28 +21,28 @@ const Footer = () => {
           <div className="flex">
             <a
               href="https://twitter.com/DrAITOfficial/"
-              className="text-3xl h-6 w-6 my-6 mr-4"
+              className="text-3xl h-6 w-6 my-6 mr-4 hover:text-blue-500 hover:scale-125 ease-in duration-200"
               target="_blank"
             >
               <FaTwitter />
             </a>
             <a
               href="https://www.facebook.com/DrAITOfficial/"
-              className="text-3xl h-6 w-6 my-6 mx-4"
+              className="text-3xl h-6 w-6 my-6 mx-4 hover:text-blue-800 hover:scale-125 ease-in duration-200"
               target="_blank"
             >
               <FaFacebook />
             </a>
             <a
               href="https://www.linkedin.com/company/drait"
-              className="text-3xl h-6 w-6 my-6 mx-4"
+              className="text-3xl h-6 w-6 my-6 mx-4 hover:text-[#0A66C2] hover:scale-125 ease-in duration-200"
               target="_blank"
             >
               <FaLinkedin />
             </a>
             <a
               href="https://www.instagram.com/draitofficial/"
-              className="text-3xl h-6 w-6 my-6 mx-4"
+              className="text-3xl h-6 w-6 my-6 mx-4 hover:text-pink-500 hover:scale-125 ease-in duration-200"
               target="_blank"
             >
               <FaInstagram />
@@ -79,7 +79,7 @@ const Footer = () => {
       <p className="text-center text-gray-400">
         © {year} Dr. Ambedkar Institute of Technology. All Rights Reserved
       </p>
-    </div>
+    </footer>
   );
 };
 

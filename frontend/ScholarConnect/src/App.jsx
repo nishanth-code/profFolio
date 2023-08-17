@@ -57,8 +57,8 @@ function App() {
         <Route path="/forgotpassword" element={<ForgotPasswordLayout />}>
           {/* create route for otp */}
           <Route path="" element={<ForgotPassword />} />
-          <Route path="otp" element={<OTP />} />
-          <Route path="changepassword" element={<ChangePassword />} />
+          <Route path="otp/:id" element={<OTP />} />
+          <Route path="changepassword/:id" element={<ChangePassword />} />
         </Route>
         {/* Create route for change password */}
         <Route path="/register" element={<Register />} />

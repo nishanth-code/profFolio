@@ -131,7 +131,7 @@ const UserPublicationCard = (props) => {
           href={props.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mx-4 my-2 text-blue-500 hover:underline"
+          className="mx-4 my-2 text-[#550C6B] hover:underline"
         >
           <span className="font-semibold text-black">URL: </span>
           {props.title}

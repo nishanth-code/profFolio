@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { MdEdit } from "react-icons/md";
 import Analysis from "../components/Analysis";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from "../api/authApi";
 // axios.defaults.withCredentials = true;
 
 const ProfileDetails = () => {
@@ -22,47 +22,26 @@ const ProfileDetails = () => {
   //   setProfileImage(imageURL)
   // }, [])
 
-  const url =
-    "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/viewprofile";
+  // const url =
+  //   "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/viewprofile";
 
   // const url = "https://scholarconnect.onrender.com/profile/viewprofile";
 
   useEffect(() => {
     // console.log(authToken);
 
-    axios.get(url, { withCredentials: true }).then((res) => {
+    axios.get("/profile/viewprofile").then((res) => {
       console.log(res.data);
       setUserDetails(res.data);
     });
   }, []);
-  // pass uerId soo that changes reflect on profile page
-
-  // .get(
-  //       url,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${authToken}`,
-
-  //           "Content-Type": "application/json",
-  //         },
-  //       },
-  //       { withCredentials: true }
-  //     )
-
   console.log(userDetails);
 
-  // const  userDetails.
+  const pic = userDetails.profilePicture;
+  console.log(pic);
 
-  // const handleImageChange = (event) => {
-  //   const newImage = URL.createObjectURL(event.target.files[0]);
-  //   setProfileImage(newImage);
-  // };
-
-  // const handleNameChange = (e) => {
-  //   setUserName(e.target.value);
-  // };
-
-  const id = 1;
+  const id = userDetails._id;
+  // console.log(id);
   return (
     <div>
       <div className="bg-[#fbf0ff] border absolute border-gray-200 mt-20 ml-20 pb-10 rounded-2xl h-auto shadow-lg">
@@ -76,13 +55,13 @@ const ProfileDetails = () => {
                 </div>
               </Link>
               <h1 className="text-2xl font-semibold ml text-center">
-                Profile Page
+                {userDetails.username}'s Profile
               </h1>
               <div className="flex mt-16">
                 <div className="relative">
                   <img
                     className="h-40 w-32 ml-20 rounded-xl cursor-pointer transition duration-300 ease-in-out transform hover:brightness-75"
-                    src={profileImage}
+                    src={userDetails.profilePicture}
                     alt="profile"
                     // onClick={() =>
                     //   document.getElementById("imageInput").click()
@@ -90,8 +69,11 @@ const ProfileDetails = () => {
                   />
                 </div>
                 <div className="mt-12 ml-12 font-In ">
-                  <h1 className="text-3xl">user_name</h1>
-                  <h1 className="text-sm">type_Professor</h1>
+                  <h1 className="text-3xl">{userDetails.username}</h1>
+                  <h1 className="text-sm">type_Professor {}</h1>
+                  <h1 className="text-sm">{userDetails.phoneNumber}</h1>
+                  <h1 className="text-sm">{userDetails.gender}</h1>
+                  <h1 className="text-sm">{userDetails.dob}</h1>
                 </div>
               </div>
               <hr className="w-[800px] h-1 mx-24 my-4 bg-gray-300 border-0 rounded md:my-10 dark:bg-gray-700"></hr>

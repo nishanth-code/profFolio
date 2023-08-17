@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PublicationCard from "../../components/PublicationCard";
+import PublicationCard from "./PublicationCard";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 
@@ -143,7 +143,7 @@ const Publications = () => {
   ];
 
   const loadMorePublications = () => {
-    setVisiblePublications(visiblePublications + 3); // You can adjust the number as needed
+    setVisiblePublications(visiblePublications + 4); // You can adjust the number as needed
   };
 
   // Destructuring the data coming from DB and sending as props
@@ -158,40 +158,36 @@ const Publications = () => {
   // />
 
   return (
-    <div>
-      <div>
-        <h1 className="text-3xl font-semibold text-center mt-4">
-          Publicaitons
-        </h1>
-        <div className="flex flex-wrap relative ">
-          {Publication.slice(0, visiblePublications).map((publication) => (
-            <PublicationCard
-              key={publication.id}
-              id={publication.id}
-              author={publication.author}
-              title={publication.title}
-              doi={publication.doi}
-              year={publication.year}
-              publishedMedia={publication.publishedMedia}
-              subject={publication.subject}
-              volume={publication.volume}
-              editor={publication.editor}
-              publisher={publication.publisher}
-              url={publication.url}
-              content={publication.content}
-            />
-          ))}
-        </div>
-        <div className="flex">
-          {visiblePublications < Publication.length && (
-            <button
-              className="mx-auto px-4 py-2 rounded-md bg-[#1D3792] text-white"
-              onClick={loadMorePublications}
-            >
-              Load More
-            </button>
-          )}
-        </div>
+    <div className="ml-10">
+      <h1 className="text-3xl font-semibold text-center mt-4">Publicaitons</h1>
+      <div className="flex flex-wrap relative ">
+        {Publication.slice(0, visiblePublications).map((publication) => (
+          <PublicationCard
+            key={publication.id}
+            id={publication.id}
+            author={publication.author}
+            title={publication.title}
+            doi={publication.doi}
+            year={publication.year}
+            publishedMedia={publication.publishedMedia}
+            subject={publication.subject}
+            volume={publication.volume}
+            editor={publication.editor}
+            publisher={publication.publisher}
+            url={publication.url}
+            content={publication.content}
+          />
+        ))}
+      </div>
+      <div className="flex">
+        {visiblePublications < Publication.length && (
+          <button
+            className="mx-auto px-4 py-2 rounded-md bg-[#1D3792] text-white"
+            onClick={loadMorePublications}
+          >
+            Load More
+          </button>
+        )}
       </div>
     </div>
   );

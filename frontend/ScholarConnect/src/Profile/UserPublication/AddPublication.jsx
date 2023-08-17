@@ -1,15 +1,16 @@
 import { useFormik } from "formik";
 import PublicationFormDetails from "../../form-fields/PublicationFormJson";
 import { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
+import axios from "../../api/authApi";
+import { Navigate, useNavigate } from "react-router-dom";
 axios.defaults.withCredentials = true;
 
 const AddPublication = () => {
+  const navigate = useNavigate();
+
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-40 my-4 rounded-2xl  border-solid border pointer-events-auto";
-
-  const url =
-    "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/addpublication";
 
   const formik = useFormik({
     initialValues: {
@@ -27,8 +28,11 @@ const AddPublication = () => {
     },
 
     onSubmit: (values) => {
-      axios.post(url, { values }, { withCredentials: true }).then((res) => {
+      axios.post("/publication/addpublication", values).then((res) => {
         console.log(res.data.msg);
+        if (res.status == 200) {
+          navigate("/profile/publication");
+        }
       });
       console.log(values);
     },

@@ -7,6 +7,10 @@ axios.defaults.withCredentials = true;
 const UserPublications = () => {
   const [publicationData, setPublicationData] = useState({});
   const [visibleUserPublications, setVisibleUserPublications] = useState(3);
+  const authToken = localStorage.getItem("token");
+
+
+
   const url =
     "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/publication";
 
@@ -16,6 +20,8 @@ const UserPublications = () => {
       setPublicationData(res.data);
     });
   }, []);
+
+
   console.log(publicationData);
 
   const userPublication = [

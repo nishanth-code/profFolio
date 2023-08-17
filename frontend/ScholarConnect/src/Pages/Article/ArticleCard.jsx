@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { MdEdit, MdDelete } from "react-icons/md";
 import axios from "axios";
 axios.defaults.withCredentials = true;
-const UserArticleCard = (props) => {
+const ArticleCard = (props) => {
   const [data, setData] = useState(props.article);
   const [expanded, setExpanded] = useState(false);
 
@@ -99,12 +99,6 @@ const UserArticleCard = (props) => {
   // const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/delete/64d4f7254b9470d6ccd3ca76`;
   const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/delete/${id}`;
 
-  const handleDelete = () => {
-    axios.delete(url).then((res) => {
-      console.log(res);
-    });
-  };
-
   const toggleExpanded = () => {
     setExpanded(!expanded);
   };
@@ -119,11 +113,11 @@ const UserArticleCard = (props) => {
 
   return (
     <div>
-      <div className="bg-[#fbf0ff] border relative border-gray-200 mt-20 ml-20 pb-10 rounded-2xl h-auto w-[1100px] shadow-lg hover:scale-105 ease-in duration-300">
+      <div className="bg-[#550C6B] text-white border relative border-gray-200 mt-20 ml-20 pb-10 rounded-2xl h-auto w-[1100px] shadow-lg hover:scale-105 ease-in duration-300">
         <div className="flex">
           <div className="flex ">
             <div className="p-7 ">
-              <div className="flex justify-around">
+              {/* <div className="flex justify-around">
                 <Link to={`/profile/article/edit/${id}`}>
                   <div className="rounded-full w-28 p-2 bg-white -ml-60">
                     <MdEdit className="inline-block mr-1" />
@@ -136,14 +130,14 @@ const UserArticleCard = (props) => {
                 >
                   <MdDelete />
                 </div>
-              </div>
+              </div> */}
               <h1 className="text-2xl font-semibold ml text-center -mt-6">
                 Article on: {props.title}
               </h1>
               <div className="flex mt-2">
                 <div className="relative">
                   <img
-                    className="h-32 w-24 ml-20 rounded-xl cursor-pointer transition duration-300 ease-in-out transform hover:brightness-75"
+                    className="h-32 w-24 ml-20 rounded-xl  transition duration-300 ease-in-out transform hover:brightness-75"
                     src={Professor}
                     alt="profile"
                     // onClick={() =>
@@ -170,7 +164,7 @@ const UserArticleCard = (props) => {
         <p className="text-semibold text-justify mx-5">
           {expanded ? props.summary : truncateSummary(props.summary, 50)}
           <p
-            className="border bg-gray-100   border-solid inline-block hover:underline cursor-pointer "
+            className="border rounded-sm ml-2 p-1 hover:bg-white hover:text-[#550C6B] border-solid inline-block hover:underline cursor-pointer "
             onClick={toggleExpanded}
           >
             {expanded ? "See Less" : "See More"}
@@ -181,4 +175,4 @@ const UserArticleCard = (props) => {
   );
 };
 
-export default UserArticleCard;
+export default ArticleCard;

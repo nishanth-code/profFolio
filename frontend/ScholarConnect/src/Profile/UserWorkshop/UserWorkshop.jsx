@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 const UserWorkshop = () => {
   const [workshopData, setWorkshopData] = useState({});
-  const [visibleUserWorkshops, setVisibleUserWorkshops] = useState(3);
+  const [visibleUserWorkshops, setVisibleUserWorkshops] = useState(4);
 
   const url =
     "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/workshop";

@@ -1,14 +1,6 @@
-import PublicationCard from "./PublicationCard";
+import PublicationCard from "../Pages/Publication/PublicationCard";
 
 const RecentPublication = () => {
-
-
-
-
-
-
-
-  
   const demoPublications = [
     {
       id: 1,
