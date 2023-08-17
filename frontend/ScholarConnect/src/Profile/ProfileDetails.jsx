@@ -5,31 +5,17 @@ import { MdEdit } from "react-icons/md";
 import Analysis from "../components/Analysis";
 import { Link } from "react-router-dom";
 import axios from "../api/authApi";
-// axios.defaults.withCredentials = true;
-
+import { formatDate } from "../utils/dateFormater";
 const ProfileDetails = () => {
   const [profileImage, setProfileImage] = useState(professor);
   const [userDetails, setUserDetails] = useState({});
-  const authToken = localStorage.getItem("token");
-  console.log(authToken);
+
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl border-solid border";
-
-  //route = /profile/signUp, method=POST
-
-  // useEffect ( () => {
-  //   const imageURL = "Cloudinery URL"
-  //   setProfileImage(imageURL)
-  // }, [])
-
-  // const url =
-  //   "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/viewprofile";
 
   // const url = "https://scholarconnect.onrender.com/profile/viewprofile";
 
   useEffect(() => {
-    // console.log(authToken);
-
     axios.get("/profile/viewprofile").then((res) => {
       console.log(res.data);
       setUserDetails(res.data);
@@ -70,10 +56,10 @@ const ProfileDetails = () => {
                 </div>
                 <div className="mt-12 ml-12 font-In ">
                   <h1 className="text-3xl">{userDetails.username}</h1>
-                  <h1 className="text-sm">type_Professor {}</h1>
+                  <h1 className="text-sm">{userDetails.designation}</h1>
                   <h1 className="text-sm">{userDetails.phoneNumber}</h1>
                   <h1 className="text-sm">{userDetails.gender}</h1>
-                  <h1 className="text-sm">{userDetails.dob}</h1>
+                  <h1 className="text-sm">{formatDate(userDetails.dob)}</h1>
                 </div>
               </div>
               <hr className="w-[800px] h-1 mx-24 my-4 bg-gray-300 border-0 rounded md:my-10 dark:bg-gray-700"></hr>

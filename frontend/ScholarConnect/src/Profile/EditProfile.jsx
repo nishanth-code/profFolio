@@ -8,25 +8,22 @@ import moment from "moment";
 
 axios.defaults.withCredentials = true;
 const EditProfile = () => {
-  const [profileData, setProfileData] = useState("");
+  const [profileData, setProfileData] = useState({});
   const [profileImage, setProfileImage] = useState(professor);
   const navigate = useNavigate();
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl border-solid border pointer-events-auto";
 
-  console.log(props);
-  const id = props.id;
-  console.log(id);
+  // const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/${id}`;
 
-  const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/${id}`;
-
-  const editUrl = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/edit/${id}`;
+  // const editUrl = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/edit/${id}`;
   // const editUrl = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/edit/64d4f7254b9470d6ccd3ca76`;
 
   useEffect(() => {
     axios.get("/profile/viewProfile").then((res) => {
-      console.log(res);
+      // console.log(res);
       setProfileData(res.data);
+      setProfileImage(res.data.profilePicture);
     });
   }, []);
   //Put ID here in dep Array
@@ -34,26 +31,43 @@ const EditProfile = () => {
 
   const formik = useFormik({
     initialValues: {
+      profilePicture: "",
       designation: profileData.designation,
       phoneNumber: profileData.phoneNumber,
       gender: profileData.gender,
       dob: date,
     },
+    enableReinitialize: true,
 
     onSubmit: (values) => {
-      axios.put("/profile/updateProfile", { values }).then((res) => {
-        console.log(res);
-        setUserData(res.data);
-        if (res.status == 200) {
-          navigate("/profile");
-        }
-      });
+      const formData = new FormData(); // Create a FormData object
+      formData.append("profilePicture", values.profilePicture); // Append the image file to FormData
+      // Append other form data fields
+      formData.append("designation", values.designation);
+      formData.append("phoneNumber", values.phoneNumber);
+      formData.append("gender", values.gender);
+      formData.append("dob", values.dob);
+
+      axios
+        .put("/profile/updateProfile", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data", // here content-Type is multipart so that diff kinds of content can be sent
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          setProfileData(res.data);
+          if (res.status == 200) {
+            navigate("/profile");
+          }
+        });
     },
   });
 
   const handleImageChange = (event) => {
     const newImage = URL.createObjectURL(event.target.files[0]);
     setProfileImage(newImage);
+    formik.setFieldValue("profilePicture", event.target.files[0]);
   };
 
   return (
@@ -77,14 +91,15 @@ const EditProfile = () => {
                   id="imageInput"
                   type="file"
                   accept="image/*"
-                  className="hidden "
+                  className="hidden"
+                  name="profilePicture"
                   onChange={handleImageChange}
+                  value={formik.values.profilePicture}
                 />
-                <MdEdit className=" inline-block mr-1" />
+                <MdEdit className="inline-block mr-1" />
                 Select Image
               </label>
             </div>
-
             <input
               className={style}
               id="designation"
@@ -95,8 +110,6 @@ const EditProfile = () => {
               onChange={formik.handleChange}
               value={formik.values.designation}
             />
-            {/* </div> */}
-            {/* <div className=""> */}
             <input
               className={style}
               id="phoneNumber"
@@ -108,7 +121,6 @@ const EditProfile = () => {
               onChange={formik.handleChange}
               value={formik.values.phoneNumber}
             />
-            {/* </div> */}
             <input
               className={style}
               id="gender"
@@ -132,7 +144,6 @@ const EditProfile = () => {
               <button
                 className="w-24 text-white rounded-md my-2  px-1 py-1 bg-[#0C2785] justify-center"
                 type="submit"
-                // onClick={onSubmit()}
               >
                 SUBMIT
               </button>

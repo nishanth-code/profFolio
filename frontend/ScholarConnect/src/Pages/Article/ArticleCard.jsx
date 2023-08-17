@@ -164,7 +164,7 @@ const ArticleCard = (props) => {
         <p className="text-semibold text-justify mx-5">
           {expanded ? props.summary : truncateSummary(props.summary, 50)}
           <p
-            className="border rounded-sm ml-2 p-1 hover:bg-white hover:text-[#550C6B] border-solid inline-block hover:underline cursor-pointer "
+            className="border rounded-sm ml-2 p-1 hover:bg-white hover:text-[#550C6B] border-solid inline-block  cursor-pointer "
             onClick={toggleExpanded}
           >
             {expanded ? "See Less" : "See More"}
