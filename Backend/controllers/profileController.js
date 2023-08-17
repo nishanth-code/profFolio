@@ -13,14 +13,14 @@ var otp =0
 
 
 const profilerender =async(req,res)=>{
-    const currentUser = req.user.username
+    const currentUserid = req.user.id
     
-    const user = await profile.findOne({username:currentUser}).populate(['publications','articles','workshops','patents'])
+    const user = await profile.findById({_id:currentUserid}).populate(['publications','articles','workshops','patents'])
     
     if (user){
-          res.json(user).status(200)
+          res.status(200).json(user)
     }else{
-        res.json('user not found')
+        res.status(500).json('user not found')
     }
 
 }

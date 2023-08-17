@@ -1,8 +1,7 @@
 const express = require("express");
 const app = express();
 const session = require('express-session')
-const RedisStore = require('connect-redis').default
-const redis = require('redis');
+const helmet = require('helmet')
 const cors = require('cors')
 const jwt = require('jsonwebtoken');
 const passport = require("passport");
@@ -17,14 +16,12 @@ const cookieparser = require('cookie-parser')
 
 
 dbConnect();
-const jwtSecret =  crypto.randomBytes(32).toString('hex');
+const jwtSecret = 'efcedff1bbf859a398ab876d8b6a437ccb0a5a51cb99b2c81ed6f6a9c8b022a6' //crypto.randomBytes(32).toString('hex');
 const jwtOptions = {
   expiresIn: '24h' 
 };
 
-//session data 
-// const client = redis.createClient();
-// const sessionStore = new RedisStore({ client: client });
+
 
 
 const sessionDetails = {
@@ -35,12 +32,14 @@ const sessionDetails = {
   cookie:{
       httpOnly: true,
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
-      maxAge: 1000*60*60*24
+      maxAge: 1000*60*60*24,
+      sameSite: 'lax',
   }
 }
 app.use(session(sessionDetails))
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(helmet())
 
 
 passport.use(new passportLocal(profile.authenticate()));
@@ -49,18 +48,21 @@ passport.use(new passportLocal(profile.authenticate()));
 
 passport.serializeUser(profile.serializeUser());
 passport.deserializeUser(profile.deserializeUser());
+
+
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'http://localhost:5173', // Update with your frontend's origin
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials:true,
-  
+  allowedHeaders: 'X-Requested-With, Content-Type, Authorization',
+  credentials: true,
 }));
+
 app.use(cookieparser())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
 app.use((req,res,next)=>{
-
+  
   
   next()
 })

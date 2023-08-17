@@ -1,9 +1,10 @@
 const bcrypt = require('bcrypt')
+const crypto = require('crypto')
 
 
 const tey = async()=>{
-    const hashed = await bcrypt.hash('nish@9741',10)
-    console.log(hashed)
+    
+    console.log(crypto.randomBytes(32).toString('hex'))
 }
 
 tey()
