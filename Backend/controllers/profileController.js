@@ -63,11 +63,11 @@ const sendOTP = async(req,res)=>{
     if(user){
         otp = Math.floor(Math.random()*10000)
         sendMail(otp,Email)
-        res.json({msg:"otp sent sucessfully"}).status(200)
+        res.status(200).json({msg:"otp sent sucessfully",id:user._id})
         
         
     }else{
-        res.json({msg:'email not found in records'}).status(400)
+        res.status(401).json({msg:'email not found in records'})
     }
     
     
@@ -77,10 +77,10 @@ const sendOTP = async(req,res)=>{
 const verifyotp = async(req,res)=>{
   const userotp = req.body.otp
   if(otp===userotp){
-    res.json({msg:'authentication sucessfull'}).status(200)
+    res.status(200).json({msg:'authentication sucessfull'})
     otp=0
   }else{
-    res.json({msg:'incorrect otp'}).status(400)
+    res.status(401).json({msg:'incorrect otp'})
   }
 
   
@@ -88,13 +88,15 @@ const verifyotp = async(req,res)=>{
 
 
 const updatePassword = async(req,res)=>{
-    const {username,newPassword}= req.body
-    const user = await profile.findOne({username:username})
-    const test = await user.setPassword(newPassword, (err) => {
+    const {newPassword}= req.body
+    const {id}= req.params
+    const user = await profile.findById(id)
+    const test = await user.setPassword(newPassword, async(err) => {
         if (err) {
-          return res.status(500).json({msg:'Error setting new password.'});
+          return res.status(500).json({err});
         }
-        user.save()
+        await user.save()
+        return res.status(200).json({msg:'password reset sucessfully'});
 
 
 
@@ -127,19 +129,21 @@ const changePassword = async(req,res)=>{
     
      
     }
-    const changeProfilePic = async(req,res) =>{
-        const user = await profile.findOne({username:currentUser})
-        if (!req.file) {
-            return res.status(400).json({msg:'No image file uploaded.'});
-          }
+    const updateprofile = async(req,res) =>{
+        const id = req.user.id
+        const user = await profile.findById(id)
+        const {designation,phoneNumber,gender,dob} = req.body
+        if (req.file) {try {
+          const result = await cloudinary.uploader.upload(req.file.path);
+          imageUrl = result.secure_url; // Set imageUrl if image uploaded successfully
+        } catch (error) {
+          console.error('Error uploading image to Cloudinary:', error);
+          return res.status(500).json({ error: 'Error uploading image to Cloudinary.' });
+        }}
         
           try {
-            // Upload the image to Cloudinary
-            const result = await cloudinary.uploader.upload(req.file.path);
-        
-            // Image uploaded successfully, return the Cloudinary image URL to the client
-            const imageUrl = result.secure_url
-            const regUser = await profile.findByIdAndUpdate(user._id,{profilePicture:imageUrl},{new:true})
+           
+            const regUser = await profile.findByIdAndUpdate(id,{profilePicture:imageUrl,phoneNumber:phoneNumber,designation:designation,gender:gender,dob:dob},{new:true})
             res.json({msg:'updated sucessfully'}).status(200)
           } catch (error) {
             console.error('Error uploading image to Cloudinary:', error);
@@ -171,4 +175,4 @@ const deleteAccount = async(req,res)=>{
 
 
 
-module.exports = {renderPublication,profilerender,verifyotp,deleteAccount,changeProfilePic,changePassword,createUser,updatePassword,sendOTP}
+module.exports = {renderPublication,profilerender,verifyotp,deleteAccount,updateprofile,changePassword,createUser,updatePassword,sendOTP}

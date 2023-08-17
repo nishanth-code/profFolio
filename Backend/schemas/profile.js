@@ -10,10 +10,14 @@ const profileSchema = new schema({
     email:{type:String,required:true},
     phoneNumber:{type:Number,required:true},
     profilePicture:{type:String},
+    designation:{type:String},
+    gender:{type:String},
+    dob:{type:Date},
     publications:[{type:schema.Types.ObjectId,ref:'publications'}],
     articles:[{type:schema.Types.ObjectId,ref:'articles'}],
     workshops:[{type:schema.Types.ObjectId,ref:'workshops'}],
     patents:[{type:schema.Types.ObjectId,ref:'patent'}],
+  
     active:{type:Boolean,default:true}
 })
 profileSchema.methods.comparePassword = async function (candidatePassword) {
