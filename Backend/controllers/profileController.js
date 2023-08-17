@@ -25,8 +25,8 @@ const profilerender =async(req,res)=>{
 
 }
 const renderPublication = async(req,res) =>{
-  const currentUser = req.user.username
-  const user = await profile.findOne({username:currentUser}).populate(['publications','articles','workshops','patents'])
+  const id = req.user.id
+  const user = await profile.findById(id).populate(['publications','articles','workshops','patents'])
   res.json(user.publications).status(200)
 }
 const createUser = async(req,res) =>{
@@ -132,6 +132,7 @@ const changePassword = async(req,res)=>{
     const updateprofile = async(req,res) =>{
         const id = req.user.id
         const user = await profile.findById(id)
+        const imageUrl = user.profilePicture
         const {designation,phoneNumber,gender,dob} = req.body
         if (req.file) {try {
           const result = await cloudinary.uploader.upload(req.file.path);
