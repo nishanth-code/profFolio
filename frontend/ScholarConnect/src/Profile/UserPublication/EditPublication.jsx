@@ -1,24 +1,17 @@
 import { useFormik } from "formik";
 import axios from "../../api/authApi";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-
-import { formatDate } from "../../utils/dateFormater";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import moment from "moment";
+import { formatDateForForms } from "../../utils/dateFormateForms";
 
 const EditPublication = (props) => {
-  // const { id } = useParams();
+  const { id } = useParams();
   const [userData, setUserData] = useState("");
+  const navigate = useNavigate();
 
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-20 my-4 rounded-2xl  border-solid border pointer-events-auto";
-
-  const id = props.id;
-  console.log(id);
-
-  const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/render/${id}`;
-  // const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/render/64d4f7254b9470d6ccd3ca76`;
-
-  const editUrl = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/edit/64d4f7254b9470d6ccd3ca76`;
 
   useEffect(() => {
     axios.get(`/publication/render/${id}`).then((res) => {
@@ -27,8 +20,9 @@ const EditPublication = (props) => {
     });
   }, []);
   //Put ID here in dep Array
-  const date = formatDate(userData.doi);
-  // console.log(date);
+  // const date1 = moment(userData.doi).format("YYYY-MM-DD");
+  // console.log(date1);
+  const date = formatDateForForms(userData.doi);
 
   const formik = useFormik({
     initialValues: {
@@ -47,14 +41,14 @@ const EditPublication = (props) => {
 
     enableReinitialize: true,
     onSubmit: (values) => {
-      axios.put(editUrl, values).then((res) => {
+      axios.put(`/publication/edit/${id}`, values).then((res) => {
         console.log(res);
+        setUserData(res.data);
+        navigate("/profile/publication");
       });
       console.log(values);
     },
   });
-
-  // console.log(formik.initialValues);
 
   return (
     <div className="flex flex-col   h-full w-full ml-[300px]  relative">
@@ -183,16 +177,3 @@ const EditPublication = (props) => {
 };
 
 export default EditPublication;
-
-// const location = useLocation();
-// const propsData = location.state;
-// console.log(propsData);
-
-// const publicationData = JSON.parse(decodeURIComponent(data));
-
-// console.log(publicationData);
-
-// const publicationToEdit = publicationData.find(
-//   (publication) => publication.id === ID
-// );
-// console.log(publicationToEdit);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Professor from "../../assets/professor.jpg";
 import { Link } from "react-router-dom";
 import { MdEdit, MdDelete } from "react-icons/md";
@@ -7,7 +7,7 @@ import { formatDate } from "../../utils/dateFormater";
 axios.defaults.withCredentials = true;
 
 const UserPublicationCard = (props) => {
-  const [data, setData] = useState(props);
+  const [userPublicationData, setUserPublicationData] = useState(props);
   const userPublication = [
     {
       id: 1,
@@ -84,14 +84,18 @@ const UserPublicationCard = (props) => {
   ];
 
   const id = props.id;
-  // console.log(id);
-
-  // const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/delete/&{id}`;
-  const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/delete/64d4f7254b9470d6ccd3ca76`;
+  // // console.log(id);
+  // useEffect(() => {
+  //   axios.get("/profile/publication").then((res) => {
+  //     console.log(res);
+  //     setUserPublicationData(res.data);
+  //   });
+  // }, []);
 
   const handleDelete = () => {
     axios.delete(`/publication/delete/${id}`).then((res) => {
       console.log(res);
+      props.onDelete(props.id);
     });
   };
 

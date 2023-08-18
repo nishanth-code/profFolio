@@ -18,6 +18,15 @@ const UserPublications = () => {
     });
   }, []);
 
+  const handleDeletePublication = (publicationId) => {
+    setPublicationData((prevData) => ({
+      ...prevData,
+      publications: prevData.publications.filter(
+        (pub) => pub._id !== publicationId
+      ),
+    }));
+  };
+
   console.log(publicationData);
 
   const loadMorePublications = () => {
@@ -50,6 +59,7 @@ const UserPublications = () => {
               publisher={publication.publisher}
               url={publication.url}
               profilePicture={publicationData.profilepic}
+              onDelete={handleDeletePublication}
             />
           ))}
       </div>

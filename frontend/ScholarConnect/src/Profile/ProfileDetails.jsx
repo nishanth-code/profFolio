@@ -51,11 +51,15 @@ const ProfileDetails = () => {
                 <div className="mt-4 ml-12 font-In ">
                   <h1 className="text-3xl">{userDetails.username}</h1>
                   <h1 className="text-sm">{userDetails.designation}</h1>
-                  <h1 className="text-sm">{formatDate(userDetails.dob)}</h1>
+                  <h1 className="text-sm text-gray-500">
+                    {formatDate(userDetails.dob)}
+                  </h1>
                 </div>
               </div>
               <div className="flex justify-around mt-4 -mb-6  font-semibold">
-                <h1 className="text-sm mr-32">{userDetails.phoneNumber}</h1>
+                <h1 className="text-sm mr-32">
+                  PhoneNo: {userDetails.phoneNumber}
+                </h1>
                 <h1 className="text-sm">Gender: {userDetails.gender}</h1>
               </div>
               <hr className="w-[800px] h-1 mx-24 my-4 bg-gray-300 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
