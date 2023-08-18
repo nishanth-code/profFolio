@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import WorkshopCard from "./WorkshopCard";
-
+import axios from "../../api/authApi";
 const Workshop = () => {
   const [workshopData, setWorkshopData] = useState({});
   const [visibleWorkshops, setVisibleWorkshops] = useState(3);
@@ -11,7 +11,7 @@ const Workshop = () => {
   // useEffect(() => {
   //   axios.get(url).then((res) => {
   //     console.log(res);
-  //     setPublicationData(res.data);
+  //     setWorkshopData(res.data);
   //   });
   // }, []);
   // console.log(workshopData);

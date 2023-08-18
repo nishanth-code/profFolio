@@ -9,11 +9,11 @@ const UserPublications = () => {
   const [visibleUserPublications, setVisibleUserPublications] = useState(3);
   const authToken = localStorage.getItem("token");
 
-  const url =
-    "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/publication";
+  // const url =
+  //   "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/publication";
 
   useEffect(() => {
-    axios.get(url, { withCredentials: true }).then((res) => {
+    axios.get("/profile/publication").then((res) => {
       console.log(res);
       setPublicationData(res.data);
     });

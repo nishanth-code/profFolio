@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ArticleCard from "./ArticleCard";
+import axios from "../../api/authApi";
 
 const Article = () => {
   const [visibleArticles, setVisibleArticles] = useState(2);

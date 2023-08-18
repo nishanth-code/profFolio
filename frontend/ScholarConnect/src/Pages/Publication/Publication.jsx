@@ -2,9 +2,12 @@ import { useState } from "react";
 import PublicationCard from "./PublicationCard";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
+import axios from "../../api/authApi";
 
 const Publications = () => {
   const [visiblePublications, setVisiblePublications] = useState(4);
+
+  
   const Publication = [
     {
       id: 1,
@@ -145,6 +148,9 @@ const Publications = () => {
   const loadMorePublications = () => {
     setVisiblePublications(visiblePublications + 4); // You can adjust the number as needed
   };
+
+
+
 
   // Destructuring the data coming from DB and sending as props
   // const { id, author, title, doi, year, ...otherProps } = publication;

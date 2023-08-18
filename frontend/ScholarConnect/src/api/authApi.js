@@ -1,13 +1,14 @@
 import axios from "axios";
 
-const BASE_URL = "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev";
+// const BASE_URL = "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev";
+const BASE_URL = "https://scholarconnect.onrender.com/";
 const authToken = localStorage.getItem("token");
 const authApi = axios.create({
   baseURL: BASE_URL,
   withCredentials: true,
   headers: {
     "Content-type": "application/json",
-    "Authorization": `${authToken}`,
+    Authorization: `${authToken}`,
   },
 });
 
