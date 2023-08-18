@@ -2,6 +2,7 @@ import LoginBackground from "../../assets/LoginBackground.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "../../api/authApi";
+import React from "react";
 
 const OTP = () => {
   const navigate = useNavigate();

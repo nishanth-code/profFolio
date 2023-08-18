@@ -1,10 +1,9 @@
 import { useFormik } from "formik";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import axios from "../../api/authApi";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
-import moment from "moment";
-axios.defaults.withCredentials = true;
+import { formatDate } from "../../utils/dateFormater";
 
 const EditPublication = (props) => {
   // const { id } = useParams();
@@ -22,13 +21,13 @@ const EditPublication = (props) => {
   const editUrl = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/edit/64d4f7254b9470d6ccd3ca76`;
 
   useEffect(() => {
-    axios.get(url).then((res) => {
+    axios.get(`/publication/render/${id}`).then((res) => {
       console.log(res);
       setUserData(res.data);
     });
   }, []);
   //Put ID here in dep Array
-  const date = moment(userData.doi).format("YYYY-MM-DD");
+  const date = formatDate(userData.doi);
   // console.log(date);
 
   const formik = useFormik({

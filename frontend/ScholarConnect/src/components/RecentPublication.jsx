@@ -1,4 +1,5 @@
 import PublicationCard from "../Pages/Publication/PublicationCard";
+import React from "react";
 
 const RecentPublication = () => {
   const demoPublications = [

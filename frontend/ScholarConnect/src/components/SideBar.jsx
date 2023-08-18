@@ -11,7 +11,7 @@ import {
 } from "react-icons/md";
 import { LuFileBadge } from "react-icons/lu";
 
-import { useState } from "react";
+import React,{ useState } from "react";
 import Logo from "../assets/ScholarLogo.png";
 import { Link } from "react-router-dom";
 

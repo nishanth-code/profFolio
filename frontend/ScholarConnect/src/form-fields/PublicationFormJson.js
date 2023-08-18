@@ -43,7 +43,7 @@ const PublicationFormDetails = [
   },
   {
     id: "volume",
-    type: "text",
+    type: "number",
     name: "publication[volume]",
     placeholder: "Enter Volume",
     required: false,
@@ -64,7 +64,7 @@ const PublicationFormDetails = [
   },
   {
     id: "pageNo",
-    type: "text",
+    type: "number",
     name: "publication[pageNo]",
     placeholder: "Enter page No",
     required: false,

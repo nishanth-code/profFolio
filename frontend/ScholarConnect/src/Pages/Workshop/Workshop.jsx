@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import WorkshopCard from "./WorkshopCard";
 import axios from "../../api/authApi";
 const Workshop = () => {

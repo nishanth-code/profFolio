@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import axios from "../../api/authApi";
+import React from "react";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();

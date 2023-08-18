@@ -3,6 +3,7 @@ import Body from "../../components/Body";
 import Footer from "../../components/Footer";
 import HomeCard from "../../components/HomeCard";
 import RecentPublication from "../../components/RecentPublication";
+import React from "react";
 
 const Home = () => {
   return (

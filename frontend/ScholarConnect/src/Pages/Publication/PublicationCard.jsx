@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React,{ useState } from "react";
 import Professor from "../../assets/professor.jpg";
 import { Link } from "react-router-dom";
 import { MdEdit } from "react-icons/md";

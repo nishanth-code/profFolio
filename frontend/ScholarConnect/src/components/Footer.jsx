@@ -1,3 +1,4 @@
+import React from "react";
 import Logo from "../assets/MAKERS_BRAND_LOGO.png";
 import { FaBeer } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";

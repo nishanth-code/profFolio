@@ -1,15 +1,15 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import LoginBackground from "../assets/LoginBackground.png";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
+import axios from "../api/authApi";
 import { redirect } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const navigate = useNavigate();
-  const url =
-    "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/signup";
+  // const url =
+  //   "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/signup";
 
   const formik = useFormik({
     initialValues: {
@@ -26,7 +26,7 @@ const Register = () => {
     }),
 
     onSubmit: (values) => {
-      axios.post(url, { values }, { withCredentials: true }).then((res) => {
+      axios.post("/profile/signup", { values }).then((res) => {
         console.log(res);
         if (res.status == 200) {
           navigate("/login");

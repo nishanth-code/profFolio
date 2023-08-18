@@ -1,5 +1,6 @@
 import BodyImg from "../assets/Looper-BG.png";
 import Rectangle from "../assets/Rectangle-4.png";
+import React from "react";
 
 const Body = () => {
   return (

@@ -1,12 +1,13 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Professor from "../../assets/professor.jpg";
 import { Link } from "react-router-dom";
 import { MdEdit, MdDelete } from "react-icons/md";
-import axios from "axios";
+import axios from "../../api/authApi";
+import { formatDate } from "../../utils/dateFormater";
 axios.defaults.withCredentials = true;
 
 const UserPublicationCard = (props) => {
-  const [data, setData] = useState(props.publication);
+  const [data, setData] = useState(props);
   const userPublication = [
     {
       id: 1,
@@ -81,6 +82,7 @@ const UserPublicationCard = (props) => {
         "Sed ut perspiciatis unde omnis iste natus error sit voluptatem.",
     },
   ];
+
   const id = props.id;
   // console.log(id);
 
@@ -88,7 +90,7 @@ const UserPublicationCard = (props) => {
   const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/delete/64d4f7254b9470d6ccd3ca76`;
 
   const handleDelete = () => {
-    axios.delete(url).then((res) => {
+    axios.delete(`/publication/delete/${id}`).then((res) => {
       console.log(res);
     });
   };
@@ -99,7 +101,7 @@ const UserPublicationCard = (props) => {
         <div className="ml-4 mt-4 flex pt-2 ">
           <img
             className="rounded-full mr-4 h-12 w-auto"
-            src={Professor}
+            src={props.profilePicture}
             alt="Prof"
           />
           <p className="my-3">{props.author}</p>
@@ -115,23 +117,21 @@ const UserPublicationCard = (props) => {
             <MdDelete />
           </div>
         </div>
-        {/* <Link to={"/publications"}> */}
         <p className="mx-4 my-2">Title: {props.title}</p>
-        <p className="mx-4 my-2 text-gray-400">DOI: {props.doi}</p>
+        <p className="mx-4 my-2 text-gray-400">DOI: {formatDate(props.doi)}</p>
         {/* </Link> */}
         <p className="mx-4 my-2 ">Subject: {props.subject}</p>
         <p className="mx-4 my-2">Media: {props.publishedMedia}</p>
-        {/* Check if its book or journal and render accordingly */}
         <p className="mx-4 my-2 ">Volume: {props.volume}</p>
+        <p className="mx-4 my-2 ">pageNo: {props.pageNo}</p>
         <p className="mx-4 my-2 ">Year: {props.year}</p>
-        <p className="mx-4 my-2 ">{props.content}</p>
         <p className="mx-4 my-2 ">Publisher: {props.publisher}</p>
         <p className="mx-4 my-2 ">Editor: {props.editor}</p>
         <a
           href={props.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mx-4 my-2 text-[#550C6B] hover:underline"
+          className="mx-4 my-2 text-[#550C6B] hover:underline cursor-pointer"
         >
           <span className="font-semibold text-black">URL: </span>
           {props.title}

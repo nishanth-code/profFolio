@@ -1,5 +1,6 @@
 import { AiTwotoneFileWord } from "react-icons/ai";
 import Professor from "../assets/professor.jpg";
+import React from "react";
 
 const WorkshopCard = () => {
   return (

@@ -1,6 +1,5 @@
-import SideBar from "../components/SideBar";
 import professor from "../assets/professor.jpg";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdEdit } from "react-icons/md";
 import Analysis from "../components/Analysis";
 import { Link } from "react-router-dom";
@@ -13,8 +12,6 @@ const ProfileDetails = () => {
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl border-solid border";
 
-  // const url = "https://scholarconnect.onrender.com/profile/viewprofile";
-
   useEffect(() => {
     axios.get("/profile/viewprofile").then((res) => {
       console.log(res.data);
@@ -22,9 +19,6 @@ const ProfileDetails = () => {
     });
   }, []);
   console.log(userDetails);
-
-  const pic = userDetails.profilePicture;
-  console.log(pic);
 
   const id = userDetails._id;
   // console.log(id);
@@ -54,13 +48,15 @@ const ProfileDetails = () => {
                     // }
                   />
                 </div>
-                <div className="mt-12 ml-12 font-In ">
+                <div className="mt-4 ml-12 font-In ">
                   <h1 className="text-3xl">{userDetails.username}</h1>
                   <h1 className="text-sm">{userDetails.designation}</h1>
-                  <h1 className="text-sm">{userDetails.phoneNumber}</h1>
-                  <h1 className="text-sm">{userDetails.gender}</h1>
                   <h1 className="text-sm">{formatDate(userDetails.dob)}</h1>
                 </div>
+              </div>
+              <div className="flex justify-around mt-4 -mb-6  font-semibold">
+                <h1 className="text-sm mr-32">{userDetails.phoneNumber}</h1>
+                <h1 className="text-sm">Gender: {userDetails.gender}</h1>
               </div>
               <hr className="w-[800px] h-1 mx-24 my-4 bg-gray-300 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
             </div>
@@ -72,30 +68,3 @@ const ProfileDetails = () => {
   );
 };
 export default ProfileDetails;
-
-// const [profileImage, setProfileImage] = useState(professor);
-
-// const handleImageChange = async (event) => {
-//   const imageFile = event.target.files[0];
-
-//   if (imageFile) {
-//     // Upload image to Cloudinary
-//     const formData = new FormData();
-//     formData.append("file", imageFile);
-//     formData.append("upload_preset", "your_upload_preset"); // Replace with your Cloudinary upload preset
-
-//     const response = await fetch(
-//       "https://api.cloudinary.com/v1_1/your_cloud_name/image/upload",
-//       {
-//         method: "POST",
-//         body: formData,
-//       }
-//     );
-
-//     const data = await response.json();
-//     const newImageUrl = data.secure_url;
-
-//     // Update profile image
-//     setProfileImage(newImageUrl);
-//   }
-// };

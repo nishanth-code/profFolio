@@ -1,9 +1,9 @@
 // import Logo from "../assets/logo.png";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../assets/ScholarLogo.png";
 import SeeMore from "./SeeMore";
 import { useNavigate } from "react-router-dom";
-import ScrollComponent from "./ScrollComponent";
+// import ScrollComponent from "./ScrollComponent";
 
 const Header = () => {
   const [userLogin, setUserLogin] = useState(false);
@@ -52,7 +52,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <ScrollComponent />
+      {/* <ScrollComponent /> */}
     </nav>
   );
 };

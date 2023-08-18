@@ -1,17 +1,18 @@
-import { useState } from "react";
+import React,{ useState } from "react";
 import professor from "../../assets/professor.jpg";
 import UserArticleCard from "./UserArticleCard";
+import axios from "../../api/authApi";
 const UserArticles = () => {
   const [articleData, setArticleData] = useState({});
   const [visibleUserArticles, setVisibleUserArticles] = useState(3);
 
-  const url =
-    "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/workshop";
+  // const url =
+  //   "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/workshop";
 
   // useEffect(() => {
   //   axios.get(url).then((res) => {
   //     console.log(res);
-  //     setPublicationData(res.data);
+  //     setArticleData(res.data);
   //   });
   // }, []);
   // console.log(workshopData);
