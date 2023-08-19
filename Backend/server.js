@@ -73,6 +73,7 @@ app.use('/profile',require('./routes/profileroutes'))
 app.use('/publication',require('./routes/publicationroutes'))
 app.use('/patent',require('./routes/patentroutes'))
 app.use('/article',require('./routes/articleroutes'))
+app.use('/workshop',require('./routes/workshoproutes'))
 
 
 

@@ -1,12 +1,13 @@
 const express = require('express')
 const controller = require('../controllers/workshopController')
+const islogedin = require('../middlewares/isloggedin')
 const asynchandler = require('../errorHandlers/asyncHandler')
 const workshopRoutes = express.Router()
-workshopRoutes.get('/render',controller.renderAll)
-workshopRoutes.get('/render/:id',controller.render)
-workshopRoutes.post('/add',controller.addWorkshop)
-workshopRoutes.put('/edit/:id',controller.editWorkshop)
-workshopRoutes.delete('/delete/:id',controller.deleteWorkshop)
+workshopRoutes.get('/render',asynchandler(controller.renderAll))
+workshopRoutes.get('/render/:id',asynchandler(controller.render))
+workshopRoutes.post('/add',islogedin,asynchandler(controller.addWorkshop))
+workshopRoutes.put('/edit/:id',islogedin,asynchandler(controller.editWorkshop))
+workshopRoutes.delete('/delete/:id',islogedin,asynchandler(controller.deleteWorkshop))
 
 
 

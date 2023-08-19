@@ -7,7 +7,7 @@ const workshopsSchema = new schema({
     organizedBy:{type:String,required:true},
     //duration:{type:String,required:true},
     subject:{type:String,required:true},
-    atendedOn:{type:Date,required:true},
+    attendedOn:{type:Date,required:true},
     summary:{type:String,required:true}
 
 })

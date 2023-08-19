@@ -19,21 +19,23 @@ const addWorkshop = async(req,res)=>{
         title,
         organizedBy,
         subject,
-        attendedOn,
-        summary
-    } = req.body
+        attendedOn
+        
+    } = req.body.workshop
+    const {summary} = req.body
     const workshp = new workshop({
         title:title,
         organizedBy:organizedBy,
         subject:subject,
-        attededOn:attendedOn,
+        attendedOn:attendedOn,
         summary:summary
 
     })
-    user.workshops.push(workshop)
+    user.workshops.push(workshp)
     await workshp.save()
     await user.save()
     res.status(200).json({msg:'sucessfully added'})
+    console.log(req.body)
 
 }
 
@@ -46,6 +48,14 @@ const editWorkshop = async(req,res)=>{
         attendedOn,
         summary
     } = req.body
+    // const {
+    //     title,
+    //     organizedBy,
+    //     subject,
+    //     attendedOn
+        
+    // } = req.body.workshop
+    // const {summary} = req.body
     await workshop.findByIdAndUpdate(id,{
         title:title,
         organizedBy:organizedBy,
