@@ -14,7 +14,7 @@ const ProfileDetails = () => {
 
   useEffect(() => {
     axios.get("/profile/viewprofile").then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setUserDetails(res.data);
     });
   }, []);

@@ -26,17 +26,17 @@ const EditPublication = (props) => {
 
   const formik = useFormik({
     initialValues: {
-      title: userData.title,
-      author: userData.author,
-      publishedMedia: userData.publishedMedia,
-      doi: date,
-      year: userData.year,
-      subject: userData.subject,
-      volume: userData.volume,
-      editor: userData.editor,
-      publisher: userData.publisher,
-      pageNo: userData.pageNo,
-      url: userData.url,
+      title: userData.title || "",
+      author: userData.author || "",
+      publishedMedia: userData.publishedMedia || "",
+      doi: date || "",
+      year: userData.year || "",
+      subject: userData.subject || "",
+      volume: userData.volume || "",
+      editor: userData.editor || "",
+      publisher: userData.publisher || "",
+      pageNo: userData.pageNo || "",
+      url: userData.url || "",
     },
 
     enableReinitialize: true,

@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import axios from "axios";
+import axios from "../../api/authApi";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 axios.defaults.withCredentials = true;

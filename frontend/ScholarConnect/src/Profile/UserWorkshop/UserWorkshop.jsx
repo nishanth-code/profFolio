@@ -1,6 +1,6 @@
 import UserWorkshopCard from "./UserWorkshopCard";
 import React, { useEffect, useState } from "react";
-
+import axios from "../../api/authApi";
 const UserWorkshop = () => {
   const [workshopData, setWorkshopData] = useState({
     workshops: [],

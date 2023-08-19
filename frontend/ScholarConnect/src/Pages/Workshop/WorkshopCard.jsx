@@ -1,9 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Professor from "../../assets/professor.jpg";
-import { Link } from "react-router-dom";
-import { MdEdit, MdDelete } from "react-icons/md";
-import axios from "axios";
+import axios from "../../api/authApi";
 axios.defaults.withCredentials = true;
 const WorkshopCard = (props) => {
   const [data, setData] = useState(props);

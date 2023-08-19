@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import WorkshopFormDetails from "../../form-fields/WorkshopFormJson";
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../../api/authApi";
 axios.defaults.withCredentials = true;
 
 const AddWorkshop = () => {
@@ -14,20 +14,15 @@ const AddWorkshop = () => {
   const formik = useFormik({
     initialValues: {
       title: "",
-      author: "",
-      publishedMedia: "",
-      doi: "",
-      year: "",
+      organisedBy: "",
+      attendedOn: "",
+      duration: "",
       subject: "",
-      volume: "",
-      editor: "",
-      publisher: "",
-      pageNo: "",
-      url: "",
+      summary: "",
     },
 
     onSubmit: (values) => {
-      axios.post(url, { values }, { withCredentials: true }).then((res) => {
+      axios.post(url, { values }).then((res) => {
         console.log(res.data.msg);
       });
       console.log(values);
@@ -57,9 +52,11 @@ const AddWorkshop = () => {
               </div>
             ))}
             <textarea
-              className=" focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-40 my-4 rounded-2xl  border-solid border pointer-events-auto"
+              className="focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-40 my-4 rounded-2xl  border-solid border pointer-events-auto"
               id="summary"
-              typeof="text"
+              type="text"
+              rows="5"
+              cols="25"
               name="summary"
               placeholder="Summary of Workshop"
               required={true}

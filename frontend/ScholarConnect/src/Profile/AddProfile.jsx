@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from "../api/authApi";
 import professor from "../assets/professor.jpg";
 import { MdEdit } from "react-icons/md";
 axios.defaults.withCredentials = true;

@@ -1,8 +1,9 @@
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import Professor from "../../assets/professor.jpg";
 import { Link } from "react-router-dom";
 import { MdEdit, MdDelete } from "react-icons/md";
-import axios from "axios";
+import axios from "../../api/authApi";
+import { formatDate } from "../../utils/dateFormater";
 axios.defaults.withCredentials = true;
 const UserArticleCard = (props) => {
   const [data, setData] = useState(props.article);
@@ -94,14 +95,10 @@ const UserArticleCard = (props) => {
 
   const id = props.id;
 
-  // console.log(id);
-
-  // const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/delete/64d4f7254b9470d6ccd3ca76`;
-  const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/delete/${id}`;
-
   const handleDelete = () => {
-    axios.delete(url).then((res) => {
+    axios.delete(`/article/delete/${id}`).then((res) => {
       console.log(res);
+      props.onDelete(props.id);
     });
   };
 
@@ -144,7 +141,7 @@ const UserArticleCard = (props) => {
                 <div className="relative">
                   <img
                     className="h-32 w-24 ml-20 rounded-xl cursor-pointer transition duration-300 ease-in-out transform hover:brightness-75"
-                    src={Professor}
+                    src={props.profilePicture}
                     alt="profile"
                     // onClick={() =>
                     //   document.getElementById("imageInput").click()
@@ -154,7 +151,7 @@ const UserArticleCard = (props) => {
                 <div className="mt-3 ml-12 font-In ">
                   <h1 className="text-3xl">Author: {props.author}</h1>
                   <h1 className="text-sm text-gray-400">
-                    Published On: {props.publishedOn}
+                    Published On: {formatDate(props.publishedOn)}
                   </h1>
                   <h1 className="text-sm">Media: {props.publishedMedia}</h1>
                   <h1 className="text-sm">Subject: {props.subject}</h1>

@@ -1,34 +1,28 @@
 import PublicationFormDetails from "../../form-fields/PublicationFormJson";
 import { useFormik } from "formik";
-import axios from "axios";
+import axios from "../../api/authApi";
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 axios.defaults.withCredentials = true;
 import moment from "moment";
+import { formatDateForForms } from "../../utils/dateFormateForms";
 
 const EditArticle = (props) => {
-  // const { id } = useParams();
+  const { id } = useParams();
   const [userData, setUserData] = useState("");
+  const navigate = useNavigate();
 
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-20 my-4 rounded-2xl  border-solid border pointer-events-auto";
 
-  const id = props.id;
-  console.log(id);
-
-  const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/render/${id}`;
-  // const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/render/64d4f7254b9470d6ccd3ca76`;
-
-  const editUrl = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/edit/64d4f7254b9470d6ccd3ca76`;
-
   useEffect(() => {
-    axios.get(url).then((res) => {
+    axios.get(`/article/render/${id}`).then((res) => {
       console.log(res);
       setUserData(res.data);
     });
   }, []);
   //Put ID here in dep Array
-  const date = moment(userData.attendedOn).format("YYYY-MM-DD");
+  const date = formatDateForForms(userData.publishedOn);
   // console.log(date);
 
   const formik = useFormik({
@@ -43,8 +37,11 @@ const EditArticle = (props) => {
 
     enableReinitialize: true,
     onSubmit: (values) => {
-      axios.put(editUrl, values).then((res) => {
+      axios.put(`/article/edit/${id}`, values).then((res) => {
         console.log(res);
+        if (res.status == 200) {
+          navigate("/profile/article");
+        }
       });
       console.log(values);
     },
@@ -64,7 +61,7 @@ const EditArticle = (props) => {
         <input
           className={style}
           id="title"
-          type="text"
+          type="title"
           name="publication[title]"
           placeholder="Title of Article"
           onChange={formik.handleChange}
@@ -78,26 +75,26 @@ const EditArticle = (props) => {
           name="author"
           placeholder="Author of Article"
           onChange={formik.handleChange}
-          value={formik.values.organisedBy}
+          value={formik.values.author}
         />
 
         <input
           className={style}
-          id="attendedOn"
-          type="date"
-          name="attendedOn"
-          placeholder="Attend On "
+          id="publishedMedia"
+          type="text"
+          name="publishedMedia"
+          placeholder="Published Media On "
           onChange={formik.handleChange}
-          value={formik.values.attendedOn}
+          value={formik.values.publishedMedia}
         />
         <input
           className={style}
-          id="duration"
-          type="text"
-          name="duration"
+          id="publishedOn"
+          type="date"
+          name="publishedOn"
           placeholder="Enter Duration"
           onChange={formik.handleChange}
-          value={formik.values.duration}
+          value={formik.values.publishedOn}
         />
         <input
           className={style}
@@ -109,9 +106,11 @@ const EditArticle = (props) => {
           value={formik.values.subject}
         />
         <textarea
-          className={style}
+          className="focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-20 my-4 rounded-2xl  border-solid border pointer-events-auto"
           id="summary"
-          typeof="text"
+          type="text"
+          rows="5"
+          cols="25"
           name="summary"
           placeholder="Summary of event"
           onChange={formik.handleChange}

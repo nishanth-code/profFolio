@@ -53,7 +53,7 @@ const Patent = () => {
             className={style}
             id="title"
             type="text"
-            name="title"
+            name="patent[title]"
             placeholder="Title of the Patent"
             onChange={formik.handleChange}
             value={formik.values.title}
@@ -62,7 +62,7 @@ const Patent = () => {
             className={style}
             id="inventors"
             type="text"
-            name="inventors"
+            name="patent[inventors]"
             placeholder="Patent Creator(s)"
             onChange={formik.handleChange}
             value={formik.values.inventors}
@@ -71,7 +71,7 @@ const Patent = () => {
             className={style}
             id="applicationNo"
             type="number"
-            name="applicationNo"
+            name="patent[applicationNo]"
             placeholder="Application Number"
             onChange={formik.handleChange}
             value={formik.values.applicationNo}
@@ -87,7 +87,7 @@ const Patent = () => {
             className={style}
             id="subjectCategory"
             type="text"
-            name="subjectCategory"
+            name="patent[subjectCategory]"
             placeholder="Enter Category"
             onChange={formik.handleChange}
             value={formik.values.subjectCategory}
@@ -100,7 +100,7 @@ const Patent = () => {
             className={style}
             id="filingDate"
             type="date"
-            name="filingDate"
+            name="patent[filingDate]"
             placeholder="Filing Date"
             onChange={formik.handleChange}
             value={formik.values.filingDate}
@@ -115,7 +115,7 @@ const Patent = () => {
             className={style}
             id="publicationDate"
             type="date"
-            name="publicationDate"
+            name="patent[publicationDate]"
             placeholder="Publication Date"
             onChange={formik.handleChange}
             value={formik.values.publicationDate}
@@ -127,7 +127,7 @@ const Patent = () => {
             className={style}
             id="status"
             type="text"
-            name="status"
+            name="patent[status]"
             placeholder="Enter Status"
             onChange={formik.handleChange}
             value={formik.values.status}

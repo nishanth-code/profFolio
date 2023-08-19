@@ -1,10 +1,12 @@
 import { useFormik } from "formik";
 import ArticleFormDetails from "../../form-fields/ArticleFormJson";
-import React,{ useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+import axios from "../../api/authApi";
+import { useNavigate } from "react-router-dom";
 axios.defaults.withCredentials = true;
 
 const AddArticle = () => {
+  const navigate = useNavigate();
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-40 my-4 rounded-2xl  border-solid border pointer-events-auto";
 
@@ -23,8 +25,9 @@ const AddArticle = () => {
     },
 
     onSubmit: (values) => {
-      axios.post(url, { values }, { withCredentials: true }).then((res) => {
+      axios.post("/article/add", values).then((res) => {
         console.log(res.data.msg);
+        navigate("/profile/article");
       });
       console.log(values);
     },
@@ -54,9 +57,10 @@ const AddArticle = () => {
             ))}
           </div>
           <textarea
-            className=" focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-40 my-4 rounded-2xl  border-solid border pointer-events-auto"
+            className="focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-40 my-4 rounded-2xl  border-solid border pointer-events-auto"
             id="summary"
-            typeof="text"
+            rows="5"
+            cols="25"
             name="summary"
             placeholder="Summary of Article"
             required={true}
