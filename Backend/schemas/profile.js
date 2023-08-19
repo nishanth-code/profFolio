@@ -18,7 +18,8 @@ const profileSchema = new schema({
     workshops:[{type:schema.Types.ObjectId,ref:'workshops'}],
     patents:[{type:schema.Types.ObjectId,ref:'patent'}],
   
-    active:{type:Boolean,default:true}
+    active:{type:Boolean,default:true},
+    
 })
 profileSchema.methods.comparePassword = async function (candidatePassword) {
     return await bcrypt.compare(candidatePassword, this.password);

@@ -14,32 +14,34 @@ const render = async(req,res) =>{
 }
 
 const newPublication = async(req,res) =>{
-    const currentUser = req.user.username
-    const user = await profile.findOne({username:currentUser})
-    console.log(user)
+    const id = req.user.id
+    const user = await profile.findById(id)
+    const currentUser = user.username
+    console.log(req.body)
     
-    // console.log(req.body)
 
-    // const { title,author,publishedMedia,doi,year,subject,volume,editor,publisher} = req.body.values.publication
-    // // console.log(title,author,publishedMedia,doi,year,subject,volume,editor,publisher)
-    // const publicat = new publication(
-    //     {title:title,
-    //     author:author,
-    //     publishedMedia:publishedMedia,
-    //     doi:doi,
-    //     year:year,
-    //     subject:subject,
-    //     vloume:volume,
-    //     editor:editor,
-    //     publisher:publisher,
-    //     user:currentUser
+    const { title,author,publishedMedia,url,doi,year,subject,volume,editor,publisher,pageNo} = req.body.publication
+    // console.log(title,author,publishedMedia,doi,year,subject,volume,editor,publisher)
+    const publicat = new publication(
+        {title:title,
+        author:author,
+        publishedMedia:publishedMedia,
+        doi:doi,
+        year:year,
+        subject:subject,
+        volume:volume,
+        editor:editor,
+        publisher:publisher,
+        user:currentUser,
+        pageNo:pageNo,
+        url:url
 
-    // })
-    // user.publications.push(publicat)
-    // await publicat.save()
-    // await user.save()
-    // // console.log('sucessful')
-    // res.json({msg:'sucessfully added to your profile'}).status(200)
+    })
+    user.publications.push(publicat)
+    await publicat.save()
+    await user.save()
+    
+    res.status(200).json({msg:'sucessfully added to your profile'})
 }
 const updatePublication = async(req,res) =>{
     const id = req.params.id
@@ -52,11 +54,11 @@ const updatePublication = async(req,res) =>{
 
 }
 const deletepublication = async(req,res) =>{
-    const username = res.locals.currentUser
-    const user = await profile.findOne({username:username})
-    const id = req.params.id
-    await publications.findByIdAndDelete(id)
-    user.publications.splice(user.publications.indexOf(id),1)
+    const id = req.user.id
+    const user = await profile.findById(id)
+    const pid = req.params.id
+    await publications.findByIdAndDelete(pid)
+    user.publications.splice(user.publications.indexOf(pid),1)
     await user.save()
 
     res.json({msg:'deleted sucessfully'}).status(200)

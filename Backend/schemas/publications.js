@@ -9,11 +9,11 @@ const publicationsSchema = new schema({
     doi:{type:Date,required:true},
     year:{type:Number,required:true},
     subject:{type:String,required:true},
-    volume:{type:Number},
+    volume:{type:Number, default: 0},
     publishedMedia:{type:String},
     editor:{type:String},
     publisher:{type:String},
-    pageNo:{type:Number},
+    pageNo:{type:Number, default: 0},
     url:{type:String},
 
 })

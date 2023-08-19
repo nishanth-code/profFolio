@@ -13,9 +13,9 @@ var otp =0
 
 
 const profilerender =async(req,res)=>{
-    const currentUserid = req.user.id
+    const id = req.user.id
     
-    const user = await profile.findById({_id:currentUserid}).populate(['publications','articles','workshops','patents'])
+    const user = await profile.findById(id).populate(['publications','articles','workshops','patents'])
     
     if (user){
           res.status(200).json(user)
@@ -27,7 +27,7 @@ const profilerender =async(req,res)=>{
 const renderPublication = async(req,res) =>{
   const id = req.user.id
   const user = await profile.findById(id).populate(['publications','articles','workshops','patents'])
-  res.json(user.publications).status(200)
+  res.status(200).json({publications:user.publications,profilepic:user.profilePicture}).status(200)
 }
 const createUser = async(req,res) =>{
   console.log(req.body)
