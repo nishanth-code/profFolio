@@ -13,15 +13,17 @@ const render = async(req,res)=>{
 }
 
 const addArticle = async(req,res) =>{
-    const username = res.locals.currentUser
-    const user = await profile.findOne({username:username})
+    const id = req.user.id
+    
+    const user = await profile.findById(id)
+    const {summary} = req.body
     const { title ,
             author,
             publishedMedia,
             publishedOn,
             subject
-        } = req.body
-    const art = new article({title:title,author:author,publishedMedia:publishedMedia,publishedOn:publishedOn,subject:subject})
+        } = req.body.article
+    const art = new article({title:title,author:author,publishedMedia:publishedMedia,publishedOn:publishedOn,subject:subject,summary:summary})
     user.articles.push(art)
     await art.save()
     await user.save()
@@ -34,7 +36,7 @@ const updateArticles = async(req,res)=>{
         author,
         publishedMedia,
         publishedOn,
-        subject
+        subject,
     } = req.body
     await article.findByIdAndUpdate(id,{title:title,author:author,publishedMedia:publishedMedia,publishedOn:publishedOn,subject:subject})
     res.json({msg:'updated sucessfully'}).status(200)
@@ -43,8 +45,8 @@ const updateArticles = async(req,res)=>{
 }
 const deleteArticle = async(req,res)=>{
     const id = req.params.id
-    const username = res.locals.currentUser
-    const user = await profile.findOne({username:username})
+    const uid = req.user.id
+    const user = await profile.findById(uid)
     await article.findByIdAndDelete(id)
     user.articles.splice(user.articles.indexOf(id),1)
     await user.save()

@@ -14,53 +14,68 @@ const renderPatent = async(req,res) =>{
 }
 
 const addPatent = async(req,res) =>{
-    const username = 'mahee'//res.locals.currentUser
-    const user = await profile.findOne({username:username})
+   const id = req.user.id
+    const user = await profile.findById(id)
     const {
         title,
-        owners,
-        applicant,
-        patentNumber,
+        inventors,
+        applicationNumber,
         filingCountry,
         filingDate,
-        validUpto
+        subjectCategory,
+        publicationDate,
+        status
     } = req.body
-    const d = new Date()
-    const status = 'inactive'
-    if(validUpto <= d){
-        status='active'
-    }
-    const paten = new patent({title:title,owners:owners,applicant:applicant,patentNumber:patentNumber,filingCountry:filingCountry,filingDate:filingDate,validupto:validUpto,status:status}) 
+    
+    const paten = new patent({
+        title:title,
+        inventors:inventors,
+        applicationNumber:applicationNumber,
+        filingCountry:filingCountry,
+        filingDate:filingDate,
+        subjectCategory:subjectCategory,
+        publicationDate:publicationDate,
+        status:status
+    }) 
     user.patents.push(paten)
     await paten.save()
     await user.save()
     res.json({msg:'added sucessfully'}).status(200)
+
 }
 
 const editPatent = async(req,res) =>{
     const id = req.params.id
     const {
         title,
-        owners,
-        applicant,
-        patentNumber,
+        inventors,
+        applicationNumber,
         filingCountry,
         filingDate,
-        validUpto
+        subjectCategory,
+        publicationDate,
+        status
     } = req.body
-    const d = new Date()
-    const status = 'inactive'
-    if(validUpto <= d){
-        status='active'
-    }
-    await patent.findByIdAndUpdate(id,{title:title,owners:owners,applicant:applicant,patentNumber:patentNumber,filingCountry:filingCountry,filingDate:filingDate,validupto:validUpto,status:status})
+
+
+    
+    await patent.findByIdAndUpdate(id,{
+        title:title,
+        inventors:inventors,
+        applicationNumber:applicationNumber,
+        filingCountry:filingCountry,
+        filingDate:filingDate,
+        subjectCategory:subjectCategory,
+        publicationDate:publicationDate,
+        status:status
+    })
     res.json({msg:'updated sucessfully'}).status(200)
 
 }
 const deletePatent = async(req,res)=>{
     const id = req.params.id
-    const username = res.locals.currentUser
-    const user = await profile.findOne({username:username})
+    const uid= req.user.id
+    const user = await profile.findById(uid)
     await patent.findByIdAndDelete(id)
     user.patents.splice(user.patents.indexOf(id),1)
     await user.save()

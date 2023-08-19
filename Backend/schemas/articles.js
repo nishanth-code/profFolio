@@ -8,6 +8,7 @@ const articlesSchema = new schema({
     publishedMedia:{type:String,required:true},
     publishedOn:{type:Date,required:true},
     subject:{type:String,required:true},
+    summary:{type:String,required:true}
 
 })
 

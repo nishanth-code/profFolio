@@ -29,6 +29,21 @@ const renderPublication = async(req,res) =>{
   const user = await profile.findById(id).populate(['publications','articles','workshops','patents'])
   res.status(200).json({publications:user.publications,profilepic:user.profilePicture}).status(200)
 }
+const renderArticle = async(req,res) =>{
+  const id = req.user.id
+  const user = await profile.findById(id).populate(['publications','articles','workshops','patents'])
+  res.status(200).json({articles:user.articles,profilepic:user.profilePicture}).status(200)
+}
+const renderPatent = async(req,res) =>{
+  const id = req.user.id
+  const user = await profile.findById(id).populate(['publications','articles','workshops','patents'])
+  res.status(200).json({patents:user.patents,profilepic:user.profilePicture}).status(200)
+}
+const renderWorkshop = async(req,res) =>{
+  const id = req.user.id
+  const user = await profile.findById(id).populate(['publications','articles','workshops','patents'])
+  res.status(200).json({workshops:user.workshops,profilepic:user.profilePicture}).status(200)
+}
 const createUser = async(req,res) =>{
   console.log(req.body)
     const {username,email,phoneNumber,password}=req.body.values
@@ -176,4 +191,4 @@ const deleteAccount = async(req,res)=>{
 
 
 
-module.exports = {renderPublication,profilerender,verifyotp,deleteAccount,updateprofile,changePassword,createUser,updatePassword,sendOTP}
+module.exports = {renderArticle,renderPatent,renderPublication,renderWorkshop,profilerender,verifyotp,deleteAccount,updateprofile,changePassword,createUser,updatePassword,sendOTP}

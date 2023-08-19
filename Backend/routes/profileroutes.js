@@ -17,6 +17,9 @@ const upload = multer({ storage: storage });
 
 profileRoutes.get('/viewprofile',islogedin,asynchandler(controller.profilerender))
 profileRoutes.get('/publication',islogedin,asynchandler(controller.renderPublication))
+profileRoutes.get('/article',islogedin,asynchandler(controller.renderArticle))
+profileRoutes.get('/patent',islogedin,asynchandler(controller.renderPatent))
+profileRoutes.get('/workshop',islogedin,asynchandler(controller.renderWorkshop))
 profileRoutes.post('/signup',upload.single('profilePicture'),asynchandler(controller.createUser))
 profileRoutes.post('/sendotp',asynchandler(controller.sendOTP))
 profileRoutes.post('/verifyotp',asynchandler(controller.verifyotp))
