@@ -78,7 +78,7 @@ const EditProfile = () => {
         </div>
         <div className="">
           <form onSubmit={formik.handleSubmit} method="post">
-            <div className="relative ml-[280px]">
+            <div className="relative ml-[340px]">
               <img
                 className="h-40 w-32 ml-20 rounded-xl cursor-pointer transition duration-300 ease-in-out transform hover:brightness-75"
                 src={profileImage}
@@ -140,7 +140,7 @@ const EditProfile = () => {
               value={formik.values.dob}
             />
 
-            <div className=" text-center mr-64">
+            <div className=" text-center mr-80">
               <button
                 className="w-24 text-white rounded-md my-2  px-1 py-1 bg-[#0C2785] justify-center"
                 type="submit"

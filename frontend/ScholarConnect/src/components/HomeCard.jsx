@@ -19,10 +19,10 @@ const HomeCard = () => {
       </div>
       <div>
         <div className="bg-gradient-to-b from-[#550C6B] to-[#341649] h-auto z-10 text-center rounded-3xl -mt-56 ml-96 w-1/2 py-10 pr-10">
-          <p className="text-white my-2 text-xl ml-16">Researcher Profiles:</p>
-          <p className="text-white my-2 text-xl ml-16">Recent Publication:</p>
-          <p className="text-white my-2 text-xl ml-16">Recent Articles:</p>
-          <p className="text-white my-2 text-xl ml-16">Recent Workshops:</p>
+          <p className="text-white my-2 text-xl ml-16">Researcher Profiles: 3</p>
+          <p className="text-white my-2 text-xl ml-16">Recent Publication: 10</p>
+          <p className="text-white my-2 text-xl ml-16">Recent Articles: 12</p>
+          <p className="text-white my-2 text-xl ml-16">Recent Workshops: 6</p>
         </div>
       </div>
     </>

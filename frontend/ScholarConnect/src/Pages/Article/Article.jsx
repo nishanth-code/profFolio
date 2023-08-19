@@ -1,21 +1,24 @@
-import React,{ useState } from "react";
+import React, { useState, useEffect } from "react";
 import ArticleCard from "./ArticleCard";
 import axios from "../../api/authApi";
 
 const Article = () => {
   const [visibleArticles, setVisibleArticles] = useState(2);
 
-  const [articleData, setArticleData] = useState({});
+  const [articleData, setArticleData] = useState({
+    articles: [],
+    profilepic: "",
+  });
 
-  const url =
-    "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/article/renderAll";
+  // const url =
+  //   "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/article/renderAll";
 
-  // useEffect(() => {
-  //   axios.get(url).then((res) => {
-  //     console.log(res);
-  //     setPublicationData(res.data);
-  //   });
-  // }, []);
+  useEffect(() => {
+    axios.get("/article/renderAll").then((res) => {
+      console.log(res);
+      setArticleData(res.data);
+    });
+  }, []);
   // console.log(workshopData);
 
   const Article = [

@@ -1,4 +1,4 @@
-import React,{ useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { useFormik } from "formik";
 import Select from "react-select";
 import countryList from "react-select-country-list";
@@ -9,9 +9,6 @@ const Patent = () => {
   const options = useMemo(() => countryList().getData(), []);
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-10 my-4 rounded-2xl  border-solid border pointer-events-auto";
-
-  const url =
-    "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/patent/addpatent";
 
   const formik = useFormik({
     initialValues: {
@@ -26,18 +23,24 @@ const Patent = () => {
     },
 
     onSubmit: (values) => {
-      axios.post(url, { values }, { withCredentials: true }).then((res) => {
+      axios.post("/patent/addpatent", { values }).then((res) => {
         console.log(res.data.msg);
       });
       console.log(values);
     },
   });
 
-  const changeHandler = (value) => {
-    setValue(value);
-  };
+  // const changeHandler = (value) => {
+  //   setValue(value);
+  // };
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
+  };
+
+  const changeHandler = (selectedOption) => {
+    // Update the selected country value in formik values
+    formik.setFieldValue("country", selectedOption.value);
+    setValue(selectedOption);
   };
 
   return (
@@ -73,21 +76,12 @@ const Patent = () => {
             onChange={formik.handleChange}
             value={formik.values.applicationNo}
           />
-          {/* Make it dropDown set few countries */}
-          {/* <input
-                className="h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
-                id="country"
-                type="text"
-                name="country"
-                placeholder="Year"
-                onChange={formik.handleChange}
-                value={formik.values.country}
-              /> */}
           <Select
             className="w-1/2 mx-10 my-4 "
             options={options}
             value={value}
             onChange={changeHandler}
+            // value={formik.values.value}
           />
           <input
             className={style}
@@ -99,30 +93,42 @@ const Patent = () => {
             value={formik.values.subjectCategory}
           />
 
+          <label className="flex justify-center mr-80 font-semibold">
+            Filing Date:
+          </label>
           <input
             className={style}
             id="filingDate"
-            type="number"
+            type="date"
             name="filingDate"
             placeholder="Filing Date"
             onChange={formik.handleChange}
             value={formik.values.filingDate}
           />
+          {/* <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400">
+            Filing Date
+          </span> */}
+          <label className="flex justify-center mr-80 font-semibold">
+            Publication Date:
+          </label>
           <input
             className={style}
             id="publicationDate"
-            type="text"
+            type="date"
             name="publicationDate"
-            placeholder="Enter Volume"
+            placeholder="Publication Date"
             onChange={formik.handleChange}
             value={formik.values.publicationDate}
           />
+          {/* <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400">
+            Publication Date
+          </span> */}
           <input
             className={style}
             id="status"
             type="text"
             name="status"
-            placeholder="Enter Page No"
+            placeholder="Enter Status"
             onChange={formik.handleChange}
             value={formik.values.status}
           />
@@ -130,7 +136,7 @@ const Patent = () => {
             <div className="text-white ml-40">
               <button
                 className="w-24 rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785]"
-                type="button"
+                type="submit"
               >
                 SUBMIT
               </button>

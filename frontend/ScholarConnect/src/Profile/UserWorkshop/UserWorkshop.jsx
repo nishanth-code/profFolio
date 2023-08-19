@@ -2,20 +2,31 @@ import UserWorkshopCard from "./UserWorkshopCard";
 import React, { useEffect, useState } from "react";
 
 const UserWorkshop = () => {
-  const [workshopData, setWorkshopData] = useState({});
+  const [workshopData, setWorkshopData] = useState({
+    workshops: [],
+    profilepic: "",
+  });
   const [visibleUserWorkshops, setVisibleUserWorkshops] = useState(4);
 
-  const url =
-    "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/workshop";
+  // const url =
+  //   "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/workshop";
 
-  // useEffect(() => {
-  //   axios.get(url).then((res) => {
-  //     console.log(res);
-  //     setPublicationData(res.data);
-  //   });
-  // }, []);
-  // console.log(workshopData);
+  useEffect(() => {
+    axios.get("/publication/workshop").then((res) => {
+      console.log(res);
+      setPublicationData(res.data);
+    });
+  }, []);
+  console.log(workshopData);
 
+  const handleDeleteWorkshop = (workshopId) => {
+    setWorkshopData((prevData) => ({
+      ...prevData,
+      workshops: prevData.publications.filter(
+        (work) => work._id !== workshopId
+      ),
+    }));
+  };
   const UserWorkshop = [
     {
       id: 1,
@@ -122,6 +133,8 @@ const UserWorkshop = () => {
             duration={workshop.duration}
             subject={workshop.subject}
             summary={workshop.summary}
+            // profilePicture={workshopData.profilepic}
+            onDelete={handleDeleteWorkshop}
           />
         ))}
       </div>

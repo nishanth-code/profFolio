@@ -117,20 +117,7 @@ const ArticleCard = (props) => {
         <div className="flex">
           <div className="flex ">
             <div className="p-7 ">
-              {/* <div className="flex justify-around">
-                <Link to={`/profile/article/edit/${id}`}>
-                  <div className="rounded-full w-28 p-2 bg-white -ml-60">
-                    <MdEdit className="inline-block mr-1" />
-                    Edit Article
-                  </div>
-                </Link>
-                <div
-                  className="bg-white text-black rounded pl-2 pt-2 h-9 w-9  text-center ml-2 mt-1 -mr-72"
-                  onClick={handleDelete}
-                >
-                  <MdDelete />
-                </div>
-              </div> */}
+             
               <h1 className="text-2xl font-semibold ml text-center -mt-6">
                 Article on: {props.title}
               </h1>

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Professor from "../../assets/professor.jpg";
 import { SlBadge } from "react-icons/sl";
-import axios from "axios";
+import axios from "../../api/authApi";
+import { formatDate } from "../../utils/dateFormater";
 
 const Patent = () => {
   const [patentData, setPatentData] = useState({});
@@ -19,8 +20,8 @@ const Patent = () => {
       <div className="flex">
         <div className="flex ">
           <div className="p-7 ">
-            <h1 className="text-3xl font-bold justify-center flex items-center text-center">
-              Patent {patentData.title}
+            <h1 className="text-3xl font-bold text-center">
+              Patent "Internet of Medical Things"{patentData.title}
             </h1>
             <div className="flex mt-16">
               <div className="relative">
@@ -34,16 +35,26 @@ const Patent = () => {
                 />
               </div>
               <div className="ml-12 ">
-                <h1 className="text-3xl">Inventor: {patentData.inventors} </h1>
-                <h1 className="text-lg text-gray-400">
-                  Publication Date: {patentData.publicationDate}
+                <h1 className="text-3xl">
+                  Inventor: Mahee{patentData.inventors}{" "}
                 </h1>
-                <h1 className="text-md">Status: {patentData.status} </h1>
-                <h1 className="text-lg">FilingDate: {patentData.filingDate}</h1>
+                <h1 className="text-3xl">
+                  Application No: 23813{patentData.applicationNo}
+                </h1>
+                <h1 className="text-lg text-gray-400">
+                  Publication Date: {formatDate(patentData.publicationDate)}
+                </h1>
+                <h1 className="text-md">
+                  Status: Approved{patentData.status}{" "}
+                </h1>
 
-                <h1 className="text-sm">Country: {patentData.country}</h1>
+                <h1 className="text-lg">
+                  FilingDate: 07/03/2021{formatDate(patentData.filingDate)}
+                </h1>
+
+                <h1 className="text-sm">Country: IN{patentData.country}</h1>
                 <h1 className="text-sm">
-                  Subject Category: {patentData.subjectCategory}
+                  Subject Category: IoT{patentData.subjectCategory}
                 </h1>
               </div>
             </div>

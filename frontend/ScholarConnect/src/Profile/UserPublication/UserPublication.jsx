@@ -9,7 +9,7 @@ const UserPublications = () => {
   });
 
   const [visibleUserPublications, setVisibleUserPublications] = useState(3);
-  const authToken = localStorage.getItem("token");
+  // const authToken = localStorage.getItem("token");
 
   useEffect(() => {
     axios.get("/profile/publication").then((res) => {
