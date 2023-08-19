@@ -4,94 +4,10 @@ import { Link } from "react-router-dom";
 import { MdEdit, MdDelete } from "react-icons/md";
 import axios from "../../api/authApi";
 import { formatDate } from "../../utils/dateFormater";
-axios.defaults.withCredentials = true;
-const UserArticleCard = (props) => {
-  const [data, setData] = useState(props.article);
-  const [expanded, setExpanded] = useState(false);
 
-  const UserArticle = [
-    {
-      id: 1,
-      title: "Wireless Comm",
-      organisedBy: "John Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 2,
-      title: "Something Comm",
-      organisedBy: "Smith Doe",
-      attendedOn: "2023-07-20",
-      duration: "6 hrs",
-      subject: "IT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 3,
-      title: "WIFI",
-      organisedBy: "Payal Doe",
-      attendedOn: "2022-12-11",
-      duration: "3 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 4,
-      title: "Training model",
-      organisedBy: "SOme Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "ML",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 5,
-      title: "Wireless Comm",
-      organisedBy: "John Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 6,
-      title: "Wireless Comm",
-      organisedBy: "John Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 7,
-      title: "Wireless Comm",
-      organisedBy: "John Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 8,
-      title: "Wireless Comm",
-      organisedBy: "John Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 9,
-      title: "Wireless Comm",
-      organisedBy: "John Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-  ];
+const UserArticleCard = (props) => {
+  // const [data, setData] = useState(props.article);
+  const [expanded, setExpanded] = useState(false);
 
   const id = props.id;
 

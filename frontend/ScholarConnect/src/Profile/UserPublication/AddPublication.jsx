@@ -1,10 +1,9 @@
 import { useFormik } from "formik";
 import PublicationFormDetails from "../../form-fields/PublicationFormJson";
 import React, { useState } from "react";
-// import axios from "axios";
+
 import axios from "../../api/authApi";
-import { Navigate, useNavigate } from "react-router-dom";
-axios.defaults.withCredentials = true;
+import { useNavigate } from "react-router-dom";
 
 const AddPublication = () => {
   const navigate = useNavigate();

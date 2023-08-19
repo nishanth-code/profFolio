@@ -1,32 +1,47 @@
-import React, { useState, useMemo } from "react";
 import { useFormik } from "formik";
+import axios from "../../api/authApi";
+import React, { useEffect, useState, useMemo } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { formatDateForForms } from "../../utils/dateFormateForms";
 import Select from "react-select";
 import countryList from "react-select-country-list";
-import axios from "../../api/authApi";
-import { useNavigate } from "react-router-dom";
 
-const Patent = () => {
+const EditUserPatent = (props) => {
+  const { id } = useParams();
   const [value, setValue] = useState("Select Country");
   const options = useMemo(() => countryList().getData(), []);
+  const [userPatentData, setUserPatentData] = useState("");
   const navigate = useNavigate();
+
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-10 my-4 rounded-2xl  border-solid border pointer-events-auto";
 
+  useEffect(() => {
+    axios.get(`/patent/render/${id}`).then((res) => {
+      console.log(res);
+      setUserPatentData(res.data);
+    });
+  }, []);
+  //Put ID here in dep Array
+  const filingDate = formatDateForForms(userPatentData.filingDate);
+  const publicationDate = formatDateForForms(userPatentData.publicationDate);
+
   const formik = useFormik({
     initialValues: {
-      title: "",
-      inventors: "",
-      applicationNumber: "",
-      filingCountry: "",
-      subjectCategory: "",
-      filingDate: "",
-      publicationDate: "",
-      status: "",
+      title: userPatentData.title,
+      inventors: userPatentData.inventors,
+      applicationNumber: userPatentData.applicationNumber,
+      filingCountry: userPatentData.filingCountry,
+      subjectCategory: userPatentData.subjectCategory,
+      filingDate: filingDate,
+      publicationDate: publicationDate,
+      status: userPatentData.status,
     },
 
+    enableReinitialize: true,
     onSubmit: (values) => {
-      axios.post("/patent/addpatent", values).then((res) => {
-        console.log(res.data.msg);
+      axios.put(`/patent/edit/${id}`, values).then((res) => {
+        console.log(res);
         if (res.status == 200) {
           navigate("/profile/patent");
         }
@@ -35,31 +50,33 @@ const Patent = () => {
     },
   });
 
-  // const changeHandler = (value) => {
-  //   setValue(value);
-  // };
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+  const getCountry = () => {
+    const valueOf = options.find(
+      (option) => option.label === formik.values.filingCountry
+    );
+    console.log(valueOf);
   };
 
   const changeHandler = (selectedOption) => {
-    // Update the selected country value in formik values
     const selectedCountryName = selectedOption.label;
     formik.setFieldValue("filingCountry", selectedCountryName);
     setValue(selectedOption);
   };
-  const changeStatusHandler = (selectedStatusOption) => {
-    // Update the selected country value in formik values
-    formik.setFieldValue("status", selectedStatusOption.value);
-    setValue(selectedStatusOption);
-  };
+  // console.log(formik.initialValues);
 
   return (
-    <div className="flex flex-col justify-center items-center  relative h-screen">
-      {/* bg-red-400 */}
-      <h1 className="text-2xl font-semibold mr-10">Enter Patent details</h1>
+    <div className="flex flex-col justify-center items-center  relative h-full">
+      <div className=" flex  items-center justify-center">
+        <h1 className="text-2xl font-semibold mr-10">
+          Edit your Patent Details
+        </h1>
+      </div>
       <div className="content-center ml-80">
-        <form onSubmit={formik.handleSubmit} method="post">
+        <form
+          className="w-96 ml-20"
+          onSubmit={formik.handleSubmit}
+          method="put"
+        >
           <input
             className={style}
             id="title"
@@ -94,10 +111,12 @@ const Patent = () => {
             className="w-1/2 mx-10 my-4 "
             name="filingCountry"
             options={options}
-            value={value}
+            value={getCountry()}
             required={true}
             onChange={changeHandler}
-            // value={formik.values.value}
+            // value={options.find(
+            //   (option) => option.label === formik.values.filingCountry
+            // )}
           />
           <input
             className={style}
@@ -155,23 +174,19 @@ const Patent = () => {
             <option value="Active">Active</option>
             <option value="Inactive">Inactive</option>
           </select>
-          <div className="flex">
-            <div className="text-white ml-40">
-              <button
-                className="w-24 rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785]"
-                type="submit"
-              >
-                SUBMIT
-              </button>
-            </div>
-            <div className="text-white ">
-              <button
-                className="w-24 rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785]"
-                type="reset"
-              >
-                RESET
-              </button>
-            </div>
+          <div className="ml-56">
+            <button
+              className="w-24 text-white rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785] "
+              type="submit"
+            >
+              EDIT
+            </button>
+            <button
+              className="w-24 text-white rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785] "
+              type="reset"
+            >
+              RESET
+            </button>
           </div>
         </form>
       </div>
@@ -179,4 +194,4 @@ const Patent = () => {
   );
 };
 
-export default Patent;
+export default EditUserPatent;

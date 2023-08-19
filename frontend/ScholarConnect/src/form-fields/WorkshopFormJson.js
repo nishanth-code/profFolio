@@ -7,9 +7,9 @@ const WorkshopFormDetails = [
     required: true,
   },
   {
-    id: "organisedBy",
+    id: "organizedBy",
     type: "text",
-    name: "workshop[organisedBy]",
+    name: "workshop[organizedBy]",
     placeholder: "Organiser of Workshop",
     required: true,
   },
@@ -20,13 +20,7 @@ const WorkshopFormDetails = [
     placeholder: "Attended On",
     required: true,
   },
-  {
-    id: "duration",
-    type: "text",
-    name: "workshop[duration]",
-    placeholder: "Duration of Workshop",
-    required: false,
-  },
+
   {
     id: "subject",
     type: "text",

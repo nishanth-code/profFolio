@@ -2,19 +2,17 @@ import { useFormik } from "formik";
 import WorkshopFormDetails from "../../form-fields/WorkshopFormJson";
 import React, { useState } from "react";
 import axios from "../../api/authApi";
-axios.defaults.withCredentials = true;
+import { useNavigate } from "react-router-dom";
 
 const AddWorkshop = () => {
+  const navigate = useNavigate();
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-40 my-4 rounded-2xl  border-solid border pointer-events-auto";
-
-  const url =
-    "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/addpublication";
 
   const formik = useFormik({
     initialValues: {
       title: "",
-      organisedBy: "",
+      organizedBy: "",
       attendedOn: "",
       duration: "",
       subject: "",
@@ -22,15 +20,18 @@ const AddWorkshop = () => {
     },
 
     onSubmit: (values) => {
-      axios.post(url, { values }).then((res) => {
+      axios.post("/workshop/add", values).then((res) => {
         console.log(res.data.msg);
+        if (res.status == 200) {
+          navigate("/profile/workshop");
+        }
       });
       console.log(values);
     },
   });
 
   return (
-    <div className="flex flex-col justify-center items-center  w-fit h-full">
+    <div className="flex flex-col justify-center items-center mt-20 w-fit h-full">
       <h1 className="text-3xl ml-[470px] font-semibold">
         Enter Workshop Details
       </h1>

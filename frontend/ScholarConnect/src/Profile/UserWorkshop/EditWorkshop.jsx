@@ -1,49 +1,44 @@
 import { useFormik } from "formik";
 import axios from "../../api/authApi";
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
-axios.defaults.withCredentials = true;
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
+import { formatDateForForms } from "../../utils/dateFormateForms";
 
 const EditWorkshop = (props) => {
-  // const { id } = useParams();
-  const [userData, setUserData] = useState("");
+  const { id } = useParams();
+  const [workshopData, setWorkshopData] = useState("");
+  const navigate = useNavigate();
 
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-20 my-4 rounded-2xl  border-solid border pointer-events-auto";
 
-  const id = props.id;
-  console.log(id);
-
-  const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/render/${id}`;
-  // const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/render/64d4f7254b9470d6ccd3ca76`;
-
-  const editUrl = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/edit/64d4f7254b9470d6ccd3ca76`;
-
   useEffect(() => {
-    axios.get(url).then((res) => {
+    axios.get(`/workshop/render/${id}`).then((res) => {
       console.log(res);
-      setUserData(res.data);
+      setWorkshopData(res.data);
     });
   }, []);
   //Put ID here in dep Array
-  const date = moment(userData.attendedOn).format("YYYY-MM-DD");
+  const date = formatDateForForms(workshopData.attendedOn);
   // console.log(date);
 
   const formik = useFormik({
     initialValues: {
-      title: userData.title,
-      organisedBy: userData.organisedBy,
+      title: workshopData.title,
+      organizedBy: workshopData.organizedBy,
       attendedOn: date,
-      duration: userData.duration,
-      subject: userData.subject,
-      summary: userData.summary,
+      subject: workshopData.subject,
+      summary: workshopData.summary,
     },
 
     enableReinitialize: true,
     onSubmit: (values) => {
-      axios.put(editUrl, values).then((res) => {
+      axios.put(`/workshop/edit/${id}`, values).then((res) => {
         console.log(res);
+        if (res.status == 200) {
+          navigate("/profile/workshop");
+        }
       });
       console.log(values);
     },
@@ -64,7 +59,7 @@ const EditWorkshop = (props) => {
           className={style}
           id="title"
           type="text"
-          name="publication[title]"
+          name="title"
           placeholder="Enter Title"
           onChange={formik.handleChange}
           value={formik.values.title}
@@ -72,12 +67,12 @@ const EditWorkshop = (props) => {
 
         <input
           className={style}
-          id="organisedBy"
+          id="organizedBy"
           type="text"
-          name="organisedBy"
-          placeholder="Organised By"
+          name="organizedBy"
+          placeholder="Organized By"
           onChange={formik.handleChange}
-          value={formik.values.organisedBy}
+          value={formik.values.organizedBy}
         />
 
         <input
@@ -89,15 +84,7 @@ const EditWorkshop = (props) => {
           onChange={formik.handleChange}
           value={formik.values.attendedOn}
         />
-        <input
-          className={style}
-          id="duration"
-          type="text"
-          name="duration"
-          placeholder="Enter Duration"
-          onChange={formik.handleChange}
-          value={formik.values.duration}
-        />
+
         <input
           className={style}
           id="subject"
@@ -112,6 +99,8 @@ const EditWorkshop = (props) => {
           id="summary"
           typeof="text"
           name="summary"
+          rows="5"
+          cols="25"
           placeholder="Summary of event"
           onChange={formik.handleChange}
           value={formik.values.summary}

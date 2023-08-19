@@ -38,6 +38,7 @@ import ProfileLayout from "./Profile/ProfileLayout";
 import PatentLayout from "./Profile/Patent/PatentLayout";
 import AddPatent from "./Profile/Patent/AddPatent";
 import Patent from "./Profile/Patent/Patent";
+import EditUserPatent from "./Profile/Patent/EditUserPatent";
 
 function App() {
   function NotFound() {
@@ -89,6 +90,7 @@ function App() {
           <Route path="patent" element={<PatentLayout />}>
             <Route path="" element={<Patent />} />
             <Route path="add" element={<AddPatent />} />
+            <Route path="edit/:id" element={<EditUserPatent />} />
           </Route>
         </Route>
         {/* <Route

@@ -1,69 +1,64 @@
-import React, { useState } from "react";
-import Professor from "../../assets/professor.jpg";
-import { SlBadge } from "react-icons/sl";
+import React, { useEffect, useState } from "react";
 import axios from "../../api/authApi";
-import { formatDate } from "../../utils/dateFormater";
-
+import UserPatentCard from "./UserPatentCard";
 const Patent = () => {
-  const [patentData, setPatentData] = useState({});
+  const [visibleUserPatents, setVisibleUserPatents] = useState(3);
 
-  const url =
-    "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/patent/addpatent";
-
-  axios.get(url).then((res) => {
-    console.log(res);
-    setPatentData(res.data);
+  const [patentData, setPatentData] = useState({
+    patents: [],
+    profilepic: "",
   });
 
+  useEffect(() => {
+    axios.get("/profile/patent").then((res) => {
+      console.log(res);
+      setPatentData(res.data);
+    });
+  }, []);
+
+  const handleDeletePatent = (patentId) => {
+    setPatentData((prevData) => ({
+      ...prevData,
+      patents: prevData.patents.filter((pat) => pat._id !== patentId),
+    }));
+  };
+
+  console.log(patentData);
+
+  const loadMorePatents = () => {
+    setVisibleUserPatents(visibleUserPatents + 3); // You can adjust the number as needed
+  };
+
   return (
-    <div className="bg-[#fbf0ff] border absolute border-gray-200 mt-10 ml-20 pb-10 rounded-2xl h-auto w-[900px] shadow-lg">
-      <div className="flex">
-        <div className="flex ">
-          <div className="p-7 ">
-            <h1 className="text-3xl font-bold text-center">
-              Patent "Internet of Medical Things"{patentData.title}
-            </h1>
-            <div className="flex mt-16">
-              <div className="relative">
-                <img
-                  className="h-40 w-32 ml-20 rounded-xl cursor-pointer transition duration-300 ease-in-out transform hover:brightness-75"
-                  src={Professor}
-                  alt="profile"
-                  // onClick={() =>
-                  //   document.getElementById("imageInput").click()
-                  // }
-                />
-              </div>
-              <div className="ml-12 ">
-                <h1 className="text-3xl">
-                  Inventor: Mahee{patentData.inventors}{" "}
-                </h1>
-                <h1 className="text-3xl">
-                  Application No: 23813{patentData.applicationNo}
-                </h1>
-                <h1 className="text-lg text-gray-400">
-                  Publication Date: {formatDate(patentData.publicationDate)}
-                </h1>
-                <h1 className="text-md">
-                  Status: Approved{patentData.status}{" "}
-                </h1>
-
-                <h1 className="text-lg">
-                  FilingDate: 07/03/2021{formatDate(patentData.filingDate)}
-                </h1>
-
-                <h1 className="text-sm">Country: IN{patentData.country}</h1>
-                <h1 className="text-sm">
-                  Subject Category: IoT{patentData.subjectCategory}
-                </h1>
-              </div>
-            </div>
-            {/* <hr className="w-[800px] h-1 mx-24 my-4 bg-gray-300 border-0 rounded md:my-10 dark:bg-gray-700"></hr> */}
-          </div>
-        </div>
+    <div className="flex flex-col justify-center items-center ml-32">
+      <h1 className="text-3xl font-semibold mt-4 ">User Patents</h1>
+      <div className=" flex flex-col justify-center items-center">
+        {patentData.patents.slice(0, visibleUserPatents).map((patent) => (
+          <UserPatentCard
+            key={patent._id}
+            id={patent._id}
+            title={patent.title}
+            inventors={patent.inventors}
+            applicationNumber={patent.applicationNumber}
+            filingCountry={patent.filingCountry}
+            subjectCategory={patent.subjectCategory}
+            filingDate={patent.filingDate}
+            publicationDate={patent.publicationDate}
+            status={patent.status}
+            profilePicture={patentData.profilepic}
+            onDelete={handleDeletePatent}
+          />
+        ))}
       </div>
-      <div className="text-[200px] text-gray-500">
-        <SlBadge />
+      <div className="flex">
+        {visibleUserPatents < patentData.patents.length && (
+          <button
+            className="mx-auto px-4 py-2 rounded-md bg-[#1D3792] text-white"
+            onClick={loadMorePatents}
+          >
+            Load More
+          </button>
+        )}
       </div>
     </div>
   );

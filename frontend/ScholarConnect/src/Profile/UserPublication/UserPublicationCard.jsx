@@ -4,93 +4,11 @@ import { Link } from "react-router-dom";
 import { MdEdit, MdDelete } from "react-icons/md";
 import axios from "../../api/authApi";
 import { formatDate } from "../../utils/dateFormater";
-axios.defaults.withCredentials = true;
-
 const UserPublicationCard = (props) => {
-  const [userPublicationData, setUserPublicationData] = useState(props);
-  const userPublication = [
-    {
-      id: 1,
-      title: "Publication 10",
-      author: "John Doe",
-      date: "2023-07-16",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      required: false,
-    },
-    {
-      id: 2,
-      title: "Publication 2",
-      author: "Jane Smith",
-      date: "2023-07-15",
-      content:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem.",
-    },
-    {
-      id: 3,
-      title: "Publication 3",
-      author: "Jane Smith",
-      date: "2023-07-15",
-      content:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem.",
-    },
-    {
-      id: 4,
-      title: "Publication 4",
-      author: "Jane Smith",
-      date: "2023-07-15",
-      content:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem.",
-    },
-    {
-      id: 5,
-      title: "Publication 5",
-      author: "Jane Smith",
-      date: "2023-07-15",
-      content:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem.",
-    },
-    {
-      id: 6,
-      title: "Publication 6",
-      author: "Jane Smith",
-      date: "2023-07-15",
-      content:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem.",
-    },
-    {
-      id: 7,
-      title: "Publication 7",
-      author: "Jane Smith",
-      date: "2023-07-15",
-      content:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem.",
-    },
-    {
-      id: 8,
-      title: "Publication 7",
-      author: "Jane Smith",
-      date: "2023-07-15",
-      content:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem.",
-    },
-    {
-      id: 9,
-      title: "Publication 7",
-      author: "Jane Smith",
-      date: "2023-07-15",
-      content:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem.",
-    },
-  ];
+  // const [userPublicationData, setUserPublicationData] = useState(props);
 
   const id = props.id;
   // // console.log(id);
-  // useEffect(() => {
-  //   axios.get("/profile/publication").then((res) => {
-  //     console.log(res);
-  //     setUserPublicationData(res.data);
-  //   });
-  // }, []);
 
   const handleDelete = () => {
     axios.delete(`/publication/delete/${id}`).then((res) => {

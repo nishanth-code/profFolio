@@ -1,105 +1,30 @@
 import React, { useState } from "react";
 import Professor from "../../assets/professor.jpg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { MdEdit, MdDelete } from "react-icons/md";
 import axios from "../../api/authApi";
-axios.defaults.withCredentials = true;
+import { formatDate } from "../../utils/dateFormater";
+
 const UserWorkshopCard = (props) => {
-  const [data, setData] = useState(props.workshop);
-  const UserWorkshop = [
-    {
-      id: 1,
-      title: "Wireless Comm",
-      organisedBy: "John Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 2,
-      title: "Something Comm",
-      organisedBy: "Smith Doe",
-      attendedOn: "2023-07-20",
-      duration: "6 hrs",
-      subject: "IT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 3,
-      title: "WIFI",
-      organisedBy: "Payal Doe",
-      attendedOn: "2022-12-11",
-      duration: "3 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 4,
-      title: "Training model",
-      organisedBy: "SOme Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "ML",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 5,
-      title: "Wireless Comm",
-      organisedBy: "John Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 6,
-      title: "Wireless Comm",
-      organisedBy: "John Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 7,
-      title: "Wireless Comm",
-      organisedBy: "John Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 8,
-      title: "Wireless Comm",
-      organisedBy: "John Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 9,
-      title: "Wireless Comm",
-      organisedBy: "John Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-  ];
-
+  const [expanded, setExpanded] = useState(false);
   const id = props.id;
-
-  // console.log(id);
-
-  const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/delete/64d4f7254b9470d6ccd3ca76`;
-
   const handleDelete = () => {
-    axios.delete(url).then((res) => {
+    axios.delete(`/workshop/delete/${id}`).then((res) => {
       console.log(res);
+      props.onDelete(props.id);
     });
+  };
+
+  const toggleExpanded = () => {
+    setExpanded(!expanded);
+  };
+
+  const truncateSummary = (summary, wordLimit) => {
+    const words = summary.split(" ");
+    if (words.length > wordLimit) {
+      return words.slice(0, wordLimit).join(" ") + " ...";
+    }
+    return summary;
   };
 
   return (
@@ -108,7 +33,7 @@ const UserWorkshopCard = (props) => {
         <div className="ml-4 mt-4 flex pt-2 ">
           <img
             className="rounded-full mr-4 h-12 w-auto "
-            src={Professor}
+            src={props.profilePicture}
             alt="Prof"
           />
           <p className="mx-1 my-2">Title: {props.title}</p>
@@ -118,7 +43,7 @@ const UserWorkshopCard = (props) => {
             </div>
           </Link>
           <div
-            className="bg-white text-black rounded p-2 h-7 w-7  text-center ml-1"
+            className="bg-white text-black rounded p-2 h-7 w-7 cursor-pointer text-center ml-1"
             onClick={handleDelete}
           >
             <MdDelete />
@@ -126,12 +51,20 @@ const UserWorkshopCard = (props) => {
         </div>
 
         <p className=" my-2 mx-4 text-slate-400">
-          Attended On: {props.attendedOn}
+          Attended On: {formatDate(props.attendedOn)}
         </p>
-        <p className=" my-2 mx-4">Duration: {props.duration}</p>
-        <p className="mx-4 my-2 ">OrganisedBy: {props.organisedBy}</p>
+        <p className="mx-4 my-2 ">OrganizedBy: {props.organizedBy}</p>
         <p className="mx-4 my-2">subject: {props.subject}</p>
-        <p className="mx-4 my-2">Summary: {props.summary}</p>
+        <p className="mx-4 my-2">Summary: </p>
+        <p className="text-semibold text-justify mx-5">
+          {expanded ? props.summary : truncateSummary(props.summary, 10)}
+          <p
+            className="border bg-gray-100   border-solid inline-block hover:underline cursor-pointer "
+            onClick={toggleExpanded}
+          >
+            {expanded ? "See Less" : "See More"}
+          </p>
+        </p>
       </div>
     </div>
   );
