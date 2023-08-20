@@ -14,6 +14,7 @@ const publicationsSchema = new schema({
     editor:{type:String},
     publisher:{type:String},
     pageNo:{type:Number, default: 0},
+    profilePicture:{type:String,required:true},
     url:{type:String},
 
 })

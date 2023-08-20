@@ -27,22 +27,22 @@ const profilerender =async(req,res)=>{
 const renderPublication = async(req,res) =>{
   const id = req.user.id
   const user = await profile.findById(id).populate(['publications','articles','workshops','patents'])
-  res.status(200).json({publications:user.publications,profilepic:user.profilePicture}).status(200)
+  res.status(200).json({publications:user.publications}).status(200)
 }
 const renderArticle = async(req,res) =>{
   const id = req.user.id
   const user = await profile.findById(id).populate(['publications','articles','workshops','patents'])
-  res.status(200).json({articles:user.articles,profilepic:user.profilePicture}).status(200)
+  res.status(200).json({articles:user.articles}).status(200)
 }
 const renderPatent = async(req,res) =>{
   const id = req.user.id
   const user = await profile.findById(id).populate(['publications','articles','workshops','patents'])
-  res.status(200).json({patents:user.patents,profilepic:user.profilePicture}).status(200)
+  res.status(200).json({patents:user.patents}).status(200)
 }
 const renderWorkshop = async(req,res) =>{
   const id = req.user.id
   const user = await profile.findById(id).populate(['publications','articles','workshops','patents'])
-  res.status(200).json({workshops:user.workshops,profilepic:user.profilePicture}).status(200)
+  res.status(200).json({workshops:user.workshops}).status(200)
 }
 const createUser = async(req,res) =>{
   console.log(req.body)
@@ -57,8 +57,6 @@ const createUser = async(req,res) =>{
         imageUrl = result.secure_url
 
         }    
-             
-        
         const newUser = new profile({username:username,phoneNumber:phoneNumber,email:email,profilePicture:imageUrl})
         const regUser = await profile.register(newUser,password)
         res.json(regUser)
@@ -146,8 +144,9 @@ const changePassword = async(req,res)=>{
     }
     const updateprofile = async(req,res) =>{
         const id = req.user.id
-        const user = await profile.findById(id)
+        const user = await profile.findById(id).populate(['publications','articles','workshops','patents'])
         const imageUrl = user.profilePicture
+        const {publications,articles,workshops,patents} = user
         const {designation,phoneNumber,gender,dob} = req.body
         if (req.file) {try {
           const result = await cloudinary.uploader.upload(req.file.path);
@@ -160,6 +159,18 @@ const changePassword = async(req,res)=>{
           try {
            
             const regUser = await profile.findByIdAndUpdate(id,{profilePicture:imageUrl,phoneNumber:phoneNumber,designation:designation,gender:gender,dob:dob},{new:true})
+            for(let i of articles){
+              await article.findByIdAndUpdate(i._id,{profilePicture:imageUrl})
+            }
+            for(let i of publications){
+              await publication.findByIdAndUpdate(i._id,{profilePicture:imageUrl})
+            }
+            for(let i of patents){
+              await patent.findByIdAndUpdate(i._id,{profilePicture:imageUrl})
+            }
+            for(let i of workshops){
+              await workshop.findByIdAndUpdate(i._id,{profilePicture:imageUrl})
+            }
             res.json({msg:'updated sucessfully'}).status(200)
           } catch (error) {
             console.error('Error uploading image to Cloudinary:', error);

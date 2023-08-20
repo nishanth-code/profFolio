@@ -26,6 +26,7 @@ const addPatent = async(req,res) =>{
         publicationDate,
         status
     } = req.body
+    const profilePicture = user.profilePicture
     
     const paten = new patent({
         title:title,
@@ -33,6 +34,7 @@ const addPatent = async(req,res) =>{
         applicationNumber:applicationNumber,
         filingCountry:filingCountry,
         filingDate:filingDate,
+        profilePicture:profilePicture,
         subjectCategory:subjectCategory,
         publicationDate:publicationDate,
         status:status

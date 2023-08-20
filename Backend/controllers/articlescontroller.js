@@ -17,13 +17,14 @@ const addArticle = async(req,res) =>{
     
     const user = await profile.findById(id)
     const {summary} = req.body
+    const profilePicture = user.profilePicture
     const { title ,
             author,
             publishedMedia,
             publishedOn,
             subject
         } = req.body.article
-    const art = new article({title:title,author:author,publishedMedia:publishedMedia,publishedOn:publishedOn,subject:subject,summary:summary})
+    const art = new article({title:title,profilePicture:profilePicture,author:author,publishedMedia:publishedMedia,publishedOn:publishedOn,subject:subject,summary:summary})
     user.articles.push(art)
     await art.save()
     await user.save()

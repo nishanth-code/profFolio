@@ -1,6 +1,6 @@
 const publication = require('../schemas/publications')
 const profile = require('../schemas/profile')
-const publications = require('../schemas/publications')
+
 
 const renderAll = async(req,res) =>{
     const result = await publication.find()
@@ -16,8 +16,9 @@ const render = async(req,res) =>{
 const newPublication = async(req,res) =>{
     const id = req.user.id
     const user = await profile.findById(id)
+    const profilePicture = user.profilePicture
     const currentUser = user.username
-    console.log(req.body)
+    
     
 
     const { title,author,publishedMedia,url,doi,year,subject,volume,editor,publisher,pageNo} = req.body.publication
@@ -26,6 +27,7 @@ const newPublication = async(req,res) =>{
         {title:title,
         author:author,
         publishedMedia:publishedMedia,
+        profilePicture:profilePicture,
         doi:doi,
         year:year,
         subject:subject,

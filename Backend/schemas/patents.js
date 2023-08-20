@@ -11,6 +11,7 @@ const patentSchema = new schema({
     filingDate:{type:Date,required:true},
     subjectCategory:{type:String,required:true},
     publicationDate:{type:Date,required:true},
+    profilePicture:{type:String,required:true},
     // validUpto:{type:Date,required:true},
     status:{type:String,enums:['Active','Inactive']}
 

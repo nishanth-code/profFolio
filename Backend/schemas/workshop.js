@@ -8,7 +8,8 @@ const workshopsSchema = new schema({
     //duration:{type:String,required:true},
     subject:{type:String,required:true},
     attendedOn:{type:Date,required:true},
-    summary:{type:String,required:true}
+    summary:{type:String,required:true},
+    profilePicture:{type:String,required:true}
 
 })
 

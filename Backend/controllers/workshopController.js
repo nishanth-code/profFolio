@@ -4,7 +4,7 @@ const workshop = require('../schemas/workshop')
 
 const renderAll = async(req,res)=>{
     const workshops = await workshop.find()
-    res.status(200).json(workshop)
+    res.status(200).json(workshops)
 }
 
 const render = async(req,res)=>{
@@ -23,10 +23,12 @@ const addWorkshop = async(req,res)=>{
         
     } = req.body.workshop
     const {summary} = req.body
+    const profilePicture = user.profilePicture
     const workshp = new workshop({
         title:title,
         organizedBy:organizedBy,
         subject:subject,
+        profilePicture:profilePicture,
         attendedOn:attendedOn,
         summary:summary
 
