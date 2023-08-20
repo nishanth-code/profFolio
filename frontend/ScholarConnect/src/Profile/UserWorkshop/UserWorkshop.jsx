@@ -4,18 +4,25 @@ import axios from "../../api/authApi";
 const UserWorkshop = () => {
   const [workshopData, setWorkshopData] = useState({
     workshops: [],
-    profilepic: "",
   });
   const [visibleUserWorkshops, setVisibleUserWorkshops] = useState(4);
 
   // const url =
   //   "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/workshop";
+  const authToken = localStorage.getItem("token");
 
   useEffect(() => {
-    axios.get("/profile/workshop").then((res) => {
-      console.log(res);
-      setWorkshopData(res.data);
-    });
+    axios
+      .get("/profile/workshop", {
+        headers: {
+          // "Content-type": "application/json",
+          Authorization: `${authToken}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        setWorkshopData(res.data);
+      });
   }, []);
   console.log(workshopData);
 
@@ -45,7 +52,7 @@ const UserWorkshop = () => {
               attendedOn={workshop.attendedOn}
               subject={workshop.subject}
               summary={workshop.summary}
-              profilePicture={workshopData.profilepic}
+              profilePicture={workshop.profilePicture}
               onDelete={handleDeleteWorkshop}
             />
           ))}

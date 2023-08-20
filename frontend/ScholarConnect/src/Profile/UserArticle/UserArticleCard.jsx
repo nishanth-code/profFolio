@@ -10,12 +10,20 @@ const UserArticleCard = (props) => {
   const [expanded, setExpanded] = useState(false);
 
   const id = props.id;
+  const authToken = localStorage.getItem("token");
 
   const handleDelete = () => {
-    axios.delete(`/article/delete/${id}`).then((res) => {
-      console.log(res);
-      props.onDelete(props.id);
-    });
+    axios
+      .delete(`/article/delete/${id}`, {
+        headers: {
+          // "Content-type": "application/json",
+          Authorization: `${authToken}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        props.onDelete(props.id);
+      });
   };
 
   const toggleExpanded = () => {

@@ -6,19 +6,38 @@ import { Link } from "react-router-dom";
 import axios from "../api/authApi";
 import { formatDate } from "../utils/dateFormater";
 const ProfileDetails = () => {
-  const [profileImage, setProfileImage] = useState(professor);
+  // const [profileImage, setProfileImage] = useState(professor);
   const [userDetails, setUserDetails] = useState({});
 
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl border-solid border";
 
+  const authToken = localStorage.getItem("token");
+
   useEffect(() => {
-    axios.get("/profile/viewprofile").then((res) => {
-      // console.log(res.data);
-      setUserDetails(res.data);
-    });
+    axios
+      .get("/profile/viewprofile", {
+        headers: {
+          // "Content-type": "application/json",
+          Authorization: `${authToken}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setUserDetails(res.data);
+      });
   }, []);
-  console.log(userDetails);
+
+  // , {
+  //   headers: {
+  //     // "Content-type": "application/json",
+  //     Authorization: `${authToken}`,
+  //   },
+  // }
+
+  // const numberOfWorkshops = userDetails.workshops.length;
+  // const numberOfArticles = userDetails.articles.length;
+  // const numberOfPublications = userDetails.publications.length;
 
   const id = userDetails._id;
   // console.log(id);
@@ -66,7 +85,11 @@ const ProfileDetails = () => {
             </div>
           </div>
         </div>
-        <Analysis />
+        <Analysis
+          numberOfWorkshops={userDetails.workshops?.length || 0}
+          numberOfArticles={userDetails.articles?.length || 0}
+          numberOfPublications={userDetails.publications?.length || 0}
+        />
       </div>
     </div>
   );

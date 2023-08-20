@@ -5,15 +5,22 @@ import axios from "../../api/authApi";
 const UserArticles = () => {
   const [articleData, setArticleData] = useState({
     articles: [],
-    profilepic: "",
   });
   const [visibleUserArticles, setVisibleUserArticles] = useState(3);
+  const authToken = localStorage.getItem("token");
 
   useEffect(() => {
-    axios.get("/profile/article").then((res) => {
-      console.log(res);
-      setArticleData(res.data);
-    });
+    axios
+      .get("/profile/article", {
+        headers: {
+          // "Content-type": "application/json",
+          Authorization: `${authToken}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        setArticleData(res.data);
+      });
   }, []);
   console.log(articleData.articles);
 
@@ -45,7 +52,7 @@ const UserArticles = () => {
               publishedMedia={article.publishedMedia}
               subject={article.subject}
               summary={article.summary}
-              profilePicture={articleData.profilepic}
+              profilePicture={article.profilePicture}
               onDelete={handleDeleteArticle}
             />
           ))}

@@ -8,12 +8,20 @@ const Patent = () => {
     patents: [],
     profilepic: "",
   });
+  const authToken = localStorage.getItem("token");
 
   useEffect(() => {
-    axios.get("/profile/patent").then((res) => {
-      console.log(res);
-      setPatentData(res.data);
-    });
+    axios
+      .get("/profile/patent", {
+        headers: {
+          // "Content-type": "application/json",
+          Authorization: `${authToken}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        setPatentData(res.data);
+      });
   }, []);
 
   const handleDeletePatent = (patentId) => {
@@ -31,7 +39,7 @@ const Patent = () => {
 
   return (
     <div className="flex flex-col justify-center items-center ml-32">
-      <h1 className="text-3xl font-semibold mt-4 ">User Patents</h1>
+      <h1 className="text-3xl font-semibold mt-4 ml-">User Patents</h1>
       <div className=" flex flex-col justify-center items-center">
         {patentData.patents.slice(0, visibleUserPatents).map((patent) => (
           <UserPatentCard
@@ -45,7 +53,7 @@ const Patent = () => {
             filingDate={patent.filingDate}
             publicationDate={patent.publicationDate}
             status={patent.status}
-            profilePicture={patentData.profilepic}
+            profilePicture={patent.profilePicture}
             onDelete={handleDeletePatent}
           />
         ))}

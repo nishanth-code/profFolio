@@ -7,6 +7,9 @@ import React from "react";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
+  // const authToken = localStorage.getItem("token");
+
+
   const formik = useFormik({
     initialValues: {
       email: "",

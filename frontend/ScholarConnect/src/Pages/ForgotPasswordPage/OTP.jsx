@@ -7,12 +7,13 @@ import React from "react";
 const OTP = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  // const authToken = localStorage.getItem("token");
 
   const formik = useFormik({
     initialValues: {
       otp: "",
     },
-    
+
     onSubmit: (values) => {
       axios.post("/profile/verifyotp", values).then((res) => {
         console.log(res.data.msg);

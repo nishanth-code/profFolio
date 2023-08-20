@@ -12,12 +12,20 @@ const EditPublication = (props) => {
 
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-20 my-4 rounded-2xl  border-solid border pointer-events-auto";
+  const authToken = localStorage.getItem("token");
 
   useEffect(() => {
-    axios.get(`/publication/render/${id}`).then((res) => {
-      console.log(res);
-      setUserData(res.data);
-    });
+    axios
+      .get(`/publication/render/${id}`, {
+        headers: {
+          // "Content-type": "application/json",
+          Authorization: `${authToken}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        setUserData(res.data);
+      });
   }, []);
   //Put ID here in dep Array
   // const date1 = moment(userData.doi).format("YYYY-MM-DD");
@@ -41,11 +49,18 @@ const EditPublication = (props) => {
 
     enableReinitialize: true,
     onSubmit: (values) => {
-      axios.put(`/publication/edit/${id}`, values).then((res) => {
-        console.log(res);
-        setUserData(res.data);
-        navigate("/profile/publication");
-      });
+      axios
+        .put(`/publication/edit/${id}`, values, {
+          headers: {
+            // "Content-type": "application/json",
+            Authorization: `${authToken}`,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          setUserData(res.data);
+          navigate("/profile/publication");
+        });
       console.log(values);
     },
   });

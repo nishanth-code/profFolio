@@ -14,17 +14,21 @@ const EditProfile = () => {
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl border-solid border pointer-events-auto";
 
-  // const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/${id}`;
-
-  // const editUrl = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/edit/${id}`;
-  // const editUrl = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/edit/64d4f7254b9470d6ccd3ca76`;
+  const authToken = localStorage.getItem("token");
 
   useEffect(() => {
-    axios.get("/profile/viewProfile").then((res) => {
-      // console.log(res);
-      setProfileData(res.data);
-      setProfileImage(res.data.profilePicture);
-    });
+    axios
+      .get("/profile/viewProfile", {
+        headers: {
+          // "Content-type": "application/json",
+          Authorization: `${authToken}`,
+        },
+      })
+      .then((res) => {
+        // console.log(res);
+        setProfileData(res.data);
+        setProfileImage(res.data.profilePicture);
+      });
   }, []);
   //Put ID here in dep Array
   const date = moment(profileData.dob).format("YYYY-MM-DD");
@@ -52,6 +56,7 @@ const EditProfile = () => {
         .put("/profile/updateProfile", formData, {
           headers: {
             "Content-Type": "multipart/form-data", // here content-Type is multipart so that diff kinds of content can be sent
+            Authorization: `${authToken}`,
           },
         })
         .then((res) => {
@@ -78,7 +83,7 @@ const EditProfile = () => {
         </div>
         <div className="">
           <form onSubmit={formik.handleSubmit} method="post">
-            <div className="relative ml-[340px]">
+            <div className="relative ml-[290px]">
               <img
                 className="h-40 w-32 ml-20 rounded-xl cursor-pointer transition duration-300 ease-in-out transform hover:brightness-75"
                 src={profileImage}
@@ -94,7 +99,7 @@ const EditProfile = () => {
                   className="hidden"
                   name="profilePicture"
                   onChange={handleImageChange}
-                  value={formik.values.profilePicture}
+                  // value={formik.values.profilePicture}
                 />
                 <MdEdit className="inline-block mr-1" />
                 Select Image
@@ -140,7 +145,7 @@ const EditProfile = () => {
               value={formik.values.dob}
             />
 
-            <div className=" text-center mr-80">
+            <div className="flex justify-center mr-56">
               <button
                 className="w-24 text-white rounded-md my-2  px-1 py-1 bg-[#0C2785] justify-center"
                 type="submit"

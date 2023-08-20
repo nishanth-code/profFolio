@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import LoginBackground from "../assets/LoginBackground.png";
 import { useFormik } from "formik";
 // import axios from "axios";
-import axios from "../api/authApi";
+import axios, { setAuthToken } from "../api/authApi";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
@@ -30,6 +30,7 @@ const Login = () => {
       axios.post("/authenticate", values).then((res) => {
         console.log(res.data.msg);
         localStorage.setItem("token", res.data.token);
+        setAuthToken();
         if (res.status == 200) {
           navigate("/");
         }

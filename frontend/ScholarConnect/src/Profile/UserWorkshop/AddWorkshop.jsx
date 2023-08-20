@@ -8,6 +8,7 @@ const AddWorkshop = () => {
   const navigate = useNavigate();
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-40 my-4 rounded-2xl  border-solid border pointer-events-auto";
+  const authToken = localStorage.getItem("token");
 
   const formik = useFormik({
     initialValues: {
@@ -20,12 +21,19 @@ const AddWorkshop = () => {
     },
 
     onSubmit: (values) => {
-      axios.post("/workshop/add", values).then((res) => {
-        console.log(res.data.msg);
-        if (res.status == 200) {
-          navigate("/profile/workshop");
-        }
-      });
+      axios
+        .post("/workshop/add", values, {
+          headers: {
+            // "Content-type": "application/json",
+            Authorization: `${authToken}`,
+          },
+        })
+        .then((res) => {
+          console.log(res.data.msg);
+          if (res.status == 200) {
+            navigate("/profile/workshop");
+          }
+        });
       console.log(values);
     },
   });

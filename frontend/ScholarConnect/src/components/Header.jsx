@@ -12,6 +12,7 @@ const Header = () => {
   var authToken = null;
   authToken = localStorage.getItem("token");
 
+
   useEffect(() => {
     const authToken = localStorage.getItem("token");
     if (authToken) {

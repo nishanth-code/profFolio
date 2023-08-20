@@ -5,17 +5,24 @@ import axios from "../../api/authApi";
 const UserPublications = () => {
   const [publicationData, setPublicationData] = useState({
     publications: [],
-    profilepic: "",
   });
 
   const [visibleUserPublications, setVisibleUserPublications] = useState(3);
   // const authToken = localStorage.getItem("token");
+  const authToken = localStorage.getItem("token");
 
   useEffect(() => {
-    axios.get("/profile/publication").then((res) => {
-      console.log(res);
-      setPublicationData(res.data);
-    });
+    axios
+      .get("/profile/publication", {
+        headers: {
+          // "Content-type": "application/json",
+          Authorization: `${authToken}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        setPublicationData(res.data);
+      });
   }, []);
 
   const handleDeletePublication = (publicationId) => {
@@ -58,7 +65,7 @@ const UserPublications = () => {
               editor={publication.editor}
               publisher={publication.publisher}
               url={publication.url}
-              profilePicture={publicationData.profilepic}
+              profilePicture={publication.profilePicture}
               onDelete={handleDeletePublication}
             />
           ))}

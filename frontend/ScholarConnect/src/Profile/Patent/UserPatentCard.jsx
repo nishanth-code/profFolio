@@ -21,12 +21,20 @@ const UserPatentCard = (props) => {
   // console.log(patentData);
 
   const id = props.id;
+  const authToken = localStorage.getItem("token");
 
   const handleDelete = () => {
-    axios.delete(`/patent/delete/${id}`).then((res) => {
-      console.log(res);
-      props.onDelete(props.id);
-    });
+    axios
+      .delete(`/patent/delete/${id}`, {
+        headers: {
+          // "Content-type": "application/json",
+          Authorization: `${authToken}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        props.onDelete(props.id);
+      });
   };
 
   return (
@@ -47,7 +55,7 @@ const UserPatentCard = (props) => {
               <MdDelete />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-center">
+          <h1 className="text-3xl font-bold text-center ml-20">
             Patent: {props.title}
           </h1>
           <div className="flex mt-16">
@@ -82,7 +90,7 @@ const UserPatentCard = (props) => {
           {/* <hr className="w-[800px] h-1 mx-24 my-4 bg-gray-300 border-0 rounded md:my-10 dark:bg-gray-700"></hr> */}
         </div>
       </div>
-      <div className="text-[200px] text-red-300 mt-10 ">
+      <div className="text-[200px] text-red-300 mt-40">
         <SlBadge />
       </div>
     </div>

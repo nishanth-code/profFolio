@@ -1,19 +1,76 @@
-import Header from "../../components/Header";
+import React, { useState, useEffect } from "react";
 import Body from "../../components/Body";
-import Footer from "../../components/Footer";
 import HomeCard from "../../components/HomeCard";
 import RecentPublication from "../../components/RecentPublication";
-import React from "react";
+import axios from "../../api/authApi";
 
 const Home = () => {
+  const [publicationData, setPublicationData] = useState([]);
+
+  const [articleData, setArticleData] = useState([]);
+  const [workshopData, setWorkshopData] = useState([]);
+  const authToken = localStorage.getItem("token");
+
+  useEffect(() => {
+    try {
+      axios
+        .get("/publication/renderAll", {
+          headers: {
+            // "Content-type": "application/json",
+            Authorization: `${authToken}`,
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          setPublicationData(res.data);
+        });
+      axios
+        .get("/article/renderAll", {
+          headers: {
+            // "Content-type": "application/json",
+            Authorization: `${authToken}`,
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          setArticleData(res.data);
+        });
+      axios
+        .get("/workshop/render", {
+          headers: {
+            // "Content-type": "application/json",
+            Authorization: `${authToken}`,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          setWorkshopData(res.data);
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }, []);
+
+  // console.log(articleData);
+
+  const numberOfPublications = publicationData.length;
+
+  const numberOfArticles = articleData.length;
+
+  const numberOfWorkshops = workshopData.length;
+
   return (
     <>
       {/* #DF71FA #fbf0ff  #cecece*/}
       <div className="min-h-screen bg-[#fbf0ff]">
         {/* <Header /> */}
         <Body />
-        <HomeCard />
-        <RecentPublication />
+        <HomeCard
+          publications={numberOfPublications}
+          articles={numberOfArticles}
+          workshops={numberOfWorkshops}
+        />
+        <RecentPublication publicationsData={publicationData} />
         {/* <Footer /> */}
       </div>
     </>

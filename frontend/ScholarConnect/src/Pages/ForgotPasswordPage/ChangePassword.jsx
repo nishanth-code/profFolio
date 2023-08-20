@@ -8,6 +8,7 @@ import React from "react";
 const ChangePassword = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  // const authToken = localStorage.getItem("token");
 
   const formik = useFormik({
     initialValues: {

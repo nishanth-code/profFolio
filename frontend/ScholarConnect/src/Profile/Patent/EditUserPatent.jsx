@@ -15,12 +15,20 @@ const EditUserPatent = (props) => {
 
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-10 my-4 rounded-2xl  border-solid border pointer-events-auto";
+  const authToken = localStorage.getItem("token");
 
   useEffect(() => {
-    axios.get(`/patent/render/${id}`).then((res) => {
-      console.log(res);
-      setUserPatentData(res.data);
-    });
+    axios
+      .get(`/patent/render/${id}`, {
+        headers: {
+          // "Content-type": "application/json",
+          Authorization: `${authToken}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        setUserPatentData(res.data);
+      });
   }, []);
   //Put ID here in dep Array
   const filingDate = formatDateForForms(userPatentData.filingDate);
@@ -40,12 +48,19 @@ const EditUserPatent = (props) => {
 
     enableReinitialize: true,
     onSubmit: (values) => {
-      axios.put(`/patent/edit/${id}`, values).then((res) => {
-        console.log(res);
-        if (res.status == 200) {
-          navigate("/profile/patent");
-        }
-      });
+      axios
+        .put(`/patent/edit/${id}`, values, {
+          headers: {
+            // "Content-type": "application/json",
+            Authorization: `${authToken}`,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.status == 200) {
+            navigate("/profile/patent");
+          }
+        });
       console.log(values);
     },
   });

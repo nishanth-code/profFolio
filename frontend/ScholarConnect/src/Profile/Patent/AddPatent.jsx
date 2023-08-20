@@ -11,6 +11,7 @@ const Patent = () => {
   const navigate = useNavigate();
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-10 my-4 rounded-2xl  border-solid border pointer-events-auto";
+  const authToken = localStorage.getItem("token");
 
   const formik = useFormik({
     initialValues: {
@@ -25,12 +26,19 @@ const Patent = () => {
     },
 
     onSubmit: (values) => {
-      axios.post("/patent/addpatent", values).then((res) => {
-        console.log(res.data.msg);
-        if (res.status == 200) {
-          navigate("/profile/patent");
-        }
-      });
+      axios
+        .post("/patent/addpatent", values, {
+          headers: {
+            // "Content-type": "application/json",
+            Authorization: `${authToken}`,
+          },
+        })
+        .then((res) => {
+          console.log(res.data.msg);
+          if (res.status == 200) {
+            navigate("/profile/patent");
+          }
+        });
       console.log(values);
     },
   });

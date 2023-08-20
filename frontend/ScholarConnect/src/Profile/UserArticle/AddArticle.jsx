@@ -10,8 +10,7 @@ const AddArticle = () => {
   const style =
     "h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-full mx-40 my-4 rounded-2xl  border-solid border pointer-events-auto";
 
-  const url =
-    "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/addpublication";
+  const authToken = localStorage.getItem("token");
 
   const formik = useFormik({
     initialValues: {
@@ -25,10 +24,17 @@ const AddArticle = () => {
     },
 
     onSubmit: (values) => {
-      axios.post("/article/add", values).then((res) => {
-        console.log(res.data.msg);
-        navigate("/profile/article");
-      });
+      axios
+        .post("/article/add", values, {
+          headers: {
+            // "Content-type": "application/json",
+            Authorization: `${authToken}`,
+          },
+        })
+        .then((res) => {
+          console.log(res.data.msg);
+          navigate("/profile/article");
+        });
       console.log(values);
     },
   });

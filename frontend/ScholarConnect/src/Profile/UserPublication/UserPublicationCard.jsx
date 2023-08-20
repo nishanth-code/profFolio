@@ -9,12 +9,20 @@ const UserPublicationCard = (props) => {
 
   const id = props.id;
   // // console.log(id);
+  const authToken = localStorage.getItem("token");
 
   const handleDelete = () => {
-    axios.delete(`/publication/delete/${id}`).then((res) => {
-      console.log(res);
-      props.onDelete(props.id);
-    });
+    axios
+      .delete(`/publication/delete/${id}`, {
+        headers: {
+          // "Content-type": "application/json",
+          Authorization: `${authToken}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        props.onDelete(props.id);
+      });
   };
 
   return (

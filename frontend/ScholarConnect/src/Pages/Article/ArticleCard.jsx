@@ -1,103 +1,12 @@
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import Professor from "../../assets/professor.jpg";
 import { Link } from "react-router-dom";
 import { MdEdit, MdDelete } from "react-icons/md";
 import axios from "../../api/authApi";
+import { formatDate } from "../../utils/dateFormater";
 axios.defaults.withCredentials = true;
 const ArticleCard = (props) => {
-  const [data, setData] = useState(props.article);
   const [expanded, setExpanded] = useState(false);
-
-  const UserArticle = [
-    {
-      id: 1,
-      title: "Wireless Comm",
-      organisedBy: "John Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 2,
-      title: "Something Comm",
-      organisedBy: "Smith Doe",
-      attendedOn: "2023-07-20",
-      duration: "6 hrs",
-      subject: "IT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 3,
-      title: "WIFI",
-      organisedBy: "Payal Doe",
-      attendedOn: "2022-12-11",
-      duration: "3 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 4,
-      title: "Training model",
-      organisedBy: "SOme Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "ML",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 5,
-      title: "Wireless Comm",
-      organisedBy: "John Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 6,
-      title: "Wireless Comm",
-      organisedBy: "John Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 7,
-      title: "Wireless Comm",
-      organisedBy: "John Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 8,
-      title: "Wireless Comm",
-      organisedBy: "John Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 9,
-      title: "Wireless Comm",
-      organisedBy: "John Doe",
-      attendedOn: "2023-07-16",
-      duration: "2 Days",
-      subject: "IoT",
-      summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-  ];
-
-  const id = props.id;
-
-  // console.log(id);
-
-  // const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/delete/64d4f7254b9470d6ccd3ca76`;
-  const url = `https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/publication/delete/${id}`;
 
   const toggleExpanded = () => {
     setExpanded(!expanded);
@@ -117,7 +26,6 @@ const ArticleCard = (props) => {
         <div className="flex">
           <div className="flex ">
             <div className="p-7 ">
-             
               <h1 className="text-2xl font-semibold ml text-center -mt-6">
                 Article on: {props.title}
               </h1>
@@ -125,17 +33,14 @@ const ArticleCard = (props) => {
                 <div className="relative">
                   <img
                     className="h-32 w-24 ml-20 rounded-xl  transition duration-300 ease-in-out transform hover:brightness-75"
-                    src={Professor}
+                    src={props.profilePicture}
                     alt="profile"
-                    // onClick={() =>
-                    //   document.getElementById("imageInput").click()
-                    // }
                   />
                 </div>
                 <div className="mt-3 ml-12 font-In ">
                   <h1 className="text-3xl">Author: {props.author}</h1>
                   <h1 className="text-sm text-gray-400">
-                    Published On: {props.publishedOn}
+                    Published On: {formatDate(props.publishedOn)}
                   </h1>
                   <h1 className="text-sm">Media: {props.publishedMedia}</h1>
                   <h1 className="text-sm">Subject: {props.subject}</h1>
@@ -151,7 +56,7 @@ const ArticleCard = (props) => {
         <p className="text-semibold text-justify mx-5">
           {expanded ? props.summary : truncateSummary(props.summary, 50)}
           <p
-            className="border rounded-sm ml-2 p-1 hover:bg-white hover:text-[#550C6B] border-solid inline-block  cursor-pointer "
+            className="border rounded-sm ml-2 p-1 hover:bg-white hover:text-[#550C6B] border-solid inline-block cursor-pointer"
             onClick={toggleExpanded}
           >
             {expanded ? "See Less" : "See More"}

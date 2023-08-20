@@ -8,11 +8,20 @@ import { formatDate } from "../../utils/dateFormater";
 const UserWorkshopCard = (props) => {
   const [expanded, setExpanded] = useState(false);
   const id = props.id;
+
+  const authToken = localStorage.getItem("token");
   const handleDelete = () => {
-    axios.delete(`/workshop/delete/${id}`).then((res) => {
-      console.log(res);
-      props.onDelete(props.id);
-    });
+    axios
+      .delete(`/workshop/delete/${id}`, {
+        headers: {
+          // "Content-type": "application/json",
+          Authorization: `${authToken}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        props.onDelete(props.id);
+      });
   };
 
   const toggleExpanded = () => {
