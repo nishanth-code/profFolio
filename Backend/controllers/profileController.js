@@ -145,7 +145,7 @@ const changePassword = async(req,res)=>{
     const updateprofile = async(req,res) =>{
         const id = req.user.id
         const user = await profile.findById(id).populate(['publications','articles','workshops','patents'])
-        const imageUrl = user.profilePicture
+        var imageUrl = user.profilePicture
         const {publications,articles,workshops,patents} = user
         const {designation,phoneNumber,gender,dob} = req.body
         if (req.file) {try {
