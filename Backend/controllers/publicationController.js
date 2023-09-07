@@ -49,7 +49,7 @@ const updatePublication = async(req,res) =>{
     const id = req.params.id
     console.log(req.body)
     const publicate = req.body
-    await publications.findByIdAndUpdate(id,publicate)
+    await publication.findByIdAndUpdate(id,publicate)
     
     res.json({msg:'sucessfully updated'}).status(200)
 
@@ -59,7 +59,7 @@ const deletepublication = async(req,res) =>{
     const id = req.user.id
     const user = await profile.findById(id)
     const pid = req.params.id
-    await publications.findByIdAndDelete(pid)
+    await publication.findByIdAndDelete(pid)
     user.publications.splice(user.publications.indexOf(pid),1)
     await user.save()
 
