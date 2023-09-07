@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import WorkshopCard from "./WorkshopCard";
 import axios from "../../api/authApi";
+import WorkshopShimmer from "../../components/WorkshopShimmer";
+
 const Workshop = () => {
   const [workshopData, setWorkshopData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const [visibleWorkshops, setVisibleWorkshops] = useState(3);
   const authToken = localStorage.getItem("token");
 
@@ -17,6 +21,7 @@ const Workshop = () => {
       .then((res) => {
         console.log(res);
         setWorkshopData(res.data);
+        setIsLoading(false);
       });
   }, []);
 
@@ -28,23 +33,33 @@ const Workshop = () => {
     <div className="flex flex-col justify-center items-center">
       <h1 className="text-3xl font-semibold text-center mt-4">Workshops</h1>
       <div className="flex flex-wrap justify-center">
-        {workshopData.slice(0, visibleWorkshops).map((workshop) => (
-          <WorkshopCard
-            key={workshop.id}
-            id={workshop.id}
-            title={workshop.title}
-            organizedBy={workshop.organizedBy}
-            attendedOn={workshop.attendedOn}
-            subject={workshop.subject}
-            summary={workshop.summary}
-            profilePicture={workshop.profilePicture}
-          />
-        ))}
+        {isLoading ? (
+          <>
+            <WorkshopShimmer />
+            <WorkshopShimmer />
+            <WorkshopShimmer />
+          </>
+        ) : (
+          workshopData
+            .slice(0, visibleWorkshops)
+            .map((workshop) => (
+              <WorkshopCard
+                key={workshop.id}
+                id={workshop.id}
+                title={workshop.title}
+                organizedBy={workshop.organizedBy}
+                attendedOn={workshop.attendedOn}
+                subject={workshop.subject}
+                summary={workshop.summary}
+                profilePicture={workshop.profilePicture}
+              />
+            ))
+        )}
       </div>
       <div className="flex">
         {visibleWorkshops < workshopData.length && (
           <button
-            className="mx-auto px-4 py-2 rounded-md bg-[#1D3792] text-white"
+            className="mx-auto px-4 py-2 my-4 rounded-md bg-[#1D3792] text-white"
             onClick={loadMoreWorkshops}
           >
             Load More

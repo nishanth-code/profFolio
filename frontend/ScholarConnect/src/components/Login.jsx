@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import LoginBackground from "../assets/LoginBackground.png";
 import { useFormik } from "formik";
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 const Login = () => {
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
   const url =
     "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/authenticate";
@@ -27,14 +28,21 @@ const Login = () => {
     // }),
 
     onSubmit: (values) => {
-      axios.post("/authenticate", values).then((res) => {
-        console.log(res.data.msg);
-        localStorage.setItem("token", res.data.token);
-        setAuthToken();
-        if (res.status == 200) {
-          navigate("/");
-        }
-      });
+      axios
+        .post("/authenticate", values)
+        .then((res) => {
+          console.log(res.data.msg);
+          localStorage.setItem("token", res.data.token);
+          setAuthToken();
+          if (res.status == 200) {
+            navigate("/");
+          }
+        })
+        .catch((err) => {
+          setError(true);
+          // console.log(err);
+          console.log(error);
+        });
     },
   });
 
@@ -49,17 +57,7 @@ const Login = () => {
           <p>Login with one of the following options</p>
           {}
           <form onSubmit={formik.handleSubmit} method="post">
-            {/* <div className="flex w-2/4 mx-40 my-2 rounded-2xl justify-center items-center border-solid border ">
-              <img
-                className="h-8 w-8 mx-2"
-                src="https://img.icons8.com/color/48/google-logo.png"
-                alt="google-logo"
-              />
-              <button className="my-2  bg-transparent border-solid border-white ">
-                Continue with Google
-              </button>
-            </div> */}
-            <div className="">
+            <div>
               <input
                 className="h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
                 id="username"
@@ -70,7 +68,7 @@ const Login = () => {
                 value={formik.values.username}
               />
             </div>
-            <div className="">
+            <div>
               <input
                 className="h-10 focus:outline-none bg-[rgb(217,217,217)]/30 text-center w-1/2 mx-40 my-4 rounded-2xl justify-center items-center border-solid border"
                 id="password"
@@ -81,6 +79,12 @@ const Login = () => {
                 value={formik.values.password}
               />
             </div>
+            {error ? (
+              <p className="text-red-600  text-lg font-semibold -pt-4">
+                Invalid Credentials!!
+              </p>
+            ) : null}
+
             <div>
               <Link to={"/forgotpassword"}>Forgot password</Link>
             </div>
@@ -109,15 +113,6 @@ const Login = () => {
                 Login
               </button>
             </div>
-            {/* <div>
-              <button
-                className="w-24 rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785] justify-center"
-                type="button"
-                // onClick={() => redirect("/")}
-              >
-                back
-              </button>
-            </div> */}
           </form>
         </div>
       </div>

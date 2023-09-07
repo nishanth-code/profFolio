@@ -61,7 +61,7 @@ const Patent = () => {
       <div className="flex">
         {visibleUserPatents < patentData.patents.length && (
           <button
-            className="mx-auto px-4 py-2 rounded-md bg-[#1D3792] text-white"
+            className="mx-auto my-4 px-4 py-2 rounded-md bg-[#1D3792] text-white"
             onClick={loadMorePatents}
           >
             Load More

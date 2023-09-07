@@ -80,18 +80,14 @@ const EditUserPatent = (props) => {
   // console.log(formik.initialValues);
 
   return (
-    <div className="flex flex-col justify-center items-center  relative h-full">
+    <div className="flex flex-col justify-center items-center relative h-full ml-64">
       <div className=" flex  items-center justify-center">
-        <h1 className="text-2xl font-semibold mr-10">
+        <h1 className="text-2xl font-semibold mr-56">
           Edit your Patent Details
         </h1>
       </div>
-      <div className="content-center ml-80">
-        <form
-          className="w-96 ml-20"
-          onSubmit={formik.handleSubmit}
-          method="put"
-        >
+      <div className="content-center">
+        <form className=" ml-20" onSubmit={formik.handleSubmit} method="put">
           <input
             className={style}
             id="title"
@@ -189,7 +185,7 @@ const EditUserPatent = (props) => {
             <option value="Active">Active</option>
             <option value="Inactive">Inactive</option>
           </select>
-          <div className="ml-56">
+          <div className="ml-36">
             <button
               className="w-24 text-white rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785] "
               type="submit"

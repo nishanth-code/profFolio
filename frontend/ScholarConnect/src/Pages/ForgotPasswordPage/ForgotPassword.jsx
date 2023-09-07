@@ -3,12 +3,12 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import axios from "../../api/authApi";
-import React from "react";
+import React, { useState } from "react";
 
 const ForgotPassword = () => {
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
   // const authToken = localStorage.getItem("token");
-
 
   const formik = useFormik({
     initialValues: {
@@ -22,10 +22,15 @@ const ForgotPassword = () => {
     }),
 
     onSubmit: (values) => {
-      axios.post("/profile/sendOTP", values).then((res) => {
-        console.log(res.data);
-        navigate(`/forgotpassword/otp/${res.data.id}`);
-      });
+      axios
+        .post("/profile/sendOTP", values)
+        .then((res) => {
+          console.log(res.data);
+          navigate(`/forgotpassword/otp/${res.data.id}`);
+        })
+        .catch((err) => {
+          setError(true);
+        });
     },
   });
 
@@ -54,7 +59,13 @@ const ForgotPassword = () => {
                   {formik.errors.email}
                 </p>
               ) : null}
+              {error ? (
+                <p className="text-red-600  text-lg font-semibold -pt-4">
+                  Email not found kindly register
+                </p>
+              ) : null}
             </div>
+
             <div>
               <button
                 className="w-24 rounded-md my-2 mx-1 px-1 py-1 bg-[#0C2785] justify-center"

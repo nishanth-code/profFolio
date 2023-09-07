@@ -3,10 +3,12 @@ import PublicationCard from "./PublicationCard";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import axios from "../../api/authApi";
+import Shimmer from "../../components/PublicationShimmer";
 
 const Publications = () => {
   const [visiblePublications, setVisiblePublications] = useState(4);
   const [publicationData, setPublicationData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const authToken = localStorage.getItem("token");
 
   useEffect(() => {
@@ -20,6 +22,7 @@ const Publications = () => {
       .then((res) => {
         console.log(res);
         setPublicationData(res.data);
+        setIsLoading(false);
       });
   }, []);
 
@@ -44,29 +47,40 @@ const Publications = () => {
     <div className="ml-10">
       <h1 className="text-3xl font-semibold text-center mt-4">Publicaitons</h1>
       <div className="flex flex-wrap relative ">
-        {publicationData.slice(0, visiblePublications).map((publication) => (
-          <PublicationCard
-            key={publication.id}
-            id={publication.id}
-            author={publication.author}
-            title={publication.title}
-            doi={publication.doi}
-            year={publication.year}
-            publishedMedia={publication.publishedMedia}
-            subject={publication.subject}
-            volume={publication.volume}
-            editor={publication.editor}
-            publisher={publication.publisher}
-            url={publication.url}
-            content={publication.content}
-            profilePicture={publication.profilePicture}
-          />
-        ))}
+        {isLoading ? (
+          <>
+            <Shimmer />
+            <Shimmer />
+            <Shimmer />
+            <Shimmer />
+          </>
+        ) : (
+          publicationData
+            .slice(0, visiblePublications)
+            .map((publication) => (
+              <PublicationCard
+                key={publication.id}
+                id={publication.id}
+                author={publication.author}
+                title={publication.title}
+                doi={publication.doi}
+                year={publication.year}
+                publishedMedia={publication.publishedMedia}
+                subject={publication.subject}
+                volume={publication.volume}
+                editor={publication.editor}
+                publisher={publication.publisher}
+                url={publication.url}
+                content={publication.content}
+                profilePicture={publication.profilePicture}
+              />
+            ))
+        )}
       </div>
       <div className="flex">
         {visiblePublications < publicationData.length && (
           <button
-            className="mx-auto px-4 py-2 rounded-md bg-[#1D3792] text-white"
+            className="mx-auto px-4 py-2 my-4 rounded-md bg-[#1D3792] text-white"
             onClick={loadMorePublications}
           >
             Load More

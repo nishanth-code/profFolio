@@ -38,7 +38,7 @@ const UserPatentCard = (props) => {
   };
 
   return (
-    <div className="bg-[#fbf0ff] flex justify-center items-center border relative border-gray-200 mt-10 ml-20 pb-10 rounded-2xl h-auto w-[900px] shadow-lg hover:scale-105 ease-in duration-300">
+    <div className="bg-[#fbf0ff] flex justify-center items-center border relative border-gray-200 mt-10 mb-4 ml-20 pb-10 rounded-2xl h-auto w-[900px] shadow-lg hover:scale-105 ease-in duration-300">
       <div className="flex ">
         <div className="p-7 ">
           <div className="flex justify-around">

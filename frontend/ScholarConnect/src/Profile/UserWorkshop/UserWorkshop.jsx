@@ -38,7 +38,7 @@ const UserWorkshop = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center ">
       <h1 className="text-3xl font-semibold text-center mt-4">User Workshop</h1>
       <div className="flex flex-wrap justify-center">
         {workshopData.workshops
@@ -60,7 +60,7 @@ const UserWorkshop = () => {
       <div className="flex">
         {visibleUserWorkshops < workshopData.workshops.length && (
           <button
-            className="mx-auto px-4 py-2 rounded-md bg-[#1D3792] text-white"
+            className="mx-auto my-4 px-4 py-2 rounded-md bg-[#1D3792] text-white"
             onClick={loadMoreWorkshops}
           >
             Load More

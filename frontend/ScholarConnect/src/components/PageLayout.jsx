@@ -4,10 +4,10 @@ import Footer from "./Footer";
 import React from "react";
 const MenuLayout = () => {
   return (
-    <div className=" bg-[#fbf0ff]">
+    <div className="flex flex-col min-h-screen bg-[#fbf0ff]">
       <Header />
       <Outlet />
-      <Footer />
+      <Footer className="bottom-0" />
     </div>
   );
 };

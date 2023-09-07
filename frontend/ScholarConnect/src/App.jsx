@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 // Login Register ForgotPassword OTP
 import Login from "./components/Login";
 import Home from "./Pages/Home/Home";
@@ -41,6 +46,9 @@ import Patent from "./Profile/Patent/Patent";
 import EditUserPatent from "./Profile/Patent/EditUserPatent";
 
 function App() {
+  // const [loggedIn, setLoggedIn] = useState(false);
+  // const navigate = useNavigate();
+
   function NotFound() {
     return <Error message="Page not found." />;
   }
@@ -64,6 +72,8 @@ function App() {
         </Route>
         {/* Create route for change password */}
         <Route path="/register" element={<Register />} />
+
+        {/* {loggedIn ? ( */}
         <Route path="/profile" element={<Dashboard />}>
           <Route path="" element={<ProfileLayout />}>
             <Route path="" element={<ProfileDetails />} />
@@ -93,6 +103,9 @@ function App() {
             <Route path="edit/:id" element={<EditUserPatent />} />
           </Route>
         </Route>
+        {/* ) : (
+          navigate("/login")
+        )} */}
         {/* <Route
           path="/profile/publication/edit/:id"
           element={<EditPublication />}

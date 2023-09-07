@@ -1,17 +1,15 @@
 import React from "react";
 import Logo from "../assets/MAKERS_BRAND_LOGO.png";
-import { FaBeer } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#350346] text-white">
+    <footer className="bg-[#350346] text-white bottom-0">
       <div className="grid grid-cols-3  my-10">
         <div className="my-10 mx-16  ">
           <div className="h-10 w-10">
