@@ -34,12 +34,10 @@ const Patent = () => {
           },
         })
         .then((res) => {
-          console.log(res.data.msg);
           if (res.status == 200) {
             navigate("/profile/patent");
           }
         });
-      console.log(values);
     },
   });
 

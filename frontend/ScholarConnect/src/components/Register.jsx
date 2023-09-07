@@ -8,8 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const navigate = useNavigate();
-  // const url =
-  //   "https://psychic-sniffle-p5wqr79vvv6hrxrg-5000.app.github.dev/profile/signup";
 
   const formik = useFormik({
     initialValues: {
@@ -27,12 +25,10 @@ const Register = () => {
 
     onSubmit: (values) => {
       axios.post("/profile/signup", { values }).then((res) => {
-        console.log(res);
         if (res.status == 200) {
           navigate("/login");
         }
       });
-      console.log(values);
     },
   });
 

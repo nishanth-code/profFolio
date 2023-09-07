@@ -56,12 +56,10 @@ const EditUserPatent = (props) => {
           },
         })
         .then((res) => {
-          console.log(res);
           if (res.status == 200) {
             navigate("/profile/patent");
           }
         });
-      console.log(values);
     },
   });
 

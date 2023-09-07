@@ -25,7 +25,6 @@ const ChangePassword = () => {
 
     onSubmit: (values) => {
       axios.put(`/profile/changePassword/${id}`, values).then((res) => {
-        console.log(res.data.msg);
         if (res.status == 200) {
           navigate("/login");
         }

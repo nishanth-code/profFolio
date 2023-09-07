@@ -6,8 +6,6 @@ const Body = () => {
   return (
     <>
       <div className="image-container relative -top-28">
-        {/* <h2>Home</h2>
-        This is body */}
         <img className="absolute" src={BodyImg} alt="Body image" />
       </div>
       <div className="h-96 my-24 relative mx-16 rounded-3xl bg-gradient-to-b from-[#341649] to-[#550C6B]  flex justify-between">

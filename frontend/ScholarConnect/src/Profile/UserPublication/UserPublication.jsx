@@ -20,7 +20,6 @@ const UserPublications = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         setPublicationData(res.data);
       });
   }, []);

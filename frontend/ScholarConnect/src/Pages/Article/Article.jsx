@@ -20,7 +20,6 @@ const Article = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         setArticleData(res.data);
         setIsLoading(false);
       });
@@ -29,7 +28,6 @@ const Article = () => {
   const loadMorePublications = () => {
     setVisibleArticles(visibleArticles + 2); // You can adjust the number as needed
   };
-  console.log(articleData);
 
   return (
     <div className="ml-10">

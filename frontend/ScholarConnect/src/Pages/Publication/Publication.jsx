@@ -20,13 +20,10 @@ const Publications = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         setPublicationData(res.data);
         setIsLoading(false);
       });
   }, []);
-
-  console.log(publicationData);
 
   const loadMorePublications = () => {
     setVisiblePublications(visiblePublications + 4); // You can adjust the number as needed

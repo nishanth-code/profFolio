@@ -23,7 +23,6 @@ const EditWorkshop = (props) => {
         },
       })
       .then((res) => {
-        console.log(res);
         setWorkshopData(res.data);
       });
   }, []);

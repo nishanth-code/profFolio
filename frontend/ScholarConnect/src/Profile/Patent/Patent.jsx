@@ -19,7 +19,6 @@ const Patent = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         setPatentData(res.data);
       });
   }, []);
@@ -30,8 +29,6 @@ const Patent = () => {
       patents: prevData.patents.filter((pat) => pat._id !== patentId),
     }));
   };
-
-  console.log(patentData);
 
   const loadMorePatents = () => {
     setVisibleUserPatents(visibleUserPatents + 3); // You can adjust the number as needed

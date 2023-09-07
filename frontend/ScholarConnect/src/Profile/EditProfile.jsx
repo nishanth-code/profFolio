@@ -20,17 +20,15 @@ const EditProfile = () => {
     axios
       .get("/profile/viewProfile", {
         headers: {
-          // "Content-type": "application/json",
           Authorization: `${authToken}`,
         },
       })
       .then((res) => {
-        // console.log(res);
         setProfileData(res.data);
         setProfileImage(res.data.profilePicture);
       });
   }, []);
-  //Put ID here in dep Array
+
   const date = moment(profileData.dob).format("YYYY-MM-DD");
 
   const formik = useFormik({

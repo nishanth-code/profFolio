@@ -20,11 +20,9 @@ const UserWorkshop = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         setWorkshopData(res.data);
       });
   }, []);
-  console.log(workshopData);
 
   const handleDeleteWorkshop = (workshopId) => {
     setWorkshopData((prevData) => ({

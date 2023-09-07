@@ -21,7 +21,6 @@ const Home = () => {
           },
         })
         .then((res) => {
-          console.log(res.data);
           setPublicationData(res.data);
         });
       axios
@@ -32,7 +31,6 @@ const Home = () => {
           },
         })
         .then((res) => {
-          console.log(res.data);
           setArticleData(res.data);
         });
       axios
@@ -43,7 +41,6 @@ const Home = () => {
           },
         })
         .then((res) => {
-          console.log(res);
           setWorkshopData(res.data);
         });
     } catch (error) {

@@ -32,7 +32,6 @@ const UserPatentCard = (props) => {
         },
       })
       .then((res) => {
-        console.log(res);
         props.onDelete(props.id);
       });
   };

@@ -25,7 +25,6 @@ const ForgotPassword = () => {
       axios
         .post("/profile/sendOTP", values)
         .then((res) => {
-          console.log(res.data);
           navigate(`/forgotpassword/otp/${res.data.id}`);
         })
         .catch((err) => {

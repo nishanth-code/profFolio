@@ -31,7 +31,6 @@ const Login = () => {
       axios
         .post("/authenticate", values)
         .then((res) => {
-          console.log(res.data.msg);
           localStorage.setItem("token", res.data.token);
           setAuthToken();
           if (res.status == 200) {
@@ -40,8 +39,6 @@ const Login = () => {
         })
         .catch((err) => {
           setError(true);
-          // console.log(err);
-          console.log(error);
         });
     },
   });

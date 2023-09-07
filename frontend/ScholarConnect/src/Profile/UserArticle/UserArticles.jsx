@@ -18,7 +18,6 @@ const UserArticles = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         setArticleData(res.data);
       });
   }, []);

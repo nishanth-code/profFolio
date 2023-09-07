@@ -16,7 +16,6 @@ const OTP = () => {
 
     onSubmit: (values) => {
       axios.post("/profile/verifyotp", values).then((res) => {
-        console.log(res.data.msg);
         if (res.status == 200) {
           navigate(`/forgotpassword/changepassword/${id}`);
         }

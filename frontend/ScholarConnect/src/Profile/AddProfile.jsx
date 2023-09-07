@@ -22,10 +22,7 @@ const AddProfile = () => {
     },
 
     onSubmit: (values) => {
-      axios.post(url, { values }, {}).then((res) => {
-        console.log(res);
-      });
-      console.log(values);
+      axios.post(url, { values }, {}).then((res) => {});
     },
   });
 

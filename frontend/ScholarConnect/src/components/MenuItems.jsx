@@ -28,10 +28,6 @@ const MenuItems = () => {
         <Link to={"/"}>Home Page</Link>
         <div></div>
       </div>
-      {/* <div className="my-6 text-xl relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center">
-        <Link to={"/patent"}>Patent</Link>
-        <div></div>
-      </div> */}
     </div>
   );
 };

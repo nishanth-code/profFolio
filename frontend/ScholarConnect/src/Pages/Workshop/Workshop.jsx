@@ -19,7 +19,6 @@ const Workshop = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         setWorkshopData(res.data);
         setIsLoading(false);
       });

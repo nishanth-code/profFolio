@@ -57,11 +57,9 @@ const EditPublication = (props) => {
           },
         })
         .then((res) => {
-          console.log(res);
           setUserData(res.data);
           navigate("/profile/publication");
         });
-      console.log(values);
     },
   });
 

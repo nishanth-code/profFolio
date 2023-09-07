@@ -23,7 +23,6 @@ const ProfileDetails = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
         setUserDetails(res.data);
       });
   }, []);

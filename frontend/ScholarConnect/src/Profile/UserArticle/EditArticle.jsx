@@ -25,7 +25,6 @@ const EditArticle = (props) => {
         },
       })
       .then((res) => {
-        console.log(res);
         setUserData(res.data);
       });
   }, []);

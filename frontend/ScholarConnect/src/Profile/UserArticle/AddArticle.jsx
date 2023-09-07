@@ -35,7 +35,6 @@ const AddArticle = () => {
           console.log(res.data.msg);
           navigate("/profile/article");
         });
-      console.log(values);
     },
   });
 
