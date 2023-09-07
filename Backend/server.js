@@ -51,7 +51,7 @@ passport.deserializeUser(profile.deserializeUser());
 
 
 app.use(cors({
-  origin: ['http://localhost:5173','https://scholarconnect-5gsjayyub-cryptomahee-gmailcom.vercel.app','*'] ,// Update with your frontend's origin
+  origin: ['http://localhost:5173','https://scholarconnect-5gsjayyub-cryptomahee-gmailcom.vercel.app','*','https://scholarconnect.vercel.app'] ,// Update with your frontend's origin
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: 'X-Requested-With, Content-Type, Authorization',
   credentials: true,
