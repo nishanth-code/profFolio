@@ -2,9 +2,10 @@ import LoginBackground from "../../assets/LoginBackground.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "../../api/authApi";
-import React from "react";
+import React, { useState } from "react";
 
 const OTP = () => {
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
   // const authToken = localStorage.getItem("token");
@@ -15,11 +16,16 @@ const OTP = () => {
     },
 
     onSubmit: (values) => {
-      axios.post("/profile/verifyotp", values).then((res) => {
-        if (res.status == 200) {
-          navigate(`/forgotpassword/changepassword/${id}`);
-        }
-      });
+      axios
+        .post("/profile/verifyotp", values)
+        .then((res) => {
+          if (res.status == 200) {
+            navigate(`/forgotpassword/changepassword/${id}`);
+          }
+        })
+        .catch((err) => {
+          setError(true);
+        });
     },
   });
 
@@ -43,6 +49,11 @@ const OTP = () => {
                 onChange={formik.handleChange}
                 value={formik.values.otp}
               />
+              {error ? (
+                <p className="text-red-600  text-lg font-semibold -pt-4">
+                  Invalid OTP!!
+                </p>
+              ) : null}
             </div>
             <div>
               <button
